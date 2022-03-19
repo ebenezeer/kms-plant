@@ -4194,10 +4194,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -49265,20 +49261,13 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(pm.id))]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v("\n            Name: " + _vm._s(pm.name)),
+                      _vm._v("\n            " + _vm._s(pm.name)),
                       _c("br"),
                       _vm._v(" "),
                       _c("small", [_vm._v(_vm._s(pm.description))])
                     ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(pm.variety))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _vm._v("\n            Method: " + _vm._s(pm.g_title)),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("small", [_vm._v(_vm._s(pm.g_description))])
-                    ]),
                     _vm._v(" "),
                     _c("td", [
                       _c("div", { staticClass: "btn-group" }, [
@@ -49413,8 +49402,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Plant")]),
         _vm._v(" "),
         _c("th", [_vm._v("Variety")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Graft")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])

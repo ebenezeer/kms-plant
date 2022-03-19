@@ -14,7 +14,6 @@
           <th>Id</th>
           <th>Plant</th>
           <th>Variety</th>
-          <th>Graft</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -23,14 +22,11 @@
           <tr>
             <td>{{ pm.id }}</td>
             <td>
-              Name: {{ pm.name }}<br />
+              {{ pm.name }}<br />
               <small>{{ pm.description }}</small>
             </td>
             <td>{{ pm.variety }}</td>
-            <td>
-              Method: {{ pm.g_title }}<br />
-              <small>{{ pm.g_description }}</small>
-            </td>
+
             <td>
               <div class="btn-group">
                 <button
