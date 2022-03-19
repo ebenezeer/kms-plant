@@ -39,13 +39,13 @@ class PlantNameController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required',
+
         ]);
 
         $unit = new PlantName();
 
         $unit->name = $request->name;
-        $unit->description = $request->description;
+
 
         $unit->save();
 
@@ -68,14 +68,12 @@ class PlantNameController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required'
         ]);
 
         $unit = PlantName::find($id);
 
         $unit->name = $request->name;
-        $unit->description = $request->description;
 
         $unit->save();
 

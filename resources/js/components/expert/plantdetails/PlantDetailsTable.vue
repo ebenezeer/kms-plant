@@ -1,20 +1,20 @@
 <template>
   <div>
-    <router-link class="btn btn-primary" to="/expert/method-details/create"
+    <router-link class="btn btn-primary" to="/expert/plant-detail/create"
       >Create</router-link
     >
-    <br />
-    <br />
+
     <table
       id="meth-table"
       class="table table-bordered table-striped table-sm dataTable"
+      style="margin-top: 15px"
     >
       <thead class="table-dark">
         <tr>
           <th>Id</th>
           <th>Plant</th>
           <th>Variety</th>
-          <th>Graft</th>
+          <th>Description</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -22,15 +22,9 @@
         <template v-for="(pm, index) in plant_meth">
           <tr>
             <td>{{ pm.id }}</td>
-            <td>
-              Name: {{ pm.name }}<br />
-              <small>{{ pm.description }}</small>
-            </td>
+            <td>{{ pm.name }}</td>
             <td>{{ pm.variety }}</td>
-            <td>
-              Method: {{ pm.g_title }}<br />
-              <small>{{ pm.g_description }}</small>
-            </td>
+            <td>{{ pm.description }}</td>
             <td>
               <button
                 type="button"
@@ -65,20 +59,31 @@
             </div>
 
             <div class="form-group">
-              <label for="name">Description:</label>
+              <label for="name">Variety:</label>
               <v-select
                 ref="select"
-                label="name"
+                label="description"
                 placeholder="Select Plant Name"
-                v-model="update_meth.name_id"
-                :options="plant_names"
-                :reduce="(plant_names) => plant_names.id"
+                v-model="update_det.variety_id"
+                :options="varieties"
+                :reduce="(varieties) => varieties.id"
               >
               </v-select>
             </div>
+            <div class="form-group">
+              <label for="name">Description:</label>
+              <textarea
+                class="form-control"
+                rows="5"
+                id="upcomment"
+                v-model="update_det.description"
+              ></textarea>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-primary" @click="updateDet">
+              Update
+            </button>
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Close
             </button>
@@ -96,15 +101,16 @@ export default {
     return {
       plant_meth: [],
       plant_names: [],
-      update_meth: {},
+      varieties: [],
+      update_det: {},
       errors: [],
     };
   },
   mounted() {
-    this.getPlantNames();
+    this.getVarieties();
   },
   created() {
-    window.axios.get("/expert/plant-methods").then(({ data }) => {
+    window.axios.get("/expert/plant-details").then(({ data }) => {
       this.plant_meth = data;
       //this.dataTab();
     });
@@ -113,7 +119,7 @@ export default {
     initUpdate(index) {
       this.errors = [];
       $("#update_unit_model").modal("show");
-      this.update_meth = this.plant_meth[index];
+      this.update_det = this.plant_meth[index];
       setTimeout(() => {
         console.log(this.update_meth);
       }, 600);
@@ -121,6 +127,46 @@ export default {
     getPlantNames() {
       window.axios.get("/expert/get-plant-names").then(({ data }) => {
         this.plant_names = data;
+      });
+    },
+    getVarieties() {
+      window.axios.get("/expert/plant-variety").then(({ data }) => {
+        this.varieties = data;
+      });
+    },
+    updateDet() {
+      axios
+        .patch("/expert/plant-details/" + this.update_det.id, {
+          variety_id: this.update_det.variety_id,
+          description: this.update_det.description,
+        })
+        .then((response) => {
+          $("#update_unit_model").modal("hide");
+
+          Swal.fire({
+            title: "Success!",
+            text: response.data.message,
+            icon: "success",
+            text: "I will close in 2 seconds.",
+            timer: 2000,
+          });
+
+          this.readDet();
+        })
+        .catch((error) => {
+          this.errors = [];
+          if (error.response.data.errors.name) {
+            this.errors.push(error.response.data.errors.name[0]);
+          }
+          if (error.response.data.errors.description) {
+            this.errors.push(error.response.data.errors.description[0]);
+          }
+        });
+    },
+    readDet() {
+      window.axios.get("/expert/plant-details").then(({ data }) => {
+        this.plant_meth = data;
+        //this.dataTab();
       });
     },
     editMet(val) {

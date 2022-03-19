@@ -18,7 +18,6 @@
           <tr>
             <th>Ref #</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -29,9 +28,7 @@
               <td>
                 {{ unit.name }}
               </td>
-              <td>
-                {{ unit.description }}
-              </td>
+
               <td>
                 <div class="btn-group">
                   <button
@@ -85,15 +82,6 @@
                 v-model="unit.name"
               />
             </div>
-            <div class="form-group">
-              <label for="name">Description:</label>
-              <textarea
-                class="form-control"
-                rows="5"
-                id="comment"
-                v-model="unit.description"
-              ></textarea>
-            </div>
           </div>
           <div class="modal-footer">
             <button type="button" @click="createunit" class="btn btn-primary">
@@ -140,15 +128,6 @@
                 v-on:keyup.enter="updateunit"
                 v-model="update_unit.name"
               />
-            </div>
-            <div class="form-group">
-              <label for="name">Description:</label>
-              <textarea
-                class="form-control"
-                rows="5"
-                id="upcomment"
-                v-model="update_unit.description"
-              ></textarea>
             </div>
           </div>
           <div class="modal-footer">
@@ -212,7 +191,6 @@ export default {
       axios
         .post("/expert/plants", {
           name: this.unit.name,
-          description: this.unit.description,
         })
         .then((response) => {
           this.reset();
@@ -233,17 +211,12 @@ export default {
           if (error.response.data.errors.name) {
             this.errors.push(error.response.data.errors.name[0]);
           }
-
-          if (error.response.data.errors.description) {
-            this.errors.push(error.response.data.errors.description[0]);
-          }
         });
     },
     updateunit() {
       axios
         .patch("/expert/plants/" + this.update_unit.id, {
           name: this.update_unit.name,
-          description: this.update_unit.description,
         })
         .then((response) => {
           $("#update_unit_model").modal("hide");
@@ -260,9 +233,6 @@ export default {
           this.errors = [];
           if (error.response.data.errors.name) {
             this.errors.push(error.response.data.errors.name[0]);
-          }
-          if (error.response.data.errors.description) {
-            this.errors.push(error.response.data.errors.description[0]);
           }
         });
     },

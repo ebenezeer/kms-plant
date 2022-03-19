@@ -1,8 +1,8 @@
 <template>
   <div class="col-md-12">
-    <h2>Create Plant Methods</h2>
+    <h2>Plant Details</h2>
     <hr />
-    <form @submit.prevent="saveMeth">
+    <form @submit.prevent="saveDet">
       <div class="alert alert-danger" v-if="errors.length > 0">
         <strong> Whoops, looks like something went wrong...</strong>
         <ul>
@@ -20,19 +20,20 @@
             placeholder="Select Plant Name"
             v-model="plantDet.name_id"
             :options="plant_names"
-            :reduce="(plant_names) => plant_names.id"
+            :reduce="(plant_names) => [plant_names.id, plant_names.name]"
           >
-            <template slot="option" slot-scope="option">
-              <div class="d-center">
-                {{ option.name }}, {{ option.variety }}<br />
-                <small> {{ option.description }}</small>
-              </div>
-            </template>
-            <template slot="selected-option" slot-scope="option">
-              <div class="selected d-center">
-                {{ option.name }}, {{ option.variety }}
-              </div>
-            </template>
+          </v-select>
+        </div>
+        <div class="col-md-6">
+          <label for="title">Variety:</label>
+          <v-select
+            ref="select"
+            label="description"
+            placeholder="Select Variety"
+            v-model="plantDet.variety_id"
+            :options="varieties"
+            :reduce="(varieties) => [varieties.id, varieties.description]"
+          >
           </v-select>
         </div>
       </div>
@@ -40,22 +41,19 @@
 
       <div class="row">
         <div class="col-md-8">
-          <label for="description">Graft Method:</label>
-          <v-select
-            ref="select"
-            label="title"
-            placeholder="Select Method"
-            v-model="plantDet.graft_id"
-            :options="graft_method"
-            :reduce="(graft_method) => graft_method.id"
-          >
-          </v-select>
+          <label for="name">Description:</label>
+          <textarea
+            class="form-control"
+            rows="5"
+            id="upcomment"
+            v-model="plantDet.description"
+          ></textarea>
         </div>
       </div>
       <div class="form-group" style="margin-top: 15px">
         <div class="col-md-8" align="center">
           <button class="btn btn-primary" type="submit">Submit</button>
-          <router-link class="btn btn-secondary" to="/expert/method-details"
+          <router-link class="btn btn-secondary" to="/expert/plant-detail"
             >Back</router-link
           >
         </div>
@@ -73,7 +71,7 @@ export default {
         name_id: "",
         variety_id: "",
         graft_id: "",
-        description: null,
+        description: "",
       },
       plant_names: [],
       varieties: [],
@@ -85,11 +83,11 @@ export default {
   mounted() {
     this.getPlantNames();
     this.getVarieties();
-    this.graftings();
+    // this.graftings();
   },
   methods: {
     getPlantNames() {
-      window.axios.get("/expert/get-plant-names-met").then(({ data }) => {
+      window.axios.get("/expert/get-plant-names").then(({ data }) => {
         this.plant_names = data;
       });
     },
@@ -103,12 +101,13 @@ export default {
         this.graft_method = data;
       });
     },
-    saveMeth() {
+    saveDet() {
       window.axios
-        .post("/expert/plant-methods", {
-          name_id: this.plantDet.name_id,
-          graft_id: this.plantDet.graft_id,
-          // description: this.plantDet.description,
+        .post("/expert/plant-details", {
+          name_id: this.plantDet.name_id[0],
+          variety_id: this.plantDet.variety_id[0],
+          //graft_id: this.plantDet.graft_id[0],
+          description: this.plantDet.description,
         })
         .then((response) => {
           Swal.fire({
@@ -127,13 +126,12 @@ export default {
             this.errors.push(error.response.data.errors.name_id[0]);
           }
 
-          if (error.response.data.errors.graft_id) {
-            this.errors.push(error.response.data.errors.graft_id[0]);
+          if (error.response.data.errors.variety_id) {
+            this.errors.push(error.response.data.errors.variety_id[0]);
           }
-
-          // if (error.response.data.errors.description) {
-          //   this.errors.push(error.response.data.errors.description[0]);
-          // }
+          if (error.response.data.errors.description) {
+            this.errors.push(error.response.data.errors.description[0]);
+          }
         });
 
       //  axios

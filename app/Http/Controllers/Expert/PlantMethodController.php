@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Expert;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PlantMeth;
+use DB;
 
 class PlantMethodController extends Controller
 {
@@ -15,13 +16,14 @@ class PlantMethodController extends Controller
     }
     public function index()
     {
-        $det = PlantMeth::join('plant_name', 'plant_name.id', '=', 'plant_methods.name_id')
-            ->join('plant_variety', 'plant_variety.id', '=', 'plant_methods.variety_id')
+        $det = PlantMeth::join('plant_det', 'plant_det.id', '=', 'plant_methods.plant_det_id')
+            ->join('plant_name', 'plant_name.id', '=', 'plant_det.name_id')
+            ->join('plant_variety', 'plant_variety.id', '=', 'plant_det.variety_id')
             ->join('graft_details', 'graft_details.id', '=', 'plant_methods.graft_id')
             ->select([
                 'plant_methods.id',
                 'plant_name.name',
-                'plant_name.description',
+                'plant_det.description',
                 'graft_details.title as g_title',
                 'graft_details.description as g_description',
                 'plant_variety.description as variety'
@@ -42,22 +44,19 @@ class PlantMethodController extends Controller
             [
                 'name_id' => 'required',
                 'graft_id' => 'required',
-                'variety_id' => 'required',
                 //'description' => 'required',
             ],
             [
                 'name_id.required' => 'Name field is required.',
                 'graft_id.required' => 'Graft field is required',
-                'variety_id.required' => 'Variety field is required!'
+
             ]
         );
-
+        //return;
         $m = new PlantMeth();
 
-        $m->name_id = $request->name_id;
-        $m->variety_id = $request->variety_id;
+        $m->plant_det_id = $request->name_id;
         $m->graft_id = $request->graft_id;
-        //$m->description = $request->description;
 
         $m->save();
 
@@ -81,7 +80,20 @@ class PlantMethodController extends Controller
     {
         //
     }
+    public function get_plant_names()
+    {
+        $det = DB::table('plant_det')->join('plant_name', 'plant_name.id', '=', 'plant_det.name_id')
+            ->join('plant_variety', 'plant_variety.id', '=', 'plant_det.variety_id')
+            ->select([
+                'plant_det.*',
+                'plant_name.name',
+                'plant_variety.description as variety'
+            ])
+            //->orderBy('description')
+            ->get();
 
+        return $det;
+    }
     public function destroy($id)
     {
         //

@@ -3276,366 +3276,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/PlantDetailIndex.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/PlantDetailIndex.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
-/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
- //import VueFeather from "vue-feather";
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      plantDet: {
-        name_id: null
-      },
-      unit: {
-        description: ""
-      },
-      names: [],
-      errors: [],
-      units: [],
-      update_unit: {}
-    };
-  },
-  mounted: function mounted() {
-    this.getPlantNames();
-  },
-  // created() {
-  //     window.axios.get("/expert/get-plant-names").then(({ data }) => {
-  //         this.units = data;
-  //         //this.dataTab();
-  //     });
-  // },
-  methods: {
-    initAddunit: function initAddunit() {
-      this.errors = [];
-      this.reset();
-      $("#add_unit_model").modal("show"); // setTimeout(() => {
-      //     this.$refs.addunit.focus();
-      // }, 600);
-    },
-    initUpdate: function initUpdate(index) {
-      var _this = this;
-
-      this.errors = [];
-      $("#update_unit_model").modal("show");
-      this.update_unit = this.units[index];
-      setTimeout(function () {
-        _this.$refs.updateunit.focus();
-
-        _this.$refs.updateunit.select();
-      }, 600);
-    },
-    createunit: function createunit() {
-      var _this2 = this;
-
-      axios.post("/admin/plants", {
-        name: this.unit.description
-      }).then(function (response) {
-        var _Swal$fire;
-
-        _this2.reset();
-
-        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire((_Swal$fire = {
-          title: 'Success!',
-          text: response.data.message,
-          icon: 'success'
-        }, _defineProperty(_Swal$fire, "text", "I will close in 2 seconds."), _defineProperty(_Swal$fire, "timer", 2000), _Swal$fire));
-        $("#add_unit_model").modal("hide");
-
-        _this2.readunits();
-      })["catch"](function (error) {
-        _this2.errors = [];
-
-        if (error.response.data.errors.name) {
-          _this2.errors.push(error.response.data.errors.name[0]);
-        }
-      });
-    },
-    updateunit: function updateunit() {
-      var _this3 = this;
-
-      axios.patch("/admin/plants/" + this.update_unit.id, {
-        name: this.update_unit.name
-      }).then(function (response) {
-        var _Swal$fire2;
-
-        $("#update_unit_model").modal("hide");
-        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire((_Swal$fire2 = {
-          title: 'Success!',
-          text: response.data.message,
-          icon: 'success'
-        }, _defineProperty(_Swal$fire2, "text", "I will close in 2 seconds."), _defineProperty(_Swal$fire2, "timer", 2000), _Swal$fire2));
-      })["catch"](function (error) {
-        _this3.errors = [];
-
-        if (error.response.data.errors.name) {
-          _this3.errors.push(error.response.data.errors.name[0]);
-        }
-      });
-    },
-    getPlantNames: function getPlantNames() {
-      var _this4 = this;
-
-      window.axios.get("/expert/get-plant-names").then(function (_ref) {
-        var data = _ref.data;
-        _this4.names = data; //this.dataTab();
-      });
-    },
-    reset: function reset() {
-      this.unit.description = "";
-    },
-    readunits: function readunits() {
-      var _this5 = this;
-
-      axios.get("/admin/plants").then(function (_ref2) {
-        var data = _ref2.data;
-        _this5.units = data;
-      });
-    },
-    dataTab: function dataTab() {
-      $(function () {
-        $("#unit-table").DataTable({
-          dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" + "<'row'<'col-sm-12'rt>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-          responsive: true,
-          autoWidth: false,
-          dataSrc: "Data",
-          iDisplayLength: 10,
-          buttons: [{
-            extend: "excelHtml5",
-            messageTop: "Mariano Marcos State University",
-            exportOptions: {
-              columns: ":visible"
-            },
-            className: "btn btn-outline-success btn-sm"
-          }, {
-            extend: "pdfHtml5",
-            messageTop: "Mariano Marcos State University",
-            exportOptions: {
-              columns: ":visible"
-            },
-            className: "btn btn-outline-danger btn-sm"
-          }, {
-            extend: "colvis",
-            className: "btn btn-outline-primary btn-sm"
-          }],
-          processing: true,
-          columnDefs: [{
-            responsivePriority: 0,
-            targets: 2
-          }]
-        });
-      });
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/graft/GraftTableIndex.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/graft/GraftTableIndex.vue?vue&type=script&lang=js& ***!
@@ -4338,6 +3978,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -4363,7 +4004,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getPlantNames: function getPlantNames() {
       var _this = this;
 
-      window.axios.get("/expert/get-plant-names").then(function (_ref) {
+      window.axios.get("/expert/get-plant-names-met").then(function (_ref) {
         var data = _ref.data;
         _this.plant_names = data;
       });
@@ -4388,9 +4029,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       window.axios.post("/expert/plant-methods", {
-        name_id: this.plantDet.name_id[0],
-        variety_id: this.plantDet.variety_id[0],
-        graft_id: this.plantDet.graft_id[0] // description: this.plantDet.description,
+        name_id: this.plantDet.name_id,
+        graft_id: this.plantDet.graft_id // description: this.plantDet.description,
 
       }).then(function (response) {
         var _Swal$fire;
@@ -4405,10 +4045,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         if (error.response.data.errors.name_id) {
           _this4.errors.push(error.response.data.errors.name_id[0]);
-        }
-
-        if (error.response.data.errors.variety_id) {
-          _this4.errors.push(error.response.data.errors.variety_id[0]);
         }
 
         if (error.response.data.errors.graft_id) {
@@ -4491,12 +4127,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       plant_meth: [],
+      plant_names: [],
+      update_meth: {},
       errors: []
     };
+  },
+  mounted: function mounted() {
+    this.getPlantNames();
   },
   created: function created() {
     var _this = this;
@@ -4507,6 +4205,24 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    initUpdate: function initUpdate(index) {
+      var _this2 = this;
+
+      this.errors = [];
+      $("#update_unit_model").modal("show");
+      this.update_meth = this.plant_meth[index];
+      setTimeout(function () {
+        console.log(_this2.update_meth);
+      }, 600);
+    },
+    getPlantNames: function getPlantNames() {
+      var _this3 = this;
+
+      window.axios.get("/expert/get-plant-names").then(function (_ref2) {
+        var data = _ref2.data;
+        _this3.plant_names = data;
+      });
+    },
     editMet: function editMet(val) {
       this.$router.push({
         path: "/meth/".concat(val, "/edit")
@@ -4521,8 +4237,8 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          window.axios.post("/delete-meth/" + val).then(function (_ref2) {
-            var data = _ref2.data;
+          window.axios.post("/delete-meth/" + val).then(function (_ref3) {
+            var data = _ref3.data;
 
             if (data) {
               $("#meth-table").DataTable().draw();
@@ -4725,27 +4441,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
  //import VueFeather from "vue-feather";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4796,8 +4491,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       axios.post("/expert/plants", {
-        name: this.unit.name,
-        description: this.unit.description
+        name: this.unit.name
       }).then(function (response) {
         var _Swal$fire;
 
@@ -4817,18 +4511,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (error.response.data.errors.name) {
           _this4.errors.push(error.response.data.errors.name[0]);
         }
-
-        if (error.response.data.errors.description) {
-          _this4.errors.push(error.response.data.errors.description[0]);
-        }
       });
     },
     updateunit: function updateunit() {
       var _this5 = this;
 
       axios.patch("/expert/plants/" + this.update_unit.id, {
-        name: this.update_unit.name,
-        description: this.update_unit.description
+        name: this.update_unit.name
       }).then(function (response) {
         var _Swal$fire2;
 
@@ -4843,10 +4532,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         if (error.response.data.errors.name) {
           _this5.errors.push(error.response.data.errors.name[0]);
-        }
-
-        if (error.response.data.errors.description) {
-          _this5.errors.push(error.response.data.errors.description[0]);
         }
       });
     },
@@ -4900,6 +4585,439 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      plantDet: {
+        name_id: "",
+        variety_id: "",
+        graft_id: "",
+        description: ""
+      },
+      plant_names: [],
+      varieties: [],
+      graft_method: [],
+      errors: []
+    };
+  },
+  mounted: function mounted() {
+    this.getPlantNames();
+    this.getVarieties(); // this.graftings();
+  },
+  methods: {
+    getPlantNames: function getPlantNames() {
+      var _this = this;
+
+      window.axios.get("/expert/get-plant-names").then(function (_ref) {
+        var data = _ref.data;
+        _this.plant_names = data;
+      });
+    },
+    getVarieties: function getVarieties() {
+      var _this2 = this;
+
+      window.axios.get("/expert/plant-variety").then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.varieties = data;
+      });
+    },
+    graftings: function graftings() {
+      var _this3 = this;
+
+      window.axios.get("/expert/graft-techniques").then(function (_ref3) {
+        var data = _ref3.data;
+        _this3.graft_method = data;
+      });
+    },
+    saveDet: function saveDet() {
+      var _this4 = this;
+
+      window.axios.post("/expert/plant-details", {
+        name_id: this.plantDet.name_id[0],
+        variety_id: this.plantDet.variety_id[0],
+        //graft_id: this.plantDet.graft_id[0],
+        description: this.plantDet.description
+      }).then(function (response) {
+        var _Swal$fire;
+
+        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire((_Swal$fire = {
+          title: "Success!",
+          text: response.data.message,
+          icon: "success"
+        }, _defineProperty(_Swal$fire, "text", "I will close in 2 seconds."), _defineProperty(_Swal$fire, "timer", 2000), _Swal$fire)); //this.$router.push({ path: "/expert/plant-methods" + data + "/edit" });
+      })["catch"](function (error) {
+        _this4.errors = [];
+
+        if (error.response.data.errors.name_id) {
+          _this4.errors.push(error.response.data.errors.name_id[0]);
+        }
+
+        if (error.response.data.errors.variety_id) {
+          _this4.errors.push(error.response.data.errors.variety_id[0]);
+        }
+
+        if (error.response.data.errors.description) {
+          _this4.errors.push(error.response.data.errors.description[0]);
+        }
+      }); //  axios
+      // .post("/expert/plant-methods", {
+      //   name: this.unit.description,
+      // })
+      // .then((response) => {
+      //   this.reset();
+      //   Swal.fire({
+      //     title: "Success!",
+      //     text: response.data.message,
+      //     icon: "success",
+      //     text: "I will close in 2 seconds.",
+      //     timer: 2000,
+      //   });
+      //   $("#add_unit_model").modal("hide");
+      //   this.readunits();
+      // })
+      // .catch((error) => {
+      //   this.errors = [];
+      //   if (error.response.data.errors.name) {
+      //     this.errors.push(error.response.data.errors.name[0]);
+      //   }
+      // });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      plant_meth: [],
+      plant_names: [],
+      varieties: [],
+      update_det: {},
+      errors: []
+    };
+  },
+  mounted: function mounted() {
+    this.getVarieties();
+  },
+  created: function created() {
+    var _this = this;
+
+    window.axios.get("/expert/plant-details").then(function (_ref) {
+      var data = _ref.data;
+      _this.plant_meth = data; //this.dataTab();
+    });
+  },
+  methods: {
+    initUpdate: function initUpdate(index) {
+      var _this2 = this;
+
+      this.errors = [];
+      $("#update_unit_model").modal("show");
+      this.update_det = this.plant_meth[index];
+      setTimeout(function () {
+        console.log(_this2.update_meth);
+      }, 600);
+    },
+    getPlantNames: function getPlantNames() {
+      var _this3 = this;
+
+      window.axios.get("/expert/get-plant-names").then(function (_ref2) {
+        var data = _ref2.data;
+        _this3.plant_names = data;
+      });
+    },
+    getVarieties: function getVarieties() {
+      var _this4 = this;
+
+      window.axios.get("/expert/plant-variety").then(function (_ref3) {
+        var data = _ref3.data;
+        _this4.varieties = data;
+      });
+    },
+    updateDet: function updateDet() {
+      var _this5 = this;
+
+      axios.patch("/expert/plant-details/" + this.update_det.id, {
+        variety_id: this.update_det.variety_id,
+        description: this.update_det.description
+      }).then(function (response) {
+        var _Swal$fire;
+
+        $("#update_unit_model").modal("hide");
+        Swal.fire((_Swal$fire = {
+          title: "Success!",
+          text: response.data.message,
+          icon: "success"
+        }, _defineProperty(_Swal$fire, "text", "I will close in 2 seconds."), _defineProperty(_Swal$fire, "timer", 2000), _Swal$fire));
+
+        _this5.readDet();
+      })["catch"](function (error) {
+        _this5.errors = [];
+
+        if (error.response.data.errors.name) {
+          _this5.errors.push(error.response.data.errors.name[0]);
+        }
+
+        if (error.response.data.errors.description) {
+          _this5.errors.push(error.response.data.errors.description[0]);
+        }
+      });
+    },
+    readDet: function readDet() {
+      var _this6 = this;
+
+      window.axios.get("/expert/plant-details").then(function (_ref4) {
+        var data = _ref4.data;
+        _this6.plant_meth = data; //this.dataTab();
+      });
+    },
+    editMet: function editMet(val) {
+      this.$router.push({
+        path: "/meth/".concat(val, "/edit")
+      });
+    },
+    deleteMeth: function deleteMeth(val) {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          window.axios.post("/delete-meth/" + val).then(function (_ref5) {
+            var data = _ref5.data;
+
+            if (data) {
+              $("#meth-table").DataTable().draw();
+            }
+          });
+        }
+      });
+    },
+    methhhh: function methhhh(val) {
+      this.$router.push({
+        path: "/met/".concat(val, "/create")
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/sidebar.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/sidebar.vue?vue&type=script&lang=js& ***!
@@ -4911,6 +5029,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5464,15 +5587,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_expert_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/expert/Home */ "./resources/js/components/expert/Home.vue");
-/* harmony import */ var _components_expert_PlantDetailIndex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/expert/PlantDetailIndex */ "./resources/js/components/expert/PlantDetailIndex.vue");
-/* harmony import */ var _components_expert_plant_PlantName__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/expert/plant/PlantName */ "./resources/js/components/expert/plant/PlantName.vue");
-/* harmony import */ var _components_expert_variety_Variety__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/expert/variety/Variety */ "./resources/js/components/expert/variety/Variety.vue");
-/* harmony import */ var _components_GraftIndx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/GraftIndx */ "./resources/js/components/GraftIndx.vue");
-/* harmony import */ var _components_expert_graft_GraftTableIndex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/expert/graft/GraftTableIndex */ "./resources/js/components/expert/graft/GraftTableIndex.vue");
-/* harmony import */ var _components_expert_graft_GraftTechnique__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/expert/graft/GraftTechnique */ "./resources/js/components/expert/graft/GraftTechnique.vue");
-/* harmony import */ var _components_expert_methoddetails_MethodsIndex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/expert/methoddetails/MethodsIndex */ "./resources/js/components/expert/methoddetails/MethodsIndex.vue");
-/* harmony import */ var _components_expert_methoddetails_MethodTable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/expert/methoddetails/MethodTable */ "./resources/js/components/expert/methoddetails/MethodTable.vue");
-/* harmony import */ var _components_expert_methoddetails_CreateMethod__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/expert/methoddetails/CreateMethod */ "./resources/js/components/expert/methoddetails/CreateMethod.vue");
+/* harmony import */ var _components_expert_plantdetails_PlantDetailIndex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/expert/plantdetails/PlantDetailIndex */ "./resources/js/components/expert/plantdetails/PlantDetailIndex.vue");
+/* harmony import */ var _components_expert_plantdetails_PlantDetailsTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/expert/plantdetails/PlantDetailsTable */ "./resources/js/components/expert/plantdetails/PlantDetailsTable.vue");
+/* harmony import */ var _components_expert_plantdetails_CreateDetails__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/expert/plantdetails/CreateDetails */ "./resources/js/components/expert/plantdetails/CreateDetails.vue");
+/* harmony import */ var _components_expert_plant_PlantName__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/expert/plant/PlantName */ "./resources/js/components/expert/plant/PlantName.vue");
+/* harmony import */ var _components_expert_variety_Variety__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/expert/variety/Variety */ "./resources/js/components/expert/variety/Variety.vue");
+/* harmony import */ var _components_GraftIndx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/GraftIndx */ "./resources/js/components/GraftIndx.vue");
+/* harmony import */ var _components_expert_graft_GraftTableIndex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/expert/graft/GraftTableIndex */ "./resources/js/components/expert/graft/GraftTableIndex.vue");
+/* harmony import */ var _components_expert_graft_GraftTechnique__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/expert/graft/GraftTechnique */ "./resources/js/components/expert/graft/GraftTechnique.vue");
+/* harmony import */ var _components_expert_methoddetails_MethodsIndex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/expert/methoddetails/MethodsIndex */ "./resources/js/components/expert/methoddetails/MethodsIndex.vue");
+/* harmony import */ var _components_expert_methoddetails_MethodTable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/expert/methoddetails/MethodTable */ "./resources/js/components/expert/methoddetails/MethodTable.vue");
+/* harmony import */ var _components_expert_methoddetails_CreateMethod__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/expert/methoddetails/CreateMethod */ "./resources/js/components/expert/methoddetails/CreateMethod.vue");
 
 
 
@@ -5482,49 +5607,61 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+ //import PlantDetails from "./components/expert/methoddetails/MethodsIndex";
+//import MethodTable from "./components/expert/methoddetails/MethodTable";
+//import CreateMethod from "./components/expert/methoddetails/CreateMethod";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/expert/home',
   component: _components_expert_Home__WEBPACK_IMPORTED_MODULE_0__["default"],
   name: 'Home'
-}, // {
-//     path: '/expert/plant-detail',
-//     name: 'Plant Detail Index',
-//     component: PlantDetailIndex
-// },
-{
+}, {
+  path: '/expert/plant-detail',
+  // name: 'Plant Detail Index',
+  component: _components_expert_plantdetails_PlantDetailIndex__WEBPACK_IMPORTED_MODULE_1__["default"],
+  children: [{
+    path: '',
+    name: 'Plant Detail',
+    component: _components_expert_plantdetails_PlantDetailsTable__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }, {
+    path: 'create',
+    component: _components_expert_plantdetails_CreateDetails__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }]
+}, {
   path: '/expert/plant-name',
   name: 'Plant Name',
-  component: _components_expert_plant_PlantName__WEBPACK_IMPORTED_MODULE_2__["default"]
+  component: _components_expert_plant_PlantName__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   path: '/expert/variety',
   name: 'Plant Variety',
-  component: _components_expert_variety_Variety__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _components_expert_variety_Variety__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/expert/graft-details',
   //name: 'Graft Technique',
-  component: _components_GraftIndx__WEBPACK_IMPORTED_MODULE_4__["default"],
+  component: _components_GraftIndx__WEBPACK_IMPORTED_MODULE_6__["default"],
   children: [{
     path: '',
     name: 'Graft Detail Index',
-    component: _components_expert_graft_GraftTableIndex__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _components_expert_graft_GraftTableIndex__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: ':id/edit',
-    component: _components_expert_graft_GraftTechnique__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _components_expert_graft_GraftTechnique__WEBPACK_IMPORTED_MODULE_8__["default"]
   }]
 }, {
   path: '/expert/method-details',
-  component: _components_expert_methoddetails_MethodsIndex__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _components_expert_methoddetails_MethodsIndex__WEBPACK_IMPORTED_MODULE_9__["default"],
   children: [{
     path: '',
     name: 'Method Table Index',
-    component: _components_expert_methoddetails_MethodTable__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_expert_methoddetails_MethodTable__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
     path: 'create',
-    component: _components_expert_methoddetails_CreateMethod__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_expert_methoddetails_CreateMethod__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: ':id/edit',
-    component: _components_expert_graft_GraftTechnique__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _components_expert_graft_GraftTechnique__WEBPACK_IMPORTED_MODULE_8__["default"]
   }]
 } // {
 //     path: '/expert/graft-details/:id/edit',
@@ -45108,45 +45245,6 @@ component.options.__file = "resources/js/components/expert/Home.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/expert/PlantDetailIndex.vue":
-/*!*************************************************************!*\
-  !*** ./resources/js/components/expert/PlantDetailIndex.vue ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _PlantDetailIndex_vue_vue_type_template_id_128d4a00___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlantDetailIndex.vue?vue&type=template&id=128d4a00& */ "./resources/js/components/expert/PlantDetailIndex.vue?vue&type=template&id=128d4a00&");
-/* harmony import */ var _PlantDetailIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlantDetailIndex.vue?vue&type=script&lang=js& */ "./resources/js/components/expert/PlantDetailIndex.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _PlantDetailIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _PlantDetailIndex_vue_vue_type_template_id_128d4a00___WEBPACK_IMPORTED_MODULE_0__.render,
-  _PlantDetailIndex_vue_vue_type_template_id_128d4a00___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/expert/PlantDetailIndex.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/components/expert/graft/GraftTableIndex.vue":
 /*!******************************************************************!*\
   !*** ./resources/js/components/expert/graft/GraftTableIndex.vue ***!
@@ -45379,6 +45477,123 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/expert/plant/PlantName.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/CreateDetails.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/CreateDetails.vue ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CreateDetails_vue_vue_type_template_id_1ef073b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateDetails.vue?vue&type=template&id=1ef073b8&scoped=true& */ "./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=template&id=1ef073b8&scoped=true&");
+/* harmony import */ var _CreateDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateDetails.vue?vue&type=script&lang=js& */ "./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateDetails_vue_vue_type_template_id_1ef073b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CreateDetails_vue_vue_type_template_id_1ef073b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "1ef073b8",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/expert/plantdetails/CreateDetails.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/PlantDetailIndex.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/PlantDetailIndex.vue ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PlantDetailIndex_vue_vue_type_template_id_cc29d318_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlantDetailIndex.vue?vue&type=template&id=cc29d318&scoped=true& */ "./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=template&id=cc29d318&scoped=true&");
+/* harmony import */ var _PlantDetailIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlantDetailIndex.vue?vue&type=script&lang=js& */ "./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PlantDetailIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PlantDetailIndex_vue_vue_type_template_id_cc29d318_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PlantDetailIndex_vue_vue_type_template_id_cc29d318_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "cc29d318",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/expert/plantdetails/PlantDetailIndex.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/PlantDetailsTable.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/PlantDetailsTable.vue ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _PlantDetailsTable_vue_vue_type_template_id_7eb20d6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PlantDetailsTable.vue?vue&type=template&id=7eb20d6e&scoped=true& */ "./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=template&id=7eb20d6e&scoped=true&");
+/* harmony import */ var _PlantDetailsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PlantDetailsTable.vue?vue&type=script&lang=js& */ "./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PlantDetailsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PlantDetailsTable_vue_vue_type_template_id_7eb20d6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _PlantDetailsTable_vue_vue_type_template_id_7eb20d6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "7eb20d6e",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/expert/plantdetails/PlantDetailsTable.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -45623,22 +45838,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/expert/PlantDetailIndex.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/expert/PlantDetailIndex.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlantDetailIndex.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/PlantDetailIndex.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/components/expert/graft/GraftTableIndex.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************!*\
   !*** ./resources/js/components/expert/graft/GraftTableIndex.vue?vue&type=script&lang=js& ***!
@@ -45732,6 +45931,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantName_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlantName.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plant/PlantName.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantName_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateDetails.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetails_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlantDetailIndex.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlantDetailsTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -45976,23 +46223,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/expert/PlantDetailIndex.vue?vue&type=template&id=128d4a00&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/expert/PlantDetailIndex.vue?vue&type=template&id=128d4a00& ***!
-  \********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_template_id_128d4a00___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_template_id_128d4a00___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_template_id_128d4a00___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlantDetailIndex.vue?vue&type=template&id=128d4a00& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/PlantDetailIndex.vue?vue&type=template&id=128d4a00&");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/expert/graft/GraftTableIndex.vue?vue&type=template&id=19be7c83&":
 /*!*************************************************************************************************!*\
   !*** ./resources/js/components/expert/graft/GraftTableIndex.vue?vue&type=template&id=19be7c83& ***!
@@ -46091,6 +46321,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantName_vue_vue_type_template_id_2e03f478___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantName_vue_vue_type_template_id_2e03f478___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlantName.vue?vue&type=template&id=2e03f478& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plant/PlantName.vue?vue&type=template&id=2e03f478&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=template&id=1ef073b8&scoped=true&":
+/*!******************************************************************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=template&id=1ef073b8&scoped=true& ***!
+  \******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetails_vue_vue_type_template_id_1ef073b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetails_vue_vue_type_template_id_1ef073b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetails_vue_vue_type_template_id_1ef073b8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateDetails.vue?vue&type=template&id=1ef073b8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=template&id=1ef073b8&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=template&id=cc29d318&scoped=true&":
+/*!*********************************************************************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=template&id=cc29d318&scoped=true& ***!
+  \*********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_template_id_cc29d318_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_template_id_cc29d318_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailIndex_vue_vue_type_template_id_cc29d318_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlantDetailIndex.vue?vue&type=template&id=cc29d318&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=template&id=cc29d318&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=template&id=7eb20d6e&scoped=true&":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=template&id=7eb20d6e&scoped=true& ***!
+  \**********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailsTable_vue_vue_type_template_id_7eb20d6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailsTable_vue_vue_type_template_id_7eb20d6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PlantDetailsTable_vue_vue_type_template_id_7eb20d6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./PlantDetailsTable.vue?vue&type=template&id=7eb20d6e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=template&id=7eb20d6e&scoped=true&");
 
 
 /***/ }),
@@ -47515,356 +47796,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/PlantDetailIndex.vue?vue&type=template&id=128d4a00&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/PlantDetailIndex.vue?vue&type=template&id=128d4a00& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-12" }, [
-    _c("h2", [
-      _vm._v("\n       " + _vm._s(_vm.$route.name) + "\n        "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn-sm float-right",
-          on: { click: _vm.initAddunit }
-        },
-        [_vm._v("\n            + Create Details\n        ")]
-      )
-    ]),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c("div", { staticClass: "table-responsive", attrs: { id: "table" } }, [
-      _vm.units.length > 0
-        ? _c(
-            "table",
-            {
-              staticClass: "table table-bordered table-hover table-sm",
-              attrs: { id: "unit-table", width: "98%" }
-            },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                [
-                  _vm._l(_vm.units, function(unit, index) {
-                    return [
-                      _c("tr", { key: index }, [
-                        _c("td", [_vm._v(_vm._s(unit.id))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(unit.name) +
-                              "\n                        "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "btn-group" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success btn-sm",
-                                attrs: { title: "update" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.initUpdate(index)
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "fa fa-edit" })]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
-                  })
-                ],
-                2
-              )
-            ]
-          )
-        : _c("div", { staticClass: "alert alert-info" }, [
-            _c("strong", [_vm._v("Info!")]),
-            _vm._v(" No registered Name.\n        ")
-          ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "modal fade", attrs: { id: "add_unit_model" } }, [
-      _c("div", { staticClass: "modal-dialog modal-lg" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _vm.errors.length > 0
-              ? _c("div", { staticClass: "alert alert-danger" }, [
-                  _c("strong", [
-                    _vm._v(
-                      "\n                            Whoops, looks like something went\n                            wrong..."
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    [
-                      _vm._l(_vm.errors, function(error, index) {
-                        return [
-                          _c("li", { key: index }, [_vm._v(_vm._s(error))])
-                        ]
-                      })
-                    ],
-                    2
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", { attrs: { for: "name" } }, [
-                  _vm._v("Plant Name:")
-                ]),
-                _vm._v(" "),
-                _c("v-select", {
-                  ref: "select",
-                  attrs: {
-                    label: "name",
-                    placeholder: "Select Plant Name",
-                    options: _vm.names,
-                    reduce: function(names) {
-                      return [names.id, names.name]
-                    }
-                  },
-                  model: {
-                    value: _vm.plantDet.name_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.plantDet, "name_id", $$v)
-                    },
-                    expression: "plantDet.name_id"
-                  }
-                })
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button" },
-                on: { click: _vm.createunit }
-              },
-              [_vm._v("\n                        Submit\n                    ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger",
-                attrs: { type: "button", "data-dismiss": "modal" }
-              },
-              [_vm._v("\n                        Close\n                    ")]
-            )
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: { tabindex: "-1", role: "dialog", id: "update_unit_model" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm.errors.length > 0
-                  ? _c("div", { staticClass: "alert alert-danger" }, [
-                      _c("strong", [
-                        _vm._v(
-                          "\n                            Whoops, looks like something went\n                            wrong..."
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "ul",
-                        [
-                          _vm._l(_vm.errors, function(error, index) {
-                            return [
-                              _c("li", { key: index }, [_vm._v(_vm._s(error))])
-                            ]
-                          })
-                        ],
-                        2
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "name" } }, [
-                    _vm._v("Description:")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.update_unit.name,
-                        expression: "update_unit.name"
-                      }
-                    ],
-                    ref: "updateunit",
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      name: "description",
-                      id: "description",
-                      placeholder: "Plant name"
-                    },
-                    domProps: { value: _vm.update_unit.name },
-                    on: {
-                      keyup: function($event) {
-                        if (
-                          !$event.type.indexOf("key") &&
-                          _vm._k(
-                            $event.keyCode,
-                            "enter",
-                            13,
-                            $event.key,
-                            "Enter"
-                          )
-                        ) {
-                          return null
-                        }
-                        return _vm.updateunit.apply(null, arguments)
-                      },
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.update_unit, "name", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: { click: _vm.updateunit }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Update\n                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Close\n                    "
-                    )
-                  ]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Ref #")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Make Plant Details")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("\n                        ×\n                    ")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Update Name")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("\n                        ×\n                    ")]
-      )
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/graft/GraftTableIndex.vue?vue&type=template&id=19be7c83&":
 /*!****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/graft/GraftTableIndex.vue?vue&type=template&id=19be7c83& ***!
@@ -48714,43 +48645,53 @@ var render = function() {
                   placeholder: "Select Plant Name",
                   options: _vm.plant_names,
                   reduce: function(plant_names) {
-                    return [plant_names.id, plant_names.name]
+                    return plant_names.id
                   }
                 },
+                scopedSlots: _vm._u([
+                  {
+                    key: "option",
+                    fn: function(option) {
+                      return [
+                        _c("div", { staticClass: "d-center" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(option.name) +
+                              ", " +
+                              _vm._s(option.variety)
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("small", [
+                            _vm._v(" " + _vm._s(option.description))
+                          ])
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "selected-option",
+                    fn: function(option) {
+                      return [
+                        _c("div", { staticClass: "selected d-center" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(option.name) +
+                              ", " +
+                              _vm._s(option.variety) +
+                              "\n            "
+                          )
+                        ])
+                      ]
+                    }
+                  }
+                ]),
                 model: {
                   value: _vm.plantDet.name_id,
                   callback: function($$v) {
                     _vm.$set(_vm.plantDet, "name_id", $$v)
                   },
                   expression: "plantDet.name_id"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-md-6" },
-            [
-              _c("label", { attrs: { for: "title" } }, [_vm._v("Variety:")]),
-              _vm._v(" "),
-              _c("v-select", {
-                ref: "select",
-                attrs: {
-                  label: "description",
-                  placeholder: "Select Variety",
-                  options: _vm.varieties,
-                  reduce: function(varieties) {
-                    return [varieties.id, varieties.description]
-                  }
-                },
-                model: {
-                  value: _vm.plantDet.variety_id,
-                  callback: function($$v) {
-                    _vm.$set(_vm.plantDet, "variety_id", $$v)
-                  },
-                  expression: "plantDet.variety_id"
                 }
               })
             ],
@@ -48776,7 +48717,7 @@ var render = function() {
                   placeholder: "Select Method",
                   options: _vm.graft_method,
                   reduce: function(graft_method) {
-                    return [graft_method.id, graft_method.title]
+                    return graft_method.id
                   }
                 },
                 model: {
@@ -48803,13 +48744,16 @@ var render = function() {
                 _c(
                   "button",
                   { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Next")]
+                  [_vm._v("Submit")]
                 ),
                 _vm._v(" "),
                 _c(
                   "router-link",
-                  { staticClass: "btn btn-secondary", attrs: { to: "/bids" } },
-                  [_vm._v("Cancel")]
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { to: "/expert/method-details" }
+                  },
+                  [_vm._v("Back")]
                 )
               ],
               1
@@ -48855,11 +48799,14 @@ var render = function() {
         [_vm._v("Create")]
       ),
       _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
       _c(
         "table",
         {
           staticClass: "table table-bordered table-striped table-sm dataTable",
-          staticStyle: { "margin-top": "15px" },
           attrs: { id: "meth-table" }
         },
         [
@@ -48868,23 +48815,125 @@ var render = function() {
           _c(
             "tbody",
             [
-              _vm._l(_vm.plant_meth, function(pm) {
+              _vm._l(_vm.plant_meth, function(pm, index) {
                 return [
                   _c("tr", [
                     _c("td", [_vm._v(_vm._s(pm.id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(pm.name))]),
+                    _c("td", [
+                      _vm._v("\n            Name: " + _vm._s(pm.name)),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("small", [_vm._v(_vm._s(pm.description))])
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(pm.variety))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(pm.description))]),
+                    _c("td", [
+                      _vm._v("\n            Method: " + _vm._s(pm.g_title)),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("small", [_vm._v(_vm._s(pm.g_description))])
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("action")])
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-sm",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.initUpdate(index)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-edit" })]
+                      )
+                    ])
                   ])
                 ]
               })
             ],
             2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: { tabindex: "-1", role: "dialog", id: "update_unit_model" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-lg",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _vm.errors.length > 0
+                    ? _c("div", { staticClass: "alert alert-danger" }, [
+                        _c("strong", [
+                          _vm._v(" Whoops, looks like something went wrong...")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "ul",
+                          [
+                            _vm._l(_vm.errors, function(error, index) {
+                              return [
+                                _c("li", { key: index }, [
+                                  _vm._v(_vm._s(error))
+                                ])
+                              ]
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { attrs: { for: "name" } }, [
+                        _vm._v("Description:")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        ref: "select",
+                        attrs: {
+                          label: "name",
+                          placeholder: "Select Plant Name",
+                          options: _vm.plant_names,
+                          reduce: function(plant_names) {
+                            return plant_names.id
+                          }
+                        },
+                        model: {
+                          value: _vm.update_meth.name_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.update_meth, "name_id", $$v)
+                          },
+                          expression: "update_meth.name_id"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
+            ]
           )
         ]
       )
@@ -48905,10 +48954,48 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Variety")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
+        _c("th", [_vm._v("Graft")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Update")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("\n            ×\n          ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Update")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("\n            Close\n          ")]
+      )
     ])
   }
 ]
@@ -49013,14 +49100,6 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("td", [
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(unit.description) +
-                              "\n            "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
                           _c("div", { staticClass: "btn-group" }, [
                             _c(
                               "button",
@@ -49113,32 +49192,6 @@ var render = function() {
                       return
                     }
                     _vm.$set(_vm.unit, "name", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Description:")]),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.unit.description,
-                    expression: "unit.description"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { rows: "5", id: "comment" },
-                domProps: { value: _vm.unit.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.unit, "description", $event.target.value)
                   }
                 }
               })
@@ -49251,38 +49304,6 @@ var render = function() {
                       }
                     }
                   })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "name" } }, [
-                    _vm._v("Description:")
-                  ]),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.update_unit.description,
-                        expression: "update_unit.description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { rows: "5", id: "upcomment" },
-                    domProps: { value: _vm.update_unit.description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.update_unit,
-                          "description",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
                 ])
               ]),
               _vm._v(" "),
@@ -49324,8 +49345,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])
     ])
@@ -49353,6 +49372,469 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h4", { staticClass: "modal-title" }, [_vm._v("Update Name")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("\n            ×\n          ")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=template&id=1ef073b8&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/CreateDetails.vue?vue&type=template&id=1ef073b8&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("h2", [_vm._v("Plant Details")]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.saveDet.apply(null, arguments)
+          }
+        }
+      },
+      [
+        _vm.errors.length > 0
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _c("strong", [
+                _vm._v(" Whoops, looks like something went wrong...")
+              ]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                [
+                  _vm._l(_vm.errors, function(error, index) {
+                    return [_c("li", { key: index }, [_vm._v(_vm._s(error))])]
+                  })
+                ],
+                2
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-6" },
+            [
+              _c("label", { attrs: { for: "title" } }, [_vm._v("Name:")]),
+              _vm._v(" "),
+              _c("v-select", {
+                ref: "select",
+                attrs: {
+                  label: "name",
+                  placeholder: "Select Plant Name",
+                  options: _vm.plant_names,
+                  reduce: function(plant_names) {
+                    return [plant_names.id, plant_names.name]
+                  }
+                },
+                model: {
+                  value: _vm.plantDet.name_id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.plantDet, "name_id", $$v)
+                  },
+                  expression: "plantDet.name_id"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-md-6" },
+            [
+              _c("label", { attrs: { for: "title" } }, [_vm._v("Variety:")]),
+              _vm._v(" "),
+              _c("v-select", {
+                ref: "select",
+                attrs: {
+                  label: "description",
+                  placeholder: "Select Variety",
+                  options: _vm.varieties,
+                  reduce: function(varieties) {
+                    return [varieties.id, varieties.description]
+                  }
+                },
+                model: {
+                  value: _vm.plantDet.variety_id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.plantDet, "variety_id", $$v)
+                  },
+                  expression: "plantDet.variety_id"
+                }
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-8" }, [
+            _c("label", { attrs: { for: "name" } }, [_vm._v("Description:")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.plantDet.description,
+                  expression: "plantDet.description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { rows: "5", id: "upcomment" },
+              domProps: { value: _vm.plantDet.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.plantDet, "description", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group", staticStyle: { "margin-top": "15px" } },
+          [
+            _c(
+              "div",
+              { staticClass: "col-md-8", attrs: { align: "center" } },
+              [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("Submit")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { to: "/expert/plant-detail" }
+                  },
+                  [_vm._v("Back")]
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=template&id=cc29d318&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailIndex.vue?vue&type=template&id=cc29d318&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "col-md-12" },
+    [
+      _c("h2", { attrs: { align: "center" } }, [
+        _vm._v(_vm._s(_vm.$route.name))
+      ]),
+      _vm._v(" "),
+      _c("router-view")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=template&id=7eb20d6e&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/expert/plantdetails/PlantDetailsTable.vue?vue&type=template&id=7eb20d6e&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "router-link",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { to: "/expert/plant-detail/create" }
+        },
+        [_vm._v("Create")]
+      ),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "table table-bordered table-striped table-sm dataTable",
+          staticStyle: { "margin-top": "15px" },
+          attrs: { id: "meth-table" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.plant_meth, function(pm, index) {
+                return [
+                  _c("tr", [
+                    _c("td", [_vm._v(_vm._s(pm.id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(pm.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(pm.variety))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(pm.description))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-sm",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.initUpdate(index)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-edit" })]
+                      )
+                    ])
+                  ])
+                ]
+              })
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: { tabindex: "-1", role: "dialog", id: "update_unit_model" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-lg",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _vm.errors.length > 0
+                    ? _c("div", { staticClass: "alert alert-danger" }, [
+                        _c("strong", [
+                          _vm._v(" Whoops, looks like something went wrong...")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "ul",
+                          [
+                            _vm._l(_vm.errors, function(error, index) {
+                              return [
+                                _c("li", { key: index }, [
+                                  _vm._v(_vm._s(error))
+                                ])
+                              ]
+                            })
+                          ],
+                          2
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { attrs: { for: "name" } }, [
+                        _vm._v("Variety:")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        ref: "select",
+                        attrs: {
+                          label: "description",
+                          placeholder: "Select Plant Name",
+                          options: _vm.varieties,
+                          reduce: function(varieties) {
+                            return varieties.id
+                          }
+                        },
+                        model: {
+                          value: _vm.update_det.variety_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.update_det, "variety_id", $$v)
+                          },
+                          expression: "update_det.variety_id"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "name" } }, [
+                      _vm._v("Description:")
+                    ]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.update_det.description,
+                          expression: "update_det.description"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { rows: "5", id: "upcomment" },
+                      domProps: { value: _vm.update_det.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.update_det,
+                            "description",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" },
+                      on: { click: _vm.updateDet }
+                    },
+                    [_vm._v("\n            Update\n          ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("\n            Close\n          ")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "table-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Plant")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Variety")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Update")]),
       _vm._v(" "),
       _c(
         "button",
@@ -49417,6 +49899,22 @@ var render = function() {
                     {
                       staticClass: "nav-link",
                       attrs: { to: "/expert/method-details" }
+                    },
+                    [_vm._v("Plant Grafting")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: "/expert/plant-detail" }
                     },
                     [_vm._v("Plant Details")]
                   )

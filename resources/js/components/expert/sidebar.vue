@@ -11,6 +11,11 @@
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/expert/method-details"
+                >Plant Grafting</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/expert/plant-detail"
                 >Plant Details</router-link
               >
             </li>

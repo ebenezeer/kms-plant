@@ -1,6 +1,9 @@
 
 import Home from "./components/expert/Home";
-import PlantDetailIndex from "./components/expert/PlantDetailIndex";
+
+import PlantDetailIndex from "./components/expert/plantdetails/PlantDetailIndex";
+import PlantDetailsTable from "./components/expert/plantdetails/PlantDetailsTable";
+import CreateDetails from "./components/expert/plantdetails/CreateDetails";
 
 import PlantName from "./components/expert/plant/PlantName";
 
@@ -14,6 +17,10 @@ import MethodsIndex from "./components/expert/methoddetails/MethodsIndex";
 import MethodTable from "./components/expert/methoddetails/MethodTable";
 import CreateMethod from "./components/expert/methoddetails/CreateMethod";
 
+//import PlantDetails from "./components/expert/methoddetails/MethodsIndex";
+//import MethodTable from "./components/expert/methoddetails/MethodTable";
+//import CreateMethod from "./components/expert/methoddetails/CreateMethod";
+
 export default [
     {
         path: '/expert/home',
@@ -21,11 +28,23 @@ export default [
         name: 'Home',
     },
 
-    // {
-    //     path: '/expert/plant-detail',
-    //     name: 'Plant Detail Index',
-    //     component: PlantDetailIndex
-    // },
+    {
+        path: '/expert/plant-detail',
+        // name: 'Plant Detail Index',
+        component: PlantDetailIndex,
+        children: [
+            {
+                path: '',
+                name: 'Plant Detail',
+                component: PlantDetailsTable
+            },
+            {
+                path: 'create',
+                component: CreateDetails
+            },
+
+        ]
+    },
     {
         path: '/expert/plant-name',
         name: 'Plant Name',
