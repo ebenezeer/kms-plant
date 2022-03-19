@@ -32,13 +32,22 @@
               <small>{{ pm.g_description }}</small>
             </td>
             <td>
-              <button
-                type="button"
-                class="btn btn-success btn-sm"
-                @click="viewMet(pm.id)"
-              >
-                <i class="fa fa-edit"></i>
-              </button>
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  @click="viewMet(pm.id)"
+                >
+                  <i class="fa fa-vcard"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  @click="deleteMet(pm.id)"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
             </td>
           </tr>
         </template>
@@ -91,6 +100,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2/dist/sweetalert2.js";
 export default {
   data() {
     return {
@@ -126,23 +136,43 @@ export default {
     viewMet(val) {
       this.$router.push({ path: `/expert/method-details/${val}/view` });
     },
-    deleteMeth(val) {
-      swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      }).then((willDelete) => {
-        if (willDelete) {
-          window.axios.post("/delete-meth/" + val).then(({ data }) => {
-            if (data) {
-              $("#meth-table").DataTable().draw();
-            }
-          });
-        }
+    readmeths() {
+      window.axios.get("/expert/plant-methods").then(({ data }) => {
+        this.plant_meth = data;
+        //this.dataTab();
       });
     },
+    deleteMet(a) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You can't revert your action",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes Delete it!",
+        cancelButtonText: "No, I" + "'" + "ve change my mind!",
+        showCloseButton: true,
+        showLoaderOnConfirm: true,
+      }).then((result) => {
+        if (result.value) {
+          axios
+            .delete("/expert/plant-methods/" + a)
+            .then((response) => {
+              this.readmeths();
+              Swal.fire({
+                icon: "success",
+                title: "Deleted",
+                text: "I will close in 2 seconds.",
+                timer: 2000,
+              });
+            })
+            .catch((error) => {});
+        }
+        // else {
+        //   this.$swal('Cancelled', 'Your data is still intact', 'info')
+        // }
+      });
+    },
+
     methhhh(val) {
       this.$router.push({ path: `/met/${val}/create` });
     },

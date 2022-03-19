@@ -4095,6 +4095,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -4187,6 +4189,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -4231,23 +4243,42 @@ __webpack_require__.r(__webpack_exports__);
         path: "/expert/method-details/".concat(val, "/view")
       });
     },
-    deleteMeth: function deleteMeth(val) {
-      swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true
-      }).then(function (willDelete) {
-        if (willDelete) {
-          window.axios.post("/delete-meth/" + val).then(function (_ref3) {
-            var data = _ref3.data;
+    readmeths: function readmeths() {
+      var _this4 = this;
 
-            if (data) {
-              $("#meth-table").DataTable().draw();
-            }
-          });
-        }
+      window.axios.get("/expert/plant-methods").then(function (_ref3) {
+        var data = _ref3.data;
+        _this4.plant_meth = data; //this.dataTab();
+      });
+    },
+    deleteMet: function deleteMet(a) {
+      var _this5 = this;
+
+      sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        title: "Are you sure?",
+        text: "You can't revert your action",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes Delete it!",
+        cancelButtonText: "No, I" + "'" + "ve change my mind!",
+        showCloseButton: true,
+        showLoaderOnConfirm: true
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]("/expert/plant-methods/" + a).then(function (response) {
+            _this5.readmeths();
+
+            sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              icon: "success",
+              title: "Deleted",
+              text: "I will close in 2 seconds.",
+              timer: 2000
+            });
+          })["catch"](function (error) {});
+        } // else {
+        //   this.$swal('Cancelled', 'Your data is still intact', 'info')
+        // }
+
       });
     },
     methhhh: function methhhh(val) {
@@ -49250,19 +49281,35 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success btn-sm",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.viewMet(pm.id)
+                      _c("div", { staticClass: "btn-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success btn-sm",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.viewMet(pm.id)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "fa fa-edit" })]
-                      )
+                          },
+                          [_c("i", { staticClass: "fa fa-vcard" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger btn-sm",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteMet(pm.id)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-trash" })]
+                        )
+                      ])
                     ])
                   ])
                 ]

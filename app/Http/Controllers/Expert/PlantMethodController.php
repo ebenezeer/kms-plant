@@ -132,6 +132,15 @@ class PlantMethodController extends Controller
     }
     public function destroy($id)
     {
-        //
+        $d = PlantMeth::find($id);
+
+        DB::table('methods_grafts')->where('meth_detail_id', $id)->delete();
+        // foreach ($bid->files as $doc) {
+        //     $doc->delete();
+        // }
+        // Storage::disk('public')->deleteDirectory('/uploads/' . $id);
+        $d->delete();
+
+        return 1;
     }
 }
