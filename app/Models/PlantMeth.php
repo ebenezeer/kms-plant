@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PlantMeth extends Model
 {
     //use HasFactory;
-    protected $table = 'plant_methods';
+    protected $table = 'methods_details';
     public $timestamps = false;
 }

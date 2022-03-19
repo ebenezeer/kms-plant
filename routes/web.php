@@ -64,6 +64,7 @@ Route::group(['middleware' => ['expert']], function () {
 
         Route::resource('/plant-methods', 'App\Http\Controllers\Expert\PlantMethodController');
         Route::get('/get-plant-names-met', 'App\Http\Controllers\Expert\PlantMethodController@get_plant_names');
+        Route::get('/view-plant-methods/{id}', 'App\Http\Controllers\Expert\PlantMethodController@view_plant_methods');
 
         Route::resource('/plant-details', 'App\Http\Controllers\Expert\PlantDetailController');
 

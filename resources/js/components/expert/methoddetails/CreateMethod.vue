@@ -44,6 +44,7 @@
           <v-select
             ref="select"
             label="title"
+            multiple="multiple"
             placeholder="Select Method"
             v-model="plantDet.graft_id"
             :options="graft_method"
@@ -119,6 +120,7 @@ export default {
             timer: 2000,
           });
           //this.$router.push({ path: "/expert/plant-methods" + data + "/edit" });
+          location.reload();
         })
         .catch((error) => {
           this.errors = [];

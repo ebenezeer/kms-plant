@@ -35,7 +35,7 @@
               <button
                 type="button"
                 class="btn btn-success btn-sm"
-                @click="initUpdate(index)"
+                @click="viewMet(pm.id)"
               >
                 <i class="fa fa-edit"></i>
               </button>
@@ -123,8 +123,8 @@ export default {
         this.plant_names = data;
       });
     },
-    editMet(val) {
-      this.$router.push({ path: `/meth/${val}/edit` });
+    viewMet(val) {
+      this.$router.push({ path: `/expert/method-details/${val}/view` });
     },
     deleteMeth(val) {
       swal({
