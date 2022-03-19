@@ -7,7 +7,9 @@
     </div>
 
     <div class="row">
-      <label class="col-md-4" for="description">Description:</label>
+      <label class="col-md-4" for="description"
+        ><srtong>Description:</srtong></label
+      >
       <div class="col-md-12">
         <p>{{ plant_det.description }}</p>
       </div>
@@ -22,19 +24,21 @@
       </div>
       <br />
       <div class="row">
-        <label class="col-md-4" for="description">Description:</label>
+        <label class="col-md-4" for="description"
+          ><strong>Description:</strong></label
+        >
         <div class="col-md-12">
           <p>{{ pm.description }}</p>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <label for="comment">Advantage:</label>
-          {{ pm.advantage }}
+          <label for="comment"><strong>Advantage:</strong></label>
+          <p>{{ pm.advantage }}</p>
         </div>
         <div class="col">
-          <label for="comment">Disadvantage:</label>
-          {{ pm.disadvantage }}
+          <label for="comment"><strong>Disadvantage:</strong></label>
+          <p>{{ pm.disadvantage }}</p>
         </div>
       </div>
       <br />
@@ -65,24 +69,27 @@
         </div>
       </div>
       <br />
-      <div class="row" v-if="pm.vid_src != nul">
-        <div class="embed-responsive embed-responsive-16by9">
-          <!-- <iframe
+      <div class="row" v-if="pm.vid_src != null">
+        <div class="col-md-8">
+          <div class="embed-responsive embed-responsive-16by9">
+            <!-- <iframe
               class="embed-responsive-item"
               :src="graft_det.vid_src"
             ></iframe> -->
 
-          <iframe
-            width="560"
-            height="315"
-            :src="pm.vid_src"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+            <iframe
+              width="560"
+              height="315"
+              :src="pm.vid_src"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
       </div>
+
       <hr />
     </template>
   </div>

@@ -4365,6 +4365,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -49445,7 +49452,8 @@ var render = function() {
         _c(
           "label",
           { staticClass: "col-md-4", attrs: { for: "description" } },
-          [_vm._v("Description:")]
+          [_c("srtong", [_vm._v("Description:")])],
+          1
         ),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
@@ -49469,11 +49477,7 @@ var render = function() {
           _c("br"),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
-            _c(
-              "label",
-              { staticClass: "col-md-4", attrs: { for: "description" } },
-              [_vm._v("Description:")]
-            ),
+            _vm._m(0, true),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-12" }, [
               _c("p", [_vm._v(_vm._s(pm.description))])
@@ -49482,17 +49486,15 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col" }, [
-              _c("label", { attrs: { for: "comment" } }, [
-                _vm._v("Advantage:")
-              ]),
-              _vm._v("\n        " + _vm._s(pm.advantage) + "\n      ")
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(pm.advantage))])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col" }, [
-              _c("label", { attrs: { for: "comment" } }, [
-                _vm._v("Disadvantage:")
-              ]),
-              _vm._v("\n        " + _vm._s(pm.disadvantage) + "\n      ")
+              _vm._m(2, true),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(pm.disadvantage))])
             ])
           ]),
           _vm._v(" "),
@@ -49547,30 +49549,32 @@ var render = function() {
                 }),
                 0
               )
-            : _c("div", { staticClass: "row" }, [_vm._m(0, true)]),
+            : _c("div", { staticClass: "row" }, [_vm._m(3, true)]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
-          pm.vid_src != _vm.nul
+          pm.vid_src != null
             ? _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "embed-responsive embed-responsive-16by9" },
-                  [
-                    _c("iframe", {
-                      attrs: {
-                        width: "560",
-                        height: "315",
-                        src: pm.vid_src,
-                        title: "YouTube video player",
-                        frameborder: "0",
-                        allow:
-                          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-                        allowfullscreen: ""
-                      }
-                    })
-                  ]
-                )
+                _c("div", { staticClass: "col-md-8" }, [
+                  _c(
+                    "div",
+                    { staticClass: "embed-responsive embed-responsive-16by9" },
+                    [
+                      _c("iframe", {
+                        attrs: {
+                          width: "560",
+                          height: "315",
+                          src: pm.vid_src,
+                          title: "YouTube video player",
+                          frameborder: "0",
+                          allow:
+                            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                          allowfullscreen: ""
+                        }
+                      })
+                    ]
+                  )
+                ])
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -49582,6 +49586,32 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-md-4", attrs: { for: "description" } },
+      [_c("strong", [_vm._v("Description:")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "comment" } }, [
+      _c("strong", [_vm._v("Advantage:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "comment" } }, [
+      _c("strong", [_vm._v("Disadvantage:")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
