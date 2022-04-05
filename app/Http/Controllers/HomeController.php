@@ -28,9 +28,13 @@ class HomeController extends Controller
         if ($role == 1) {
             return redirect('/admin/home');
         }
-       
+
         if ($role == 2) {
             return redirect('/expert/home');
+        }
+
+        if ($role == 3) {
+            return redirect('/publicuser/home');
         }
     }
 }

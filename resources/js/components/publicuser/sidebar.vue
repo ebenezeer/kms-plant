@@ -5,7 +5,7 @@
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <router-link class="nav-link side-link" to="/expert/home"
+              <router-link class="nav-link side-link" to="/publicuser/home"
                 >Dashboard</router-link
               >
             </li>

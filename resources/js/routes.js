@@ -1,5 +1,6 @@
 import administratorRoutes from './administratorRoutes.js';
 import expertRoutes from './expertRoutes.js';
+import publicRoutes from './publicRoutes.js';
 import Home from './components/Home';
 import About from './components/About';
 
@@ -25,7 +26,8 @@ export default {
         //     name: "About"
         // },
         ...administratorRoutes,
-        ...expertRoutes
+        ...expertRoutes,
+        ...publicRoutes
         // {
         //     path: '/about',
         //     component: Aboutindex,
@@ -43,7 +45,7 @@ export default {
         //         }
         //     ]
         // },
-       
+
         // {
         //     path: '/login',
         //     component: Login,

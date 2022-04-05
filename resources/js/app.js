@@ -20,6 +20,7 @@ Vue.component("v-select", vSelect);
 
 Vue.component('admin-sidebar', require('./components/administrator/sidebar').default);
 Vue.component('expert-sidebar', require('./components/expert/sidebar').default);
+Vue.component('pub-sidebar', require('./components/publicuser/sidebar').default);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 

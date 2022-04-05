@@ -16,7 +16,7 @@
       >
         <thead>
           <tr>
-            <th>Ref #</th>
+            <th>Reference No.</th>
             <th>Name</th>
             <th>Action</th>
           </tr>

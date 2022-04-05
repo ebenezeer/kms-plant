@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'App\Http\Controllers\PublicController@public_index');
 
 Route::get('/hasher', function () {
 
@@ -67,9 +68,22 @@ Route::group(['middleware' => ['expert']], function () {
         Route::get('/view-plant-methods/{id}', 'App\Http\Controllers\Expert\PlantMethodController@view_plant_methods');
 
         Route::resource('/plant-details', 'App\Http\Controllers\Expert\PlantDetailController');
+        Route::post('/update-plantphoto/{id}', 'App\Http\Controllers\Expert\PlantDetailController@updatePhoto');
+        Route::post('/delete-plantphoto/{id}', 'App\Http\Controllers\Expert\PlantDetailController@deletePhoto');
 
         Route::get('/{any}', function () {
             return view('/expert/home');
+        })->where('any', '.*');
+    });
+});
+
+Route::group(['middleware' => ['pubuser']], function () {
+    Route::prefix('publicuser')->group(function () {
+
+        Route::get('/logout', 'App\Http\Controllers\PublicUser\PublicUserController@logout');
+
+        Route::get('/{any}', function () {
+            return view('/publicuser/home');
         })->where('any', '.*');
     });
 });
