@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', 'App\Http\Controllers\PublicController@public_index');
+//Route::get('{vue_route?}', [App\Http\Controllers\HomeController::class, 'index'])->where('vue_route', '[\/\w\.-]*');
+//Route::get('/', 'App\Http\Controllers\PublicController@public_index');
+Route::get('/public/plants', 'App\Http\Controllers\PublicController@plants_home');
+Route::get('/public/plant/{id}', 'App\Http\Controllers\PublicController@plant_show');
 
 Route::get('/hasher', function () {
 
@@ -87,5 +90,7 @@ Route::group(['middleware' => ['pubuser']], function () {
         })->where('any', '.*');
     });
 });
-//Route::get('{vue_route?}', [App\Http\Controllers\HomeController::class, 'index'])->where('vue_route', '[\/\w\.-]*');
+Route::get('/{any}', function () {
+    return view('/welcome');
+})->where('any', '.*');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
