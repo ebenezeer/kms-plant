@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', 'App\Http\Controllers\PublicController@public_index');
 Route::get('/public/plants', 'App\Http\Controllers\PublicController@plants_home');
 Route::get('/public/plant/{id}', 'App\Http\Controllers\PublicController@plant_show');
+Route::get('/public/plant/arc/{id}', 'App\Http\Controllers\PublicController@plant_show');
+
+Route::get('/public/plant-methods', 'App\Http\Controllers\PublicController@index_methods');
+Route::get('/public/view-plant-methods/{id}', 'App\Http\Controllers\PublicController@view_plant_methods');
 
 Route::get('/hasher', function () {
 

@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-8 blog-main">
           <h3 class="pb-3 mb-4 font-italic border-bottom">
-            {{ plant.name }} asd
+            {{ plant.name }}
           </h3>
 
           <div class="blog-post">
@@ -50,6 +50,47 @@
                 {{ p.disadvantage == "" ? "No Record Found!" : p.disadvantage }}
               </p>
               <hr />
+
+              <h4>Illustrations</h4>
+
+              <div class="row" v-if="p.files.length > 0">
+                <div class="col-md-4" v-for="(file, key) in p.files">
+                  <div class="card mb-4 box-shadow">
+                    <img
+                      class="card-img-top"
+                      :src="'/storage' + file.src"
+                      alt="Card image cap"
+                      width="100"
+                      height="225"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row" v-else>
+                <div class="col">
+                  <div class="alert alert-secondary">
+                    <strong>Oops!</strong> No image found!.
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <div class="row" v-if="p.vid_src != null">
+                <div class="col-md-8">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe
+                      width="560"
+                      height="315"
+                      :src="p.vid_src"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+              <hr />
             </template>
             <!-- temp -->
           </div>
@@ -68,18 +109,17 @@
           <div class="p-3 mb-3 bg-light rounded">
             <h4 class="font-italic">Archives</h4>
             <ol class="list-unstyled mb-0">
-              <li><a href="#">March 2014</a></li>
-              <li><a href="#">February 2014</a></li>
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
+              <template v-for="p in plants">
+                <li>
+                  <button
+                    type="button"
+                    class="btn btn-link"
+                    @click="plantDetail(p.id)"
+                  >
+                    {{ p.name }}({{ p.variety }})
+                  </button>
+                </li>
+              </template>
             </ol>
           </div>
         </aside>
@@ -121,6 +161,13 @@ export default {
           this.plant = data;
           //this.dataTab();
         });
+    },
+    plantDetail(val) {
+      this.plant = [];
+      window.axios.get("/public/plant/arc/" + val).then(({ data }) => {
+        this.plant = data;
+        //this.dataTab();
+      });
     },
   },
 };

@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
     <link href="{{ asset('css/album.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <style>
     .jumbotron {
@@ -58,7 +58,7 @@
             <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-between">
                     <a class="p-2 text-muted" href="/">Plant Details</a>
-                    <a class="p-2 text-muted" href="#">Technology</a>
+                    <router-link class="p-2 text-muted" to="/public/method-details">Technology</router-link>
                     <a class="p-2 text-muted" href="#">Design</a>
                     <a class="p-2 text-muted" href="#">Culture</a>
                     <a class="p-2 text-muted" href="#">Opinion</a>

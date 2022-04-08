@@ -16,7 +16,7 @@ import GraftTechnique from "./components/expert/graft/GraftTechnique";
 import MethodsIndex from "./components/expert/methoddetails/MethodsIndex";
 import MethodTable from "./components/expert/methoddetails/MethodTable";
 import CreateMethod from "./components/expert/methoddetails/CreateMethod";
-import MethodView from "./components/expert/methoddetails/MethodView"; MethodView
+import MethodView from "./components/expert/methoddetails/MethodView";
 
 //import PlantDetails from "./components/expert/methoddetails/MethodsIndex";
 //import MethodTable from "./components/expert/methoddetails/MethodTable";

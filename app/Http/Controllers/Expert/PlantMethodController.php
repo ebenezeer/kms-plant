@@ -57,10 +57,7 @@ class PlantMethodController extends Controller
         ], 200);
     }
 
-    public function create()
-    {
-        //
-    }
+
 
     public function store(Request $request)
     {
@@ -101,20 +98,7 @@ class PlantMethodController extends Controller
         ], 200);
     }
 
-    public function show($id)
-    {
-        //
-    }
 
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
     public function get_plant_names()
     {
         $det = DB::table('plant_det')->join('plant_name', 'plant_name.id', '=', 'plant_det.name_id')

@@ -57,18 +57,22 @@ class PublicController extends Controller
                 'plant_variety.description as variety'
             ])->first();
 
-        $md = PlantMeth::where('plant_det_id', $id)->first();
 
-        $mg = DB::table('methods_grafts')->where('meth_detail_id', $md->id)->get();
         $t = [];
         $gd = [];
 
-        foreach ($mg as $de) {
-            // $gd = GraftDetail::where('id', $d->graft_id)->with(['files'])->get();
+        $md = PlantMeth::where('plant_det_id', $id)->first();
 
-            $t[] = $de->graft_id;
+
+        if ($md) {
+            $mg = DB::table('methods_grafts')->where('meth_detail_id', $md->id)->get();
+            foreach ($mg as $de) {
+                // $gd = GraftDetail::where('id', $d->graft_id)->with(['files'])->get();
+
+                $t[] = $de->graft_id;
+            }
+            $gd = GraftDetail::whereIn('id', $t)->with(['files'])->get();
         }
-        $gd = GraftDetail::whereIn('id', $t)->with(['files'])->get();
 
         // $a = [];
         //foreach ($det as $d) {
@@ -87,5 +91,47 @@ class PublicController extends Controller
         // }
 
         return $a;
+    }
+
+    public function index_methods()
+    {
+        $det = PlantMeth::join('plant_det', 'plant_det.id', '=', 'methods_details.plant_det_id')
+            ->join('plant_name', 'plant_name.id', '=', 'plant_det.name_id')
+            ->join('plant_variety', 'plant_variety.id', '=', 'plant_det.variety_id')
+            ->select([
+                'methods_details.id',
+                'plant_name.name',
+                'plant_det.description',
+                'plant_variety.description as variety'
+            ])->get();
+
+        return $det;
+    }
+    public function view_plant_methods($id)
+    {
+
+        $det = PlantMeth::where('methods_details.id', $id)
+            ->join('plant_det', 'plant_det.id', '=', 'methods_details.plant_det_id')
+            ->join('plant_name', 'plant_name.id', '=', 'plant_det.name_id')
+            ->join('plant_variety', 'plant_variety.id', '=', 'plant_det.variety_id')
+            ->select([
+                'methods_details.id',
+                'plant_name.name',
+                'plant_det.description',
+                'plant_variety.description as variety'
+            ])->first();
+
+        $mg = DB::table('methods_grafts')->where('meth_detail_id', $id)->get();
+
+        foreach ($mg as $gi) {
+            $graft_ids[] = $gi->graft_id;
+        }
+
+        $grafts = GraftDetail::whereIn('id', $graft_ids)->with(['files'])->get();
+
+        return response()->json([
+            'plant_det' => $det,
+            'meths' => $grafts
+        ], 200);
     }
 }

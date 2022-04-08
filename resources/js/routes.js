@@ -4,6 +4,10 @@ import publicRoutes from './publicRoutes.js';
 import Home from './components/publicuser/Home';
 import PlantDetail from './components/publicuser/plantdetails/PlantDetail';
 
+import MethodsIndex from "./components/publicuser/graftmet/MethodsIndex";
+import MethodTable from "./components/publicuser/graftmet/MethodTable";
+import MethodView from "./components/publicuser/graftmet/MethodView";
+
 
 export default {
     mode: 'history',
@@ -24,6 +28,24 @@ export default {
             path: '/plant-details/:id',
             component: PlantDetail,
             name: "Plant Details"
+        },
+
+        {
+            path: '/public/method-details',
+            component: MethodsIndex,
+            children: [
+                {
+                    path: '',
+                    name: 'Method Table Index',
+                    component: MethodTable
+                },
+
+
+                {
+                    path: ':id/view',
+                    component: MethodView
+                }
+            ]
         },
         ...administratorRoutes,
         ...expertRoutes,
