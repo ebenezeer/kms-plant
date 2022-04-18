@@ -40,15 +40,24 @@
               <p>
                 {{ p.description }}
               </p>
-              <h3>Advantage</h3>
-              <p>
-                {{ p.advantage == "" ? "No Record Found!" : p.advantage }}
-              </p>
-
-              <h3>Disadvantage</h3>
-              <p>
-                {{ p.disadvantage == "" ? "No Record Found!" : p.disadvantage }}
-              </p>
+              <!--  -->
+              <div class="row">
+                <div class="col-md-6">
+                  <h4>Advantage</h4>
+                  <p>
+                    {{ p.advantage == "" ? "No Record Found!" : p.advantage }}
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <h4>Disadvantage</h4>
+                  <p>
+                    {{
+                      p.disadvantage == "" ? "No Record Found!" : p.disadvantage
+                    }}
+                  </p>
+                </div>
+              </div>
+              <!--  -->
               <hr />
 
               <h4>Illustrations</h4>
@@ -90,6 +99,39 @@
                   </div>
                 </div>
               </div>
+              <hr />
+              <h3>Season</h3>
+              <p>
+                {{
+                  p.season == null || p.season == ""
+                    ? "No Record Found!"
+                    : p.season
+                }}
+              </p>
+              <!--  -->
+              <div class="row">
+                <div class="col-md-6">
+                  <h4>Pre Treatment</h4>
+                  <p>
+                    {{
+                      p.pre_treatment == null || p.pre_treatment == ""
+                        ? "No Record Found!"
+                        : p.pre_treatment
+                    }}
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <h4>Post Treatment</h4>
+                  <p>
+                    {{
+                      p.post_treatment == null || p.post_treatment == ""
+                        ? "No Record Found!"
+                        : p.post_treatment
+                    }}
+                  </p>
+                </div>
+              </div>
+              <!--  -->
               <hr />
             </template>
             <!-- temp -->

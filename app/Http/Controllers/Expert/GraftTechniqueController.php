@@ -48,12 +48,19 @@ class GraftTechniqueController extends Controller
 
         ]);
 
+        //  season: this.graft.season,
+        //   pre_treatment: this.graft.pre_treatment,
+        //   post_treatment: this.graft.post_treatment,
+
         $gd = new GraftDetail();
 
         $gd->title = $request->title;
         $gd->description = $request->description;
         $gd->advantage = $request->advantage;
         $gd->disadvantage = $request->disadvantage;
+        $gd->season = $request->disadvantage;
+        $gd->pre_treatment = $request->disadvantage;
+        $gd->post_treatment = $request->disadvantage;
 
         $gd->save();
 
@@ -110,6 +117,9 @@ class GraftTechniqueController extends Controller
             'description' => $g->description,
             'advantage' => $g->advantage,
             'disadvantage' => $g->disadvantage,
+            'season' => $g->season,
+            'pre_treatment' => $g->pre_treatment,
+            'post_treatment' => $g->post_treatment,
             'vid_src' => $g->vid_src,
             'docs' => $g_files
         ];
@@ -131,6 +141,9 @@ class GraftTechniqueController extends Controller
         $g->advantage = $request->advantage;
         $g->disadvantage = $request->disadvantage;
         $g->vid_src = $request->vid_src;
+        $g->season = $request->season;
+        $g->pre_treatment = $request->pre_treatment;
+        $g->post_treatment = $request->post_treatment;
 
         $g->save();
 

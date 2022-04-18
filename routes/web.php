@@ -42,8 +42,13 @@ Route::group(['middleware' => ['admin']], function () {
 
         Route::resource('/plants', 'App\Http\Controllers\Administrator\PlantNameController');
         Route::resource('/plant-variety', 'App\Http\Controllers\Administrator\PlantVarietyController');
-        //Route::post('registrar/reports/subject-payment/generate', [App\Http\Controllers\Registrar\ReportsController::class, 'subjectPaymentGenerate']);
+
         Route::resource('/adminreg', 'App\Http\Controllers\Administrator\CustomRegisterController');
+
+        Route::resource('/plant-details', 'App\Http\Controllers\Administrator\PlantDetailController');
+        Route::get('/get-plant-names', 'App\Http\Controllers\Administrator\PlantDetailController@get_plant_names');
+        Route::post('/update-plantphoto/{id}', 'App\Http\Controllers\Administrator\PlantDetailController@updatePhoto');
+        Route::post('/delete-plantphoto/{id}', 'App\Http\Controllers\Administrator\PlantDetailController@deletePhoto');
 
         Route::get('/logout', 'App\Http\Controllers\Administrator\AdministratorController@logout');
 

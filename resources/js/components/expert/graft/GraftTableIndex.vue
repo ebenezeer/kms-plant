@@ -115,6 +115,38 @@
                 ></textarea>
               </div>
             </div>
+            <br />
+            <div class="form-group">
+              <label for="season">Season:</label>
+              <input
+                type="text"
+                name="season"
+                id="season"
+                placeholder="season"
+                class="form-control"
+                v-model="graft.season"
+              />
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="comment">Pre Treatment:</label>
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  id="pre"
+                  v-model="graft.advantage"
+                ></textarea>
+              </div>
+              <div class="col">
+                <label for="comment">Post Treatment:</label>
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  id="post"
+                  v-model="graft.disadvantage"
+                ></textarea>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" @click="createGraft" class="btn btn-primary">
@@ -144,8 +176,11 @@ export default {
       graft: {
         title: "",
         description: "",
+        advantage: "",
         disadvantage: "",
-        disadvantage: "",
+        season: "",
+        pre_treatment: "",
+        post_treatment: "",
       },
       errors: [],
       graftings: [],
@@ -164,8 +199,14 @@ export default {
   methods: {
     initAddunit() {
       this.errors = [];
-      this.reset();
-      $("#add_unit_model").modal("show");
+      // this.reset();
+      //$("#add_unit_model").modal("show");
+
+      $("#add_unit_model").modal({
+        backdrop: "static",
+        keyboard: false,
+      });
+
       setTimeout(() => {
         this.$refs.addunit.focus();
       }, 600);
@@ -181,6 +222,9 @@ export default {
           description: this.graft.description,
           advantage: this.graft.advantage,
           disadvantage: this.graft.disadvantage,
+          season: this.graft.season,
+          pre_treatment: this.graft.pre_treatment,
+          post_treatment: this.graft.post_treatment,
         })
         .then((response) => {
           this.reset();
@@ -232,7 +276,13 @@ export default {
     },
 
     reset() {
-      this.unit.description = "";
+      this.graft.title = "";
+      this.graft.description = "";
+      this.graft.advantage = "";
+      this.graft.disadvantage = "";
+      this.graft.season = "";
+      this.graft.pre_treatment = "";
+      this.graft.post_treatment = "";
     },
     readunits() {
       axios.get("/expert/graft-techniques").then(({ data }) => {

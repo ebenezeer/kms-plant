@@ -3,7 +3,7 @@
     <h2>Graft Techique</h2>
     <hr />
     <form @submit.prevent="saveGraftDet">
-      <div class="form-group">
+      <div class="row form-group">
         <label class="col-md-4" for="title">Title:</label>
         <div class="col-md-10">
           <input
@@ -15,8 +15,7 @@
           />
         </div>
       </div>
-
-      <div class="form-group">
+      <div class="row form-group">
         <label class="col-md-4" for="description">Description:</label>
         <div class="col-md-10">
           <textarea
@@ -47,6 +46,40 @@
           ></textarea>
         </div>
       </div>
+      <br />
+      <div class="row form-group">
+        <label class="col-md-4" for="title">Season:</label>
+        <div class="col-md-10">
+          <input
+            v-model="graft_det.season"
+            type="text"
+            class="form-control"
+            id="season"
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="comment">Pre Treatment:</label>
+          <textarea
+            class="form-control"
+            rows="5"
+            id="pre"
+            v-model="graft_det.pre_treatment"
+          ></textarea>
+        </div>
+        <div class="col">
+          <label for="comment">Post Treatment:</label>
+          <textarea
+            class="form-control"
+            rows="5"
+            id="post"
+            v-model="graft_det.post_treatment"
+          ></textarea>
+        </div>
+      </div>
+      <br />
       <div class="col-md-10">
         <h4>Graft Pictures</h4>
         <hr />
