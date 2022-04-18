@@ -35,9 +35,9 @@
                 >Users</router-link
               >
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="/admin/logout">Logout</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </nav>
