@@ -1,6 +1,7 @@
 import administratorRoutes from './administratorRoutes.js';
 import expertRoutes from './expertRoutes.js';
 import publicRoutes from './publicRoutes.js';
+import userViewRoutes from './userViewRoutes.js';
 import Home from './components/publicuser/Home';
 import PlantDetail from './components/publicuser/plantdetails/PlantDetail';
 
@@ -49,7 +50,8 @@ export default {
         },
         ...administratorRoutes,
         ...expertRoutes,
-        ...publicRoutes
+        ...publicRoutes,
+        ...userViewRoutes,
         // {
         //     path: '/about',
         //     component: Aboutindex,

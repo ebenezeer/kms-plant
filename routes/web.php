@@ -99,6 +99,18 @@ Route::group(['middleware' => ['pubuser']], function () {
         })->where('any', '.*');
     });
 });
+
+Route::group(['middleware' => ['userview']], function () {
+    Route::prefix('user-view')->group(function () {
+
+        //Route::get('/logout', 'App\Http\Controllers\PublicUser\PublicUserController@logout');
+        Route::post('/save-comment', 'App\Http\Controllers\PublicUser\CommentController@save_comment');
+
+        Route::get('/{any}', function () {
+            return view('/usercontrol/home');
+        })->where('any', '.*');
+    });
+});
 Route::get('/{any}', function () {
     return view('/welcome');
 })->where('any', '.*');

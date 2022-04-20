@@ -15,6 +15,7 @@ class PlantMethodController extends Controller
         $this->middleware('expert');
         //$this->mmsuqms = config('app.mmsuqms');
     }
+
     public function index()
     {
         $det = PlantMeth::join('plant_det', 'plant_det.id', '=', 'methods_details.plant_det_id')
@@ -29,6 +30,7 @@ class PlantMethodController extends Controller
 
         return $det;
     }
+
     public function view_plant_methods($id)
     {
 
@@ -37,7 +39,7 @@ class PlantMethodController extends Controller
             ->join('plant_name', 'plant_name.id', '=', 'plant_det.name_id')
             ->join('plant_variety', 'plant_variety.id', '=', 'plant_det.variety_id')
             ->select([
-                'methods_details.id',
+                'methods_details.*',
                 'plant_name.name',
                 'plant_det.description',
                 'plant_variety.description as variety'
@@ -56,8 +58,6 @@ class PlantMethodController extends Controller
             'meths' => $grafts
         ], 200);
     }
-
-
 
     public function store(Request $request)
     {
@@ -80,7 +80,7 @@ class PlantMethodController extends Controller
         $m = new PlantMeth();
 
         $m->plant_det_id = $request->name_id;
-        //$m->graft_id = $request->graft_id;
+        $m->search_key = $request->search_keys;
 
         $m->save();
 
@@ -91,13 +91,23 @@ class PlantMethodController extends Controller
         }
 
 
-
         return response()->json([
             'gd'    => $m,
             'message'   => 'Successfully Recorded'
         ], 200);
     }
+    public function update(Request $request, $id)
+    {
+        $p = PlantMeth::find($id);
 
+        $p->search_key = $request->search_key;
+
+        $p->save();
+
+        return response()->json([
+            'message'   => 'Successfully Updated'
+        ], 200);
+    }
 
     public function get_plant_names()
     {

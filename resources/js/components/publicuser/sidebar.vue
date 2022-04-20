@@ -5,35 +5,8 @@
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <router-link class="nav-link side-link" to="/publicuser/home"
+              <router-link class="nav-link side-link" to="/user-view/home"
                 >Dashboard</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link side-link"
-                to="/expert/method-details"
-                >Plant Grafting</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link side-link" to="/expert/plant-detail"
-                >Plant Details</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link side-link" to="/expert/graft-details"
-                >Graft Techniques</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link side-link" to="/expert/plant-name"
-                >Plant Name</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link side-link" to="/expert/variety"
-                >Variety</router-link
               >
             </li>
           </ul>

@@ -11,8 +11,12 @@ window.Vue = require('vue').default;
 import VueRouter from 'vue-router';
 import routes from './routes';
 
-
 import 'sweetalert2/src/sweetalert2.scss';
+
+
+import Toasted from 'vue-toasted';
+
+Vue.use(Toasted)
 
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";

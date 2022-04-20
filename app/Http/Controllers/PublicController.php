@@ -60,18 +60,27 @@ class PublicController extends Controller
 
         $t = [];
         $gd = [];
+        $c = null;
+        $article_id = null;
 
         $md = PlantMeth::where('plant_det_id', $id)->first();
-
-
+        // return $md;
         if ($md) {
             $mg = DB::table('methods_grafts')->where('meth_detail_id', $md->id)->get();
+            $article_id = $md->id;
             foreach ($mg as $de) {
                 // $gd = GraftDetail::where('id', $d->graft_id)->with(['files'])->get();
 
                 $t[] = $de->graft_id;
             }
             $gd = GraftDetail::whereIn('id', $t)->with(['files'])->get();
+
+            $c = DB::table('article_comment')->where('article_comment.meth_detail_id', $md->id)
+                ->join('users', 'users.id', '=', 'article_comment.user_id')
+                ->select([
+                    'article_comment.*',
+                    'users..name'
+                ])->orderBy('article_comment.created_at', 'DESC')->get();
         }
 
         // $a = [];
@@ -80,12 +89,14 @@ class PublicController extends Controller
         $a = [
             'id' => $d->id,
             'name_id' => $d->name_id,
+            'article_id' =>   $article_id,
             'variety_id' => $d->variety_id,
             'description' => $d->description,
             'name' => $d->name,
             'variety' => $d->variety,
             'puto' => $p,
             'tech' => $gd,
+            'comments' => $c,
             'updated_at' => $d->updated_at
         ];
         // }

@@ -92,6 +92,23 @@
 
       <hr />
     </template>
+    <div class="row">
+      <div class="col-md-8">
+        <label for="name"
+          >Search Phrase: (Separate every search phrase with comma',')
+        </label>
+        <textarea
+          class="form-control"
+          rows="5"
+          id="upcomment"
+          v-model="plant_det.search_key"
+        ></textarea>
+      </div>
+    </div>
+    <br />
+    <button class="btn btn-primary" type="submit" @click="updatePhrase">
+      Update search phrase
+    </button>
   </div>
 </template>
 
@@ -147,16 +164,36 @@ export default {
         }
       }
     },
-    removeFile(key) {
-      this.docs.splice(key, 1);
-      this.getImagePreviews();
-    },
+
     graftTechnique() {
       window.axios
         .get("/expert/view-plant-methods/" + this.$route.params.id)
         .then(({ data }) => {
           this.plant_det = data.plant_det;
           this.meths = data.meths;
+        });
+    },
+    updatePhrase() {
+      axios
+        .patch("/expert/plant-methods/" + this.plant_det.id, {
+          search_key: this.plant_det.search_key,
+        })
+        .then((response) => {
+          this.plant_det = [];
+          this.meths = [];
+          Swal.fire({
+            title: "Success!",
+            text: response.data.message,
+            icon: "success",
+            text: "I will close in 2 seconds.",
+            timer: 2000,
+          });
+          setTimeout(() => {
+            this.graftTechnique();
+          }, 600);
+        })
+        .catch((error) => {
+          this.errors = [];
         });
     },
     saveGraftDet() {
@@ -167,63 +204,6 @@ export default {
             this.submitFiles();
           }
         });
-    },
-    deleteFile(val) {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      }).then((willDelete) => {
-        if (willDelete) {
-          window.axios.post("/expert/delete-doc/" + val).then(({ data }) => {
-            if (data) {
-              this.graftTechnique();
-            }
-          });
-        }
-      });
-    },
-    updateFile(val, typ) {
-      window.axios
-        .post("/update-doc/" + val, { type: typ })
-        .then(({ data }) => {
-          this.graftTechnique();
-        });
-    },
-    submitFiles() {
-      for (let i = 0; i < this.docs.length; i++) {
-        if (this.docs[i].id) {
-          continue;
-        }
-        let formData = new FormData();
-        formData.append("docs", this.docs[i]);
-
-        window.axios
-          .post("/expert/save-docs/" + this.graft_det.id, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then(({ data }) => {
-            this.docs[i].id = data.id;
-            this.docs.splice(i, 1, this.docs[i]);
-            this.graftTechnique();
-          })
-          .catch(function (data) {
-            console.log("error");
-          });
-      }
-      //swal("Success" ,  "Bid successfully saved!" ,  "success" )
-
-      Swal.fire({
-        title: "Success!",
-        text: "Detail successfully saved!",
-        icon: "success",
-        text: "I will close in 2 seconds.",
-        timer: 2000,
-      });
     },
   },
 };

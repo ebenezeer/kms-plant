@@ -11,7 +11,7 @@
             <!--</a>-->
             <!--</li>-->
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/home"
+              <router-link class="nav-link side-link" to="/admin/home"
                 >Dashboard</router-link
               >
             </li>
@@ -21,17 +21,17 @@
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/plant"
+              <router-link class="nav-link side-link" to="/admin/plant"
                 >Plant Name</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/variety"
+              <router-link class="nav-link side-link" to="/admin/variety"
                 >Variety</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin/register"
+              <router-link class="nav-link side-link" to="/admin/register"
                 >Users</router-link
               >
             </li>
@@ -60,67 +60,6 @@ export default {
         heightMin: 400,
         attribution: false,
         quickInsertEnabled: false,
-        toolbarButtons: [
-          "bold",
-          "italic",
-          "underline",
-          "strikeThrough",
-          "subscript",
-          "superscript",
-          "fontFamily",
-          "fontSize",
-          "textColor",
-          "backgroundColor",
-          "inlineClass",
-          "inlineStyle",
-          "clearFormatting",
-          "formatOLSimple",
-          "formatOL",
-          "alignLeft",
-          "alignCenter",
-          "alignRight",
-          "alignJustify",
-          "paragraphFormat",
-          "paragraphStyle",
-          "lineHeight",
-          "outdent",
-          "indent",
-          "quote",
-          "insertTable",
-          "insertHR",
-          "specialCharacters",
-          "undo",
-          "redo",
-          "fullscreen",
-          "html",
-        ],
-        lineHeights: {
-          0.5: "0.5",
-          1: "1",
-          1.15: "1.15",
-          1.5: "1.5",
-          Double: "2",
-        },
-        fontSize: [
-          "8",
-          "10",
-          "12",
-          "14",
-          "16",
-          "18",
-          "20",
-          "22",
-          "24",
-          "26",
-          "28",
-          "30",
-          "36",
-          "40",
-          "48",
-          "60",
-          "72",
-          "96",
-        ],
       },
     };
   },
@@ -171,5 +110,15 @@ export default {
 
 .modal-full .modal-content {
   height: 90vh;
+}
+a.side-link:hover {
+  background-color: yellow;
+  color: #555;
+}
+.router-link-exact-active {
+  background: #555;
+  border-radius: 4px;
+  color: red;
+  font-variant: italic;
 }
 </style>

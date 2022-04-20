@@ -34,7 +34,7 @@ class HomeController extends Controller
         }
 
         if ($role == 3) {
-            return redirect('/publicuser/home');
+            return redirect('/user-view/home');
         }
     }
 }

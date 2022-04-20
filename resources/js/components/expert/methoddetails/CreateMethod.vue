@@ -53,6 +53,20 @@
           </v-select>
         </div>
       </div>
+      <br />
+      <div class="row">
+        <div class="col-md-8">
+          <label for="name"
+            >Search Phrase: (Separate every search phrase with comma',')
+          </label>
+          <textarea
+            class="form-control"
+            rows="5"
+            id="upcomment"
+            v-model="plantDet.search_keys"
+          ></textarea>
+        </div>
+      </div>
       <div class="form-group" style="margin-top: 15px">
         <div class="col-md-8" align="center">
           <button class="btn btn-primary" type="submit">Submit</button>
@@ -74,6 +88,7 @@ export default {
         name_id: "",
         variety_id: "",
         graft_id: "",
+        search_keys: "",
         description: null,
       },
       plant_names: [],
@@ -109,7 +124,7 @@ export default {
         .post("/expert/plant-methods", {
           name_id: this.plantDet.name_id,
           graft_id: this.plantDet.graft_id,
-          // description: this.plantDet.description,
+          search_keys: this.plantDet.search_keys,
         })
         .then((response) => {
           Swal.fire({
