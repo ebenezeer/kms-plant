@@ -105,6 +105,9 @@ Route::group(['middleware' => ['userview']], function () {
 
         //Route::get('/logout', 'App\Http\Controllers\PublicUser\PublicUserController@logout');
         Route::post('/save-comment', 'App\Http\Controllers\PublicUser\CommentController@save_comment');
+        Route::post('/discard-comment', 'App\Http\Controllers\PublicUser\CommentController@discard_comment');
+        Route::get('/plant/{id}', 'App\Http\Controllers\PublicUser\UserViewController@plant_show');
+        Route::get('/plant/arc/{id}', 'App\Http\Controllers\PublicUser\UserViewController@plant_show');
 
         Route::get('/{any}', function () {
             return view('/usercontrol/home');

@@ -221,7 +221,16 @@
                               ></i
                               ><span class="ml-2">10</span
                               ><span class="dot ml-2"></span>
-                              <h6 class="ml-2 mt-1">Reply</h6>
+                              <h6 class="ml-2 mt-1">
+                                <button
+                                  type="button"
+                                  class="btn btn-danger btn-sm"
+                                  :disabled="c.user_id != plant.user_id"
+                                  @click="discardComment(c.id)"
+                                >
+                                  Discard
+                                </button>
+                              </h6>
                             </div>
                           </div>
                         </div>
@@ -293,7 +302,7 @@ export default {
     },
     showPlant() {
       window.axios
-        .get("/public/plant/" + this.$route.params.id)
+        .get("/user-view/plant/" + this.$route.params.id)
         .then(({ data }) => {
           this.plant = data;
           //this.dataTab();
@@ -301,7 +310,7 @@ export default {
     },
     plantDetail(val) {
       this.plant = [];
-      window.axios.get("/public/plant/arc/" + val).then(({ data }) => {
+      window.axios.get("/user-view/plant/arc/" + val).then(({ data }) => {
         this.plant = data;
         //this.dataTab();
       });
@@ -333,6 +342,36 @@ export default {
           if (error.response.data.errors.comment) {
             this.errors.push(error.response.data.errors.comment[0]);
           }
+        });
+    },
+    discardComment(id) {
+      axios
+        .post("/user-view/discard-comment", {
+          comment_id: id,
+        })
+        .then((response) => {
+          this.$toasted.show(response.data.message, {
+            theme: "bubble",
+            type: "success",
+            position: "bottom-right",
+            duration: 1500,
+            action: {
+              text: "X",
+              onClick: (e, toast) => {
+                toast.goAway(0);
+              },
+            },
+          });
+          //  this.comment = [];
+          setTimeout(() => {
+            this.plantDetail(this.plant.id);
+          }, 600);
+        })
+        .catch((error) => {
+          this.errors = [];
+          // if (error.response.data.errors.comment) {
+          //   this.errors.push(error.response.data.errors.comment[0]);
+          // }
         });
     },
   },

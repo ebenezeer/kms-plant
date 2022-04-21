@@ -7116,10 +7116,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       plants: [],
+      filterbox: "",
       errors: []
     };
   },
@@ -7425,6 +7443,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7456,7 +7483,7 @@ __webpack_require__.r(__webpack_exports__);
     showPlant: function showPlant() {
       var _this2 = this;
 
-      window.axios.get("/public/plant/" + this.$route.params.id).then(function (_ref2) {
+      window.axios.get("/user-view/plant/" + this.$route.params.id).then(function (_ref2) {
         var data = _ref2.data;
         _this2.plant = data; //this.dataTab();
       });
@@ -7465,7 +7492,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.plant = [];
-      window.axios.get("/public/plant/arc/" + val).then(function (_ref3) {
+      window.axios.get("/user-view/plant/arc/" + val).then(function (_ref3) {
         var data = _ref3.data;
         _this3.plant = data; //this.dataTab();
       });
@@ -7499,6 +7526,35 @@ __webpack_require__.r(__webpack_exports__);
         if (error.response.data.errors.comment) {
           _this4.errors.push(error.response.data.errors.comment[0]);
         }
+      });
+    },
+    discardComment: function discardComment(id) {
+      var _this5 = this;
+
+      axios.post("/user-view/discard-comment", {
+        comment_id: id
+      }).then(function (response) {
+        _this5.$toasted.show(response.data.message, {
+          theme: "bubble",
+          type: "success",
+          position: "bottom-right",
+          duration: 1500,
+          action: {
+            text: "X",
+            onClick: function onClick(e, toast) {
+              toast.goAway(0);
+            }
+          }
+        }); //  this.comment = [];
+
+
+        setTimeout(function () {
+          _this5.plantDetail(_this5.plant.id);
+        }, 600);
+      })["catch"](function (error) {
+        _this5.errors = []; // if (error.response.data.errors.comment) {
+        //   this.errors.push(error.response.data.errors.comment[0]);
+        // }
       });
     }
   }
@@ -55737,6 +55793,41 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "album py-5 bg-light" }, [
+    _c("div", { staticClass: "input-group mb-3" }, [
+      _c("div", { staticClass: "input-group-prepend" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { type: "button", disabled: _vm.filterbox == "" }
+          },
+          [_vm._v("\n        Search\n      ")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.filterbox,
+            expression: "filterbox"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", id: "filterbox" },
+        domProps: { value: _vm.filterbox },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.filterbox = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c(
         "div",
@@ -56203,7 +56294,71 @@ var render = function() {
                                         ]
                                       ),
                                       _vm._v(" "),
-                                      _vm._m(2, true)
+                                      _c(
+                                        "div",
+                                        { staticClass: "reply-section" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "\n                              d-flex\n                              flex-row\n                              align-items-center\n                              voting-icons\n                            "
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fa fa-sort-up fa-2x mt-3 hit-voting"
+                                              }),
+                                              _c("i", {
+                                                staticClass:
+                                                  "fa fa-sort-down fa-2x mb-3 hit-voting"
+                                              }),
+                                              _c(
+                                                "span",
+                                                { staticClass: "ml-2" },
+                                                [_vm._v("10")]
+                                              ),
+                                              _c("span", {
+                                                staticClass: "dot ml-2"
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "h6",
+                                                { staticClass: "ml-2 mt-1" },
+                                                [
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "btn btn-danger btn-sm",
+                                                      attrs: {
+                                                        type: "button",
+                                                        disabled:
+                                                          c.user_id !=
+                                                          _vm.plant.user_id
+                                                      },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.discardComment(
+                                                            c.id
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                Discard\n                              "
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
                                     ]
                                   )
                                 ]
@@ -56297,28 +56452,6 @@ var staticRenderFns = [
         _c("i", { staticClass: "fa fa-chevron-down servicedrop" })
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "reply-section" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "\n                              d-flex\n                              flex-row\n                              align-items-center\n                              voting-icons\n                            "
-        },
-        [
-          _c("i", { staticClass: "fa fa-sort-up fa-2x mt-3 hit-voting" }),
-          _c("i", { staticClass: "fa fa-sort-down fa-2x mb-3 hit-voting" }),
-          _c("span", { staticClass: "ml-2" }, [_vm._v("10")]),
-          _c("span", { staticClass: "dot ml-2" }),
-          _vm._v(" "),
-          _c("h6", { staticClass: "ml-2 mt-1" }, [_vm._v("Reply")])
-        ]
-      )
-    ])
   }
 ]
 render._withStripped = true

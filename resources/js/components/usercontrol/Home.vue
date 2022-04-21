@@ -1,5 +1,22 @@
 <template>
   <div class="album py-5 bg-light">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <button
+          type="button"
+          class="btn btn-success"
+          :disabled="filterbox == ''"
+        >
+          Search
+        </button>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        id="filterbox"
+        v-model="filterbox"
+      />
+    </div>
     <div class="container">
       <div class="row">
         <template v-for="p in plants">
@@ -52,6 +69,7 @@ export default {
   data() {
     return {
       plants: [],
+      filterbox: "",
       errors: [],
     };
   },

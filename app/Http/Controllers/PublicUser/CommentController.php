@@ -38,4 +38,21 @@ class CommentController extends Controller
             'message'   => 'Comment Successfully posted'
         ], 200);
     }
+
+    public function discard_comment(Request $request)
+    {
+
+        $id = $request->comment_id;
+
+        $c = Comment::find($id);
+
+        $c->active = 2;
+
+        $c->save();
+
+        return response()->json([
+            'status'    => 1,
+            'message'   => 'Successfully remove.'
+        ], 200);
+    }
 }
