@@ -19,13 +19,11 @@
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <style>
-    .jumbotron {
-        /* don't forget to add all the previously mentioned styles here too */
-        background: #7386D5;
-        color: #fff;
-        transition: all 0.3s;
-        background: rgb(51, 68, 11);
-        background: linear-gradient(180deg, rgba(51, 68, 11, 1) 0%, rgba(15, 121, 9, 0.706302503911721) 100%, rgba(51, 68, 11, 1) 100%);
+    .jumbotron-image {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        min-height: 700px;
     }
     </style>
 </head>
@@ -42,7 +40,7 @@
                         <a class="blog-header-logo text-dark" href="#">Knowledge Management</a>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="#">
+                        <a class="text-muted" href="/login">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="mx-3">
@@ -50,30 +48,33 @@
                                 <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
                             </svg>
                         </a>
-                        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="/login">LOG IN</a>
                     </div>
                 </div>
             </header>
 
             <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-between">
+                    <a class="p-2 text-muted" href="/">Home</a>
                     <a class="p-2 text-muted" href="/">Plant Details</a>
                     <router-link class="p-2 text-muted" to="/public/method-details">Technology</router-link>
-                    <a class="p-2 text-muted" href="#">Design</a>
-                    <a class="p-2 text-muted" href="#">Culture</a>
-                    <a class="p-2 text-muted" href="#">Opinion</a>
-                    <a class="p-2 text-muted" href="#">Science</a>
-                    <a class="p-2 text-muted" href="#">Health</a>
+                    <a class="p-2 text-muted" href="#">Variety</a>
+                    <a class="p-2 text-muted" href="#">Treatment</a>
                 </nav>
             </div>
 
-            <div class="jumbotron p-3 p-md-5 text-white rounded">
+            <div class="jumbotron text-white jumbotron-image shadow"
+                style="background-image: url(/avatar/Jumbotron.jpg);">
+
+            </div>
+            <!-- 
+            <div class="jumbotron ext-white rounded">
                 <div class="col-md-6 px-0">
                     <h1 class="display-4 font-italic">Content Here</h1>
                     <p class="lead my-3">Whats on your mind.</p>
 
                 </div>
-            </div>
+            </div> -->
 
             <div class="row">
 

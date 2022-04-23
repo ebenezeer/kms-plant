@@ -45,6 +45,13 @@ class PublicController extends Controller
 
         return $a;
     }
+
+    public function get_videos()
+    {
+        $v = GraftDetail::whereNotNull('vid_src')->get();
+        return $v;
+    }
+
     public function plant_show($id)
     {
         //return 'sdfsdfdsfsdfdsf';

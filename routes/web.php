@@ -25,6 +25,8 @@ Route::get('/public/plant/arc/{id}', 'App\Http\Controllers\PublicController@plan
 Route::get('/public/plant-methods', 'App\Http\Controllers\PublicController@index_methods');
 Route::get('/public/view-plant-methods/{id}', 'App\Http\Controllers\PublicController@view_plant_methods');
 
+Route::get('/public/get-vids', 'App\Http\Controllers\PublicController@get_videos');
+
 Route::get('/hasher', function () {
 
     $h = Hash::make('qweasdzxc');

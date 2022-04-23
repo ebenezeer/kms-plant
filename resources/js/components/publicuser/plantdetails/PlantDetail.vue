@@ -141,8 +141,51 @@
           <!-- /.blog-post -->
 
           <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="#">Older</a>
-            <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+            <div class="container" v-if="plant.comments">
+              <!--  -->
+
+              <div class="be-comment-block">
+                <h1 class="comments-title">
+                  Comments ({{
+                    plant.comments == null ? "0" : plant.comments.length
+                  }})
+                </h1>
+                <!--  -->
+                <template v-for="com in plant.comments">
+                  <div class="be-comment">
+                    <div class="be-img-comment">
+                      <a href="#">
+                        <img
+                          src="/avatar/avatar.png"
+                          alt=""
+                          class="be-ava-comment"
+                        />
+                      </a>
+                    </div>
+                    <div class="be-comment-content">
+                      <span class="be-comment-name">
+                        <a href="#">{{ com.name }}</a>
+                      </span>
+                      <span class="be-comment-time">
+                        <i class="fa fa-clock-o"></i>
+                        <time-ago
+                          :datetime="com.created_at"
+                          refresh
+                          :long="true"
+                        />
+                      </span>
+
+                      <p class="be-comment-text">
+                        {{ com.comment }}
+                      </p>
+                    </div>
+                  </div>
+                </template>
+                <!--  -->
+              </div>
+
+              <!--  -->
+            </div>
           </nav>
         </div>
         <!-- /.blog-main -->
@@ -173,10 +216,13 @@
 </template>
 
 <script>
+import { TimeAgo } from "vue2-timeago";
+import "vue2-timeago/dist/vue2-timeago.css";
 export default {
   data() {
     return {
       plants: [],
+      // comments:[],
       plant: {},
       errors: [],
     };
@@ -187,7 +233,7 @@ export default {
     this.showPlant();
   },
 
-  components: {},
+  components: { TimeAgo },
 
   methods: {
     getPlants() {
@@ -214,3 +260,115 @@ export default {
   },
 };
 </script>
+<style scoped>
+.be-comment-block {
+  margin-bottom: 50px !important;
+  border: 1px solid #edeff2;
+  border-radius: 2px;
+  padding: 50px 70px;
+  border: 1px solid #ffffff;
+}
+
+.comments-title {
+  font-size: 16px;
+  color: #262626;
+  margin-bottom: 15px;
+  font-family: "Conv_helveticaneuecyr-bold";
+}
+
+.be-img-comment {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-bottom: 15px;
+}
+
+.be-ava-comment {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.be-comment-content {
+  margin-left: 80px;
+}
+
+.be-comment-content span {
+  display: inline-block;
+  width: 49%;
+  margin-bottom: 15px;
+}
+
+.be-comment-name {
+  font-size: 13px;
+  font-family: "Conv_helveticaneuecyr-bold";
+}
+
+.be-comment-content a {
+  color: #383b43;
+}
+
+.be-comment-content span {
+  display: inline-block;
+  width: 49%;
+  margin-bottom: 15px;
+}
+
+.be-comment-time {
+  text-align: right;
+}
+
+.be-comment-time {
+  font-size: 11px;
+  color: #b4b7c1;
+}
+
+.be-comment-text {
+  font-size: 13px;
+  line-height: 18px;
+  color: #7a8192;
+  display: block;
+  background: #f6f6f7;
+  border: 1px solid #edeff2;
+  padding: 15px 20px 20px 20px;
+}
+
+.form-group.fl_icon .icon {
+  position: absolute;
+  top: 1px;
+  left: 16px;
+  width: 48px;
+  height: 48px;
+  background: #f6f6f7;
+  color: #b5b8c2;
+  text-align: center;
+  line-height: 50px;
+  -webkit-border-top-left-radius: 2px;
+  -webkit-border-bottom-left-radius: 2px;
+  -moz-border-radius-topleft: 2px;
+  -moz-border-radius-bottomleft: 2px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.form-group .form-input {
+  font-size: 13px;
+  line-height: 50px;
+  font-weight: 400;
+  color: #b4b7c1;
+  width: 100%;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #edeff2;
+  border-radius: 3px;
+}
+
+.form-group.fl_icon .form-input {
+  padding-left: 70px;
+}
+
+.form-group textarea.form-input {
+  height: 150px;
+}
+</style>
