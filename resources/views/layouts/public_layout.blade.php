@@ -19,11 +19,8 @@
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <style>
-    .jumbotron-image {
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        min-height: 700px;
+    .navbar-nav li:hover>.dropdown-menu {
+        display: block;
     }
     </style>
 </head>
@@ -53,20 +50,34 @@
                 </div>
             </header>
 
-            <div class="nav-scroller py-1 mb-2">
-                <nav class="nav d-flex justify-content-between">
-                    <a class="p-2 text-muted" href="/">Home</a>
-                    <a class="p-2 text-muted" href="/">Plant Details</a>
-                    <router-link class="p-2 text-muted" to="/public/method-details">Technology</router-link>
-                    <a class="p-2 text-muted" href="#">Variety</a>
-                    <a class="p-2 text-muted" href="#">Treatment</a>
-                </nav>
-            </div>
 
-            <div class="jumbotron text-white jumbotron-image shadow"
+            <nav class="navbar navbar-expand-sm nav d-flex justify-content-between">
+                <a class="p-2 text-muted" href="/">Home</a>
+                <ul class="navbar-nav">
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle p-2 text-muted" href="/" id="navbardrop"
+                            data-toggle="dropdown">
+                            Plant Details
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Variety</a>
+
+                            <router-link class="dropdown-item" to="/public/method-details">Technnique
+                            </router-link>
+                            <a class="dropdown-item" href="#">Treatment</a>
+                        </div>
+                    </li>
+                </ul>
+                <a class="p-2 text-muted" href="#">Video</a>
+            </nav>
+
+
+
+            <!-- <div class="jumbotron text-white jumbotron-image shadow"
                 style="background-image: url(/avatar/Jumbotron.jpg);">
 
-            </div>
+            </div> -->
             <!-- 
             <div class="jumbotron ext-white rounded">
                 <div class="col-md-6 px-0">
@@ -75,12 +86,12 @@
 
                 </div>
             </div> -->
+            <div class="container">
+                <div class="row">
 
-            <div class="row">
-
-                @yield('content')
-            </div><!-- /.row -->
-
+                    @yield('content')
+                </div><!-- /.row -->
+            </div>
             </main><!-- /.container -->
 
             <footer class="blog-footer">

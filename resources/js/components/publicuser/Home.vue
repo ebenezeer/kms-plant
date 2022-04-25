@@ -1,6 +1,11 @@
 <template>
   <div class="album py-5 bg-light">
     <div class="container">
+      <div
+        class="jumbotron text-white jumbotron-image shadow"
+        style="background-image: url(/avatar/Jumbotron.jpg)"
+      ></div>
+      <br />
       <div class="row">
         <template v-for="p in plants">
           <div class="col-md-4">
@@ -109,3 +114,11 @@ export default {
   },
 };
 </script>
+<style scoped>
+.jumbotron-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 600px;
+}
+</style>
