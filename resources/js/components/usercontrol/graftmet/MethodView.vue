@@ -1,25 +1,9 @@
 <template>
   <div class="col-md-12">
-    <h2>{{ plant_det.name }}</h2>
-    <hr />
-    <div class="row">
-      <div class="col-md-10">Variety: {{ plant_det.variety }}</div>
-    </div>
-
-    <div class="row">
-      <label class="col-md-4" for="description"
-        ><srtong>Description:</srtong></label
-      >
-      <div class="col-md-12">
-        <p>{{ plant_det.description }}</p>
-      </div>
-    </div>
-    <h2>Methods</h2>
-    <hr />
-    <template v-for="(pm, counter) in meths">
+    <template v-for="pm in meths">
       <div class="row">
         <div class="col-md-10">
-          {{ ++counter }} <strong>Graft: {{ pm.title }}</strong>
+          <h1>{{ pm.title }}</h1>
         </div>
       </div>
       <br />
@@ -50,17 +34,16 @@
       <div class="row">
         <div class="col">
           <label for="comment">Pre Treatment:</label>
-          <p>{{ pm.pre_treatment }}</p>
+          {{ pm.pre_treatment }}
         </div>
         <div class="col">
           <label for="comment">Post Treatment:</label>
-          <p>{{ pm.post_treatment }}</p>
+          {{ pm.post_treatment }}
         </div>
       </div>
       <br />
       <h4>Illustrations</h4>
       <hr />
-
       <!--  -->
       <div class="row" v-if="pm.files.length > 0">
         <div class="col-md-4" v-for="(file, key) in pm.files">
@@ -104,7 +87,6 @@
           </div>
         </div>
       </div>
-
       <hr />
     </template>
   </div>
@@ -135,40 +117,12 @@ export default {
     this.graftTechnique();
   },
   methods: {
-    handleFiles() {
-      let uploadedFiles = this.$refs.docs.files;
-
-      for (var i = 0; i < uploadedFiles.length; i++) {
-        this.docs.push(uploadedFiles[i]);
-      }
-      this.getImagePreviews();
-    },
-    getImagePreviews() {
-      for (let i = 0; i < this.docs.length; i++) {
-        if (/\.(jpe?g|png|gif)$/i.test(this.docs[i].name)) {
-          let reader = new FileReader();
-          reader.addEventListener(
-            "load",
-            function () {
-              this.$refs["preview" + parseInt(i)][0].src = reader.result;
-            }.bind(this),
-            false
-          );
-          reader.readAsDataURL(this.docs[i]);
-        } else {
-          this.$nextTick(function () {
-            this.$refs["preview" + parseInt(i)][0].src = "/img/generic.png";
-          });
-        }
-      }
-    },
-
     graftTechnique() {
       window.axios
-        .get("/public/view-plant-methods/" + this.$route.params.id)
+        .get("/user-view/graft-detail/" + this.$route.params.id)
         .then(({ data }) => {
-          this.plant_det = data.plant_det;
-          this.meths = data.meths;
+          this.meths = data;
+          //this.dataTab();
         });
     },
   },

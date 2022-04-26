@@ -110,6 +110,9 @@ Route::group(['middleware' => ['userview']], function () {
         Route::post('/discard-comment', 'App\Http\Controllers\PublicUser\CommentController@discard_comment');
         Route::get('/plant/{id}', 'App\Http\Controllers\PublicUser\UserViewController@plant_show');
         Route::get('/plant/arc/{id}', 'App\Http\Controllers\PublicUser\UserViewController@plant_show');
+        Route::get('/graft-detail/{id}', 'App\Http\Controllers\PublicUser\UserViewController@graft_tech');
+
+        Route::post('/search-related', 'App\Http\Controllers\PublicUser\UserViewController@search_engine');
 
         Route::get('/{any}', function () {
             return view('/usercontrol/home');

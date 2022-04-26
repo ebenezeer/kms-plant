@@ -6,7 +6,14 @@
           <ul class="nav flex-column">
             <li class="nav-item">
               <router-link class="nav-link side-link" to="/user-view/home"
-                >Dashboard</router-link
+                >Home</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link
+                class="nav-link side-link"
+                to="/user-view/plant-details"
+                >Technologies</router-link
               >
             </li>
           </ul>
