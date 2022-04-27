@@ -3,6 +3,10 @@ import PlantVariety from "./components/administrator/Variety";
 import Home from "./components/administrator/Home";
 import Register from './components/administrator/Register';
 
+import GraftIndx from "./components/GraftIndx";
+import GraftTableIndex from "./components/administrator/graft/GraftTableIndex";
+import GraftTechnique from "./components/administrator/graft/GraftTechnique";
+
 import PlantDetailIndex from "./components/administrator/plantdetails/PlantDetailIndex";
 import PlantDetailsTable from "./components/administrator/plantdetails/PlantDetailsTable";
 import CreateDetails from "./components/administrator/plantdetails/CreateDetails";
@@ -28,6 +32,22 @@ export default [
         path: '/admin/variety',
         name: 'Plant Variety',
         component: PlantVariety
+    },
+    {
+        path: '/admin/graft-details',
+        //name: 'Graft Technique',
+        component: GraftIndx,
+        children: [
+            {
+                path: '',
+                name: 'Graft Detail Index',
+                component: GraftTableIndex
+            },
+            {
+                path: ':id/edit',
+                component: GraftTechnique
+            }
+        ]
     },
     {
         path: '/admin/plant-detail',

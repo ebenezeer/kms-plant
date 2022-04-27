@@ -42,6 +42,11 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::group(['middleware' => ['admin']], function () {
     Route::prefix('admin')->group(function () {
 
+        Route::resource('/graft-techniques', 'App\Http\Controllers\Administrator\GraftTechniqueController');
+        Route::post('/update-graft/{id}', 'App\Http\Controllers\Administrator\GraftTechniqueController@update');
+        Route::post('/delete-doc/{id}', 'App\Http\Controllers\Administrator\GraftTechniqueController@deleteDoc');
+        Route::post('/save-docs/{id}', 'App\Http\Controllers\Administrator\GraftTechniqueController@updateDocs');
+
         Route::resource('/plants', 'App\Http\Controllers\Administrator\PlantNameController');
         Route::resource('/plant-variety', 'App\Http\Controllers\Administrator\PlantVarietyController');
 
@@ -84,6 +89,9 @@ Route::group(['middleware' => ['expert']], function () {
         Route::resource('/plant-details', 'App\Http\Controllers\Expert\PlantDetailController');
         Route::post('/update-plantphoto/{id}', 'App\Http\Controllers\Expert\PlantDetailController@updatePhoto');
         Route::post('/delete-plantphoto/{id}', 'App\Http\Controllers\Expert\PlantDetailController@deletePhoto');
+
+        Route::post('/save-comment', 'App\Http\Controllers\Expert\PlantMethodController@save_comment');
+        Route::post('/discard-comment', 'App\Http\Controllers\Expert\PlantMethodController@discard_comment');
 
         Route::get('/{any}', function () {
             return view('/expert/home');

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PlantMeth;
 use App\Models\GraftDetail;
+use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class PlantMethodController extends Controller
@@ -18,6 +20,8 @@ class PlantMethodController extends Controller
 
     public function index()
     {
+
+        $user = Auth::user()->id;
         $det = PlantMeth::join('plant_det', 'plant_det.id', '=', 'methods_details.plant_det_id')
             ->join('plant_name', 'plant_name.id', '=', 'plant_det.name_id')
             ->join('plant_variety', 'plant_variety.id', '=', 'plant_det.variety_id')
@@ -33,7 +37,7 @@ class PlantMethodController extends Controller
 
     public function view_plant_methods($id)
     {
-
+        $user = Auth::user()->id;
         $det = PlantMeth::where('methods_details.id', $id)
             ->join('plant_det', 'plant_det.id', '=', 'methods_details.plant_det_id')
             ->join('plant_name', 'plant_name.id', '=', 'plant_det.name_id')
@@ -47,6 +51,17 @@ class PlantMethodController extends Controller
 
         $mg = DB::table('methods_grafts')->where('meth_detail_id', $id)->get();
 
+        $c = DB::table('article_comment')->where('article_comment.meth_detail_id', $det->id)->where('article_comment.active', 1)
+            ->join('users', 'users.id', '=', 'article_comment.user_id')
+            ->select([
+                'article_comment.*',
+                'users.name'
+            ])->orderBy('article_comment.created_at', 'DESC')->get();
+
+        // $det['comments'] = $c;
+        $det['user_id'] = $user;
+        //return $c;
+
         foreach ($mg as $gi) {
             $graft_ids[] = $gi->graft_id;
         }
@@ -55,10 +70,49 @@ class PlantMethodController extends Controller
 
         return response()->json([
             'plant_det' => $det,
-            'meths' => $grafts
+            'meths' => $grafts,
+            'comments' => $c
+        ], 200);
+    }
+    public function save_comment(Request $request)
+    {
+        $this->validate($request, [
+            'comment' => 'required',
+
+        ]);
+
+        $user = Auth::user()->id;
+
+        $c = new Comment();
+
+        $c->user_id = $user;
+        $c->meth_detail_id = $request->article_id;
+        $c->comment = $request->comment;
+
+
+        $c->save();
+
+        return response()->json([
+            'message'   => 'Comment Successfully posted'
         ], 200);
     }
 
+    public function discard_comment(Request $request)
+    {
+
+        $id = $request->comment_id;
+
+        $c = Comment::find($id);
+
+        $c->active = 2;
+
+        $c->save();
+
+        return response()->json([
+            'status'    => 1,
+            'message'   => 'Successfully remove.'
+        ], 200);
+    }
     public function store(Request $request)
     {
         $this->validate(

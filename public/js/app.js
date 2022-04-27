@@ -2997,6 +2997,710 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+ //import VueFeather from "vue-feather";
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      unit: {
+        description: ""
+      },
+      graft: {
+        title: "",
+        description: "",
+        advantage: "",
+        disadvantage: "",
+        season: "",
+        pre_treatment: "",
+        post_treatment: ""
+      },
+      errors: [],
+      graftings: [],
+      units: [],
+      update_unit: {}
+    };
+  },
+  mounted: function mounted() {},
+  created: function created() {
+    var _this = this;
+
+    window.axios.get("/admin/graft-techniques").then(function (_ref) {
+      var data = _ref.data;
+      _this.graftings = data; //this.dataTab();
+    });
+  },
+  methods: {
+    initAddunit: function initAddunit() {
+      var _this2 = this;
+
+      this.errors = []; // this.reset();
+      //$("#add_unit_model").modal("show");
+
+      $("#add_unit_model").modal({
+        backdrop: "static",
+        keyboard: false
+      });
+      setTimeout(function () {
+        _this2.$refs.addunit.focus();
+      }, 600);
+    },
+    editTech: function editTech(val) {
+      this.$router.push({
+        path: "/admin/graft-details/".concat(val, "/edit")
+      });
+    },
+    createGraft: function createGraft() {
+      var _this3 = this;
+
+      axios.post("/admin/graft-techniques", {
+        title: this.graft.title,
+        description: this.graft.description,
+        advantage: this.graft.advantage,
+        disadvantage: this.graft.disadvantage,
+        season: this.graft.season,
+        pre_treatment: this.graft.pre_treatment,
+        post_treatment: this.graft.post_treatment
+      }).then(function (response) {
+        var _Swal$fire;
+
+        _this3.reset();
+
+        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire((_Swal$fire = {
+          title: "Success!",
+          text: response.data.message,
+          icon: "success"
+        }, _defineProperty(_Swal$fire, "text", "I will close in 2 seconds."), _defineProperty(_Swal$fire, "timer", 2000), _Swal$fire));
+        $("#add_unit_model").modal("hide");
+
+        _this3.readunits();
+      })["catch"](function (error) {
+        _this3.errors = [];
+
+        if (error.response.data.errors.title) {
+          _this3.errors.push(error.response.data.errors.title[0]);
+        }
+
+        if (error.response.data.errors.description) {
+          _this3.errors.push(error.response.data.errors.description[0]);
+        }
+      });
+    },
+    updateunit: function updateunit() {
+      var _this4 = this;
+
+      axios.patch("/admin/plants/" + this.update_unit.id, {
+        name: this.update_unit.name
+      }).then(function (response) {
+        var _Swal$fire2;
+
+        $("#update_unit_model").modal("hide");
+        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire((_Swal$fire2 = {
+          title: "Success!",
+          text: response.data.message,
+          icon: "success"
+        }, _defineProperty(_Swal$fire2, "text", "I will close in 2 seconds."), _defineProperty(_Swal$fire2, "timer", 2000), _Swal$fire2));
+      })["catch"](function (error) {
+        _this4.errors = [];
+
+        if (error.response.data.errors.name) {
+          _this4.errors.push(error.response.data.errors.name[0]);
+        }
+      });
+    },
+    reset: function reset() {
+      this.graft.title = "";
+      this.graft.description = "";
+      this.graft.advantage = "";
+      this.graft.disadvantage = "";
+      this.graft.season = "";
+      this.graft.pre_treatment = "";
+      this.graft.post_treatment = "";
+    },
+    readunits: function readunits() {
+      var _this5 = this;
+
+      axios.get("/admin/graft-techniques").then(function (_ref2) {
+        var data = _ref2.data;
+        _this5.graftings = data;
+      });
+    },
+    dataTab: function dataTab() {
+      $(function () {
+        $("#unit-table").DataTable({
+          dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" + "<'row'<'col-sm-12'rt>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+          responsive: true,
+          autoWidth: false,
+          dataSrc: "Data",
+          iDisplayLength: 10,
+          buttons: [{
+            extend: "excelHtml5",
+            messageTop: "Mariano Marcos State University",
+            exportOptions: {
+              columns: ":visible"
+            },
+            className: "btn btn-outline-success btn-sm"
+          }, {
+            extend: "pdfHtml5",
+            messageTop: "Mariano Marcos State University",
+            exportOptions: {
+              columns: ":visible"
+            },
+            className: "btn btn-outline-danger btn-sm"
+          }, {
+            extend: "colvis",
+            className: "btn btn-outline-primary btn-sm"
+          }],
+          processing: true,
+          columnDefs: [{
+            responsivePriority: 0,
+            targets: 2
+          }]
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      bid: {
+        title: null,
+        keywords: null,
+        description: null,
+        invitation: null,
+        published: 0
+      },
+      graft_det: {},
+      graft: [],
+      docs: []
+    };
+  },
+  mounted: function mounted() {
+    this.graftTechnique();
+  },
+  methods: {
+    handleFiles: function handleFiles() {
+      var uploadedFiles = this.$refs.docs.files;
+
+      for (var i = 0; i < uploadedFiles.length; i++) {
+        this.docs.push(uploadedFiles[i]);
+      }
+
+      this.getImagePreviews();
+    },
+    getImagePreviews: function getImagePreviews() {
+      var _this = this;
+
+      var _loop = function _loop(i) {
+        if (/\.(jpe?g|png|gif)$/i.test(_this.docs[i].name)) {
+          var reader = new FileReader();
+          reader.addEventListener("load", function () {
+            this.$refs["preview" + parseInt(i)][0].src = reader.result;
+          }.bind(_this), false);
+          reader.readAsDataURL(_this.docs[i]);
+        } else {
+          _this.$nextTick(function () {
+            this.$refs["preview" + parseInt(i)][0].src = "/img/generic.png";
+          });
+        }
+      };
+
+      for (var i = 0; i < this.docs.length; i++) {
+        _loop(i);
+      }
+    },
+    removeFile: function removeFile(key) {
+      this.docs.splice(key, 1);
+      this.getImagePreviews();
+    },
+    graftTechnique: function graftTechnique() {
+      var _this2 = this;
+
+      window.axios.get("/admin/graft-techniques/" + this.$route.params.id).then(function (_ref) {
+        var data = _ref.data;
+        _this2.graft_det = data;
+      });
+    },
+    saveGraftDet: function saveGraftDet() {
+      var _this3 = this;
+
+      window.axios.post("/admin/update-graft/" + this.graft_det.id, this.graft_det).then(function (_ref2) {
+        var data = _ref2.data;
+
+        if (data) {
+          _this3.submitFiles();
+        }
+      });
+    },
+    deleteFile: function deleteFile(val) {
+      var _this4 = this;
+
+      sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          window.axios.post("/admin/delete-doc/" + val).then(function (_ref3) {
+            var data = _ref3.data;
+
+            if (data) {
+              _this4.graftTechnique();
+            }
+          });
+        }
+      });
+    },
+    updateFile: function updateFile(val, typ) {
+      var _this5 = this;
+
+      window.axios.post("/update-doc/" + val, {
+        type: typ
+      }).then(function (_ref4) {
+        var data = _ref4.data;
+
+        _this5.graftTechnique();
+      });
+    },
+    submitFiles: function submitFiles() {
+      var _this6 = this,
+          _Swal$fire;
+
+      var _loop2 = function _loop2(i) {
+        if (_this6.docs[i].id) {
+          return "continue";
+        }
+
+        var formData = new FormData();
+        formData.append("docs", _this6.docs[i]);
+        window.axios.post("/admin/save-docs/" + _this6.graft_det.id, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        }).then(function (_ref5) {
+          var data = _ref5.data;
+          _this6.docs[i].id = data.id;
+
+          _this6.docs.splice(i, 1, _this6.docs[i]);
+
+          _this6.graftTechnique();
+        })["catch"](function (data) {
+          console.log("error");
+        });
+      };
+
+      for (var i = 0; i < this.docs.length; i++) {
+        var _ret = _loop2(i);
+
+        if (_ret === "continue") continue;
+      } //swal("Success" ,  "Bid successfully saved!" ,  "success" )
+
+
+      sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire((_Swal$fire = {
+        title: "Success!",
+        text: "Detail successfully saved!",
+        icon: "success"
+      }, _defineProperty(_Swal$fire, "text", "I will close in 2 seconds."), _defineProperty(_Swal$fire, "timer", 2000), _Swal$fire));
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/plantdetails/CreateDetails.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/plantdetails/CreateDetails.vue?vue&type=script&lang=js& ***!
@@ -3599,6 +4303,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4883,8 +5592,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
-/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue2_timeago__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-timeago */ "./node_modules/vue2-timeago/dist/vue2-timeago.common.js");
+/* harmony import */ var vue2_timeago__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue2_timeago__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue2_timeago_dist_vue2_timeago_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-timeago/dist/vue2-timeago.css */ "./node_modules/vue2-timeago/dist/vue2-timeago.css");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.js */ "./node_modules/sweetalert2/dist/sweetalert2.js");
+/* harmony import */ var sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -5001,6 +5713,129 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5015,6 +5850,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       plant_det: [],
       meths: [],
       graft_det: {},
+      comment: "",
+      comments: [],
+      errors: [],
       graft: [],
       docs: []
     };
@@ -5022,77 +5860,100 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.graftTechnique();
   },
+  components: {
+    TimeAgo: vue2_timeago__WEBPACK_IMPORTED_MODULE_0__.TimeAgo
+  },
   methods: {
-    handleFiles: function handleFiles() {
-      var uploadedFiles = this.$refs.docs.files;
-
-      for (var i = 0; i < uploadedFiles.length; i++) {
-        this.docs.push(uploadedFiles[i]);
-      }
-
-      this.getImagePreviews();
-    },
-    getImagePreviews: function getImagePreviews() {
-      var _this = this;
-
-      var _loop = function _loop(i) {
-        if (/\.(jpe?g|png|gif)$/i.test(_this.docs[i].name)) {
-          var reader = new FileReader();
-          reader.addEventListener("load", function () {
-            this.$refs["preview" + parseInt(i)][0].src = reader.result;
-          }.bind(_this), false);
-          reader.readAsDataURL(_this.docs[i]);
-        } else {
-          _this.$nextTick(function () {
-            this.$refs["preview" + parseInt(i)][0].src = "/img/generic.png";
-          });
-        }
-      };
-
-      for (var i = 0; i < this.docs.length; i++) {
-        _loop(i);
-      }
-    },
     graftTechnique: function graftTechnique() {
-      var _this2 = this;
+      var _this = this;
 
       window.axios.get("/expert/view-plant-methods/" + this.$route.params.id).then(function (_ref) {
         var data = _ref.data;
-        _this2.plant_det = data.plant_det;
-        _this2.meths = data.meths;
+        _this.plant_det = data.plant_det;
+        _this.meths = data.meths;
+        _this.comments = data.comments;
+      });
+    },
+    postComment: function postComment() {
+      var _this2 = this;
+
+      axios.post("/expert/save-comment", {
+        article_id: this.$route.params.id,
+        comment: this.comment
+      }).then(function (response) {
+        _this2.$toasted.show(response.data.message, {
+          theme: "bubble",
+          type: "success",
+          position: "bottom-right",
+          duration: 1500,
+          action: {
+            text: "X",
+            onClick: function onClick(e, toast) {
+              toast.goAway(0);
+            }
+          }
+        });
+
+        _this2.comment = [];
+
+        _this2.graftTechnique();
+      })["catch"](function (error) {
+        _this2.errors = [];
+
+        if (error.response.data.errors.comment) {
+          _this2.errors.push(error.response.data.errors.comment[0]);
+        }
+      });
+    },
+    discardComment: function discardComment(id) {
+      var _this3 = this;
+
+      axios.post("/expert/discard-comment", {
+        comment_id: id
+      }).then(function (response) {
+        _this3.$toasted.show(response.data.message, {
+          theme: "bubble",
+          type: "success",
+          position: "bottom-right",
+          duration: 1500,
+          action: {
+            text: "X",
+            onClick: function onClick(e, toast) {
+              toast.goAway(0);
+            }
+          }
+        }); //  this.comment = [];
+
+
+        setTimeout(function () {
+          _this3.graftTechnique();
+        }, 600);
+      })["catch"](function (error) {
+        _this3.errors = []; // if (error.response.data.errors.comment) {
+        //   this.errors.push(error.response.data.errors.comment[0]);
+        // }
       });
     },
     updatePhrase: function updatePhrase() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.patch("/expert/plant-methods/" + this.plant_det.id, {
         search_key: this.plant_det.search_key
       }).then(function (response) {
         var _Swal$fire;
 
-        _this3.plant_det = [];
-        _this3.meths = [];
-        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_0___default().fire((_Swal$fire = {
+        _this4.plant_det = [];
+        _this4.meths = [];
+        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_2___default().fire((_Swal$fire = {
           title: "Success!",
           text: response.data.message,
           icon: "success"
         }, _defineProperty(_Swal$fire, "text", "I will close in 2 seconds."), _defineProperty(_Swal$fire, "timer", 2000), _Swal$fire));
         setTimeout(function () {
-          _this3.graftTechnique();
+          _this4.graftTechnique();
         }, 600);
       })["catch"](function (error) {
-        _this3.errors = [];
-      });
-    },
-    saveGraftDet: function saveGraftDet() {
-      var _this4 = this;
-
-      window.axios.post("/expert/update-graft/" + this.graft_det.id, this.graft_det).then(function (_ref2) {
-        var data = _ref2.data;
-
-        if (data) {
-          _this4.submitFiles();
-        }
+        _this4.errors = [];
       });
     }
   }
@@ -7074,6 +7935,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7956,9 +8820,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_administrator_Variety__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/administrator/Variety */ "./resources/js/components/administrator/Variety.vue");
 /* harmony import */ var _components_administrator_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/administrator/Home */ "./resources/js/components/administrator/Home.vue");
 /* harmony import */ var _components_administrator_Register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/administrator/Register */ "./resources/js/components/administrator/Register.vue");
-/* harmony import */ var _components_administrator_plantdetails_PlantDetailIndex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/administrator/plantdetails/PlantDetailIndex */ "./resources/js/components/administrator/plantdetails/PlantDetailIndex.vue");
-/* harmony import */ var _components_administrator_plantdetails_PlantDetailsTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/administrator/plantdetails/PlantDetailsTable */ "./resources/js/components/administrator/plantdetails/PlantDetailsTable.vue");
-/* harmony import */ var _components_administrator_plantdetails_CreateDetails__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/administrator/plantdetails/CreateDetails */ "./resources/js/components/administrator/plantdetails/CreateDetails.vue");
+/* harmony import */ var _components_GraftIndx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/GraftIndx */ "./resources/js/components/GraftIndx.vue");
+/* harmony import */ var _components_administrator_graft_GraftTableIndex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/administrator/graft/GraftTableIndex */ "./resources/js/components/administrator/graft/GraftTableIndex.vue");
+/* harmony import */ var _components_administrator_graft_GraftTechnique__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/administrator/graft/GraftTechnique */ "./resources/js/components/administrator/graft/GraftTechnique.vue");
+/* harmony import */ var _components_administrator_plantdetails_PlantDetailIndex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/administrator/plantdetails/PlantDetailIndex */ "./resources/js/components/administrator/plantdetails/PlantDetailIndex.vue");
+/* harmony import */ var _components_administrator_plantdetails_PlantDetailsTable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/administrator/plantdetails/PlantDetailsTable */ "./resources/js/components/administrator/plantdetails/PlantDetailsTable.vue");
+/* harmony import */ var _components_administrator_plantdetails_CreateDetails__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/administrator/plantdetails/CreateDetails */ "./resources/js/components/administrator/plantdetails/CreateDetails.vue");
+
+
+
 
 
 
@@ -7983,16 +8853,28 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Plant Variety',
   component: _components_administrator_Variety__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
+  path: '/admin/graft-details',
+  //name: 'Graft Technique',
+  component: _components_GraftIndx__WEBPACK_IMPORTED_MODULE_4__["default"],
+  children: [{
+    path: '',
+    name: 'Graft Detail Index',
+    component: _components_administrator_graft_GraftTableIndex__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }, {
+    path: ':id/edit',
+    component: _components_administrator_graft_GraftTechnique__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }]
+}, {
   path: '/admin/plant-detail',
   // name: 'Plant Detail Index',
-  component: _components_administrator_plantdetails_PlantDetailIndex__WEBPACK_IMPORTED_MODULE_4__["default"],
+  component: _components_administrator_plantdetails_PlantDetailIndex__WEBPACK_IMPORTED_MODULE_7__["default"],
   children: [{
     path: '',
     name: 'Plant Detail',
-    component: _components_administrator_plantdetails_PlantDetailsTable__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _components_administrator_plantdetails_PlantDetailsTable__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: 'create',
-    component: _components_administrator_plantdetails_CreateDetails__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _components_administrator_plantdetails_CreateDetails__WEBPACK_IMPORTED_MODULE_9__["default"]
   }]
 }]);
 
@@ -12832,6 +13714,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "/*! vue2-timeago - 2.0.6 | (c) 2018, 2022  runkids <egg358358@gmail.com> | https://github.com/runkids/vue2-timeago */.v-timeago{font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:14px;cursor:pointer;color:#657786;text-decoration:none;line-height:20px;list-style-image:none;list-style-position:outside;list-style-type:none;letter-spacing:.1px}.tooltip{display:block!important;font-size:12px;z-index:10000}.tooltip .tooltip-inner{background:#303133;color:#fff;border-radius:4px;padding:5px 10px 4px}.tooltip .tooltip-arrow{width:0;height:0;border-style:solid;position:absolute;margin:5px;border-color:#303133;z-index:1}.tooltip[x-placement^=top]{margin-bottom:5px}.tooltip[x-placement^=top] .tooltip-arrow{border-width:5px 5px 0 5px;border-left-color:transparent!important;border-right-color:transparent!important;border-bottom-color:transparent!important;bottom:-5px;left:calc(50% - 5px);margin-top:0;margin-bottom:0}.tooltip[x-placement^=bottom]{margin-top:5px}.tooltip[x-placement^=bottom] .tooltip-arrow{border-width:0 5px 5px 5px;border-left-color:transparent!important;border-right-color:transparent!important;border-top-color:transparent!important;top:-5px;left:calc(50% - 5px);margin-top:0;margin-bottom:0}.tooltip[x-placement^=right]{margin-left:5px}.tooltip[x-placement^=right] .tooltip-arrow{border-width:5px 5px 5px 0;border-left-color:transparent!important;border-top-color:transparent!important;border-bottom-color:transparent!important;left:-5px;top:calc(50% - 5px);margin-left:0;margin-right:0}.tooltip[x-placement^=left]{margin-right:5px}.tooltip[x-placement^=left] .tooltip-arrow{border-width:5px 0 5px 5px;border-top-color:transparent!important;border-right-color:transparent!important;border-bottom-color:transparent!important;right:-5px;top:calc(50% - 5px);margin-left:0;margin-right:0}.tooltip.popover .popover-inner{background:#f9f9f9;color:#fff;padding:24px;border-radius:4px;-webkit-box-shadow:0 5px 30px rgba(#303133,.1);box-shadow:0 5px 30px rgba(#303133,.1)}.tooltip.popover .popover-arrow{border-color:#f9f9f9}.tooltip[aria-hidden=true]{visibility:hidden;opacity:0;-webkit-transition:opacity .15s,visibility .15s;transition:opacity .15s,visibility .15s}.tooltip[aria-hidden=false]{visibility:visible;opacity:1;-webkit-transition:opacity .15s;transition:opacity .15s}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=\"file\"][data-v-688a55f8] {\r\n  opacity: 0;\r\n  width: 100%;\r\n  height: 200px;\r\n  position: absolute;\r\n  cursor: pointer;\n}\n.filezone[data-v-688a55f8] {\r\n  outline: 2px dashed grey;\r\n  outline-offset: -10px;\r\n  background: #ccc;\r\n  color: dimgray;\r\n  padding: 10px 10px;\r\n  min-height: 200px;\r\n  position: relative;\r\n  cursor: pointer;\n}\n.filezone[data-v-688a55f8]:hover {\r\n  background: #c0c0c0;\n}\n.filezone p[data-v-688a55f8] {\r\n  font-size: 1.2em;\r\n  text-align: center;\r\n  padding: 50px 50px 50px 50px;\n}\na.remove[data-v-688a55f8] {\r\n  color: red;\r\n  cursor: pointer;\r\n  font-weight: 700;\r\n  background-color: #e1e1e1;\r\n  padding: 2px 5px;\r\n  border: none;\n}\n.prev-img[data-v-688a55f8] {\r\n  max-width: 75%;\r\n  max-height: 75px;\n}\n.switch[data-v-688a55f8] {\r\n  position: relative;\r\n  display: inline-block;\r\n  width: 70px;\r\n  height: 34px;\n}\r\n\r\n/* Hide default HTML checkbox */\n.switch input[data-v-688a55f8] {\r\n  opacity: 0;\r\n  width: 0;\r\n  height: 0;\n}\r\n\r\n/* The slider */\n.slider[data-v-688a55f8] {\r\n  position: absolute;\r\n  cursor: pointer;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  background-color: red;\r\n  transition: 0.4s;\r\n  color: #ffffff;\n}\n.slider p[data-v-688a55f8] {\r\n  position: relative;\r\n  margin-top: 5px;\r\n  margin-left: 7px;\r\n  font-weight: 700;\r\n  color: #ffffff;\n}\n.slider[data-v-688a55f8]:before {\r\n  position: absolute;\r\n  content: \"\";\r\n  height: 26px;\r\n  width: 26px;\r\n  left: 4px;\r\n  bottom: 4px;\r\n  background-color: white;\r\n  transition: 0.4s;\n}\ninput:checked + .slider[data-v-688a55f8] {\r\n  background-color: #1d643b;\n}\ninput:focus + .slider[data-v-688a55f8] {\r\n  box-shadow: 0 0 1px #1d643b;\n}\ninput:checked + .slider[data-v-688a55f8]:before {\r\n  transform: translateX(35px);\n}\r\n\r\n/* Rounded sliders */\n.slider.round[data-v-688a55f8] {\r\n  border-radius: 34px;\n}\n.slider.round[data-v-688a55f8]:before {\r\n  border-radius: 50%;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -44234,6 +45140,36 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_style_index_0_id_688a55f8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_style_index_0_id_688a55f8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_style_index_0_id_688a55f8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/plantdetails/PlantDetailsTable.vue?vue&type=style&index=0&id=61f5c8cc&scoped=true&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/plantdetails/PlantDetailsTable.vue?vue&type=style&index=0&id=61f5c8cc&scoped=true&lang=css& ***!
@@ -48237,6 +49173,86 @@ component.options.__file = "resources/js/components/administrator/Variety.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/administrator/graft/GraftTableIndex.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/administrator/graft/GraftTableIndex.vue ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _GraftTableIndex_vue_vue_type_template_id_67569da0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GraftTableIndex.vue?vue&type=template&id=67569da0& */ "./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=template&id=67569da0&");
+/* harmony import */ var _GraftTableIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GraftTableIndex.vue?vue&type=script&lang=js& */ "./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GraftTableIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GraftTableIndex_vue_vue_type_template_id_67569da0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _GraftTableIndex_vue_vue_type_template_id_67569da0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/administrator/graft/GraftTableIndex.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/administrator/graft/GraftTechnique.vue":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/administrator/graft/GraftTechnique.vue ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _GraftTechnique_vue_vue_type_template_id_688a55f8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GraftTechnique.vue?vue&type=template&id=688a55f8&scoped=true& */ "./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=template&id=688a55f8&scoped=true&");
+/* harmony import */ var _GraftTechnique_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GraftTechnique.vue?vue&type=script&lang=js& */ "./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=script&lang=js&");
+/* harmony import */ var _GraftTechnique_vue_vue_type_style_index_0_id_688a55f8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css& */ "./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _GraftTechnique_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GraftTechnique_vue_vue_type_template_id_688a55f8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _GraftTechnique_vue_vue_type_template_id_688a55f8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "688a55f8",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/administrator/graft/GraftTechnique.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/administrator/plantdetails/CreateDetails.vue":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/administrator/plantdetails/CreateDetails.vue ***!
@@ -49410,6 +50426,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTableIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GraftTableIndex.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTableIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GraftTechnique.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/administrator/plantdetails/CreateDetails.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************!*\
   !*** ./resources/js/components/administrator/plantdetails/CreateDetails.vue?vue&type=script&lang=js& ***!
@@ -49842,6 +50890,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************!*\
+  !*** ./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_style_index_0_id_688a55f8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=style&index=0&id=688a55f8&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/administrator/plantdetails/PlantDetailsTable.vue?vue&type=style&index=0&id=61f5c8cc&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************!*\
   !*** ./resources/js/components/administrator/plantdetails/PlantDetailsTable.vue?vue&type=style&index=0&id=61f5c8cc&scoped=true&lang=css& ***!
@@ -50096,6 +51157,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Variety_vue_vue_type_template_id_463fd2aa___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Variety_vue_vue_type_template_id_463fd2aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Variety.vue?vue&type=template&id=463fd2aa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/Variety.vue?vue&type=template&id=463fd2aa&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=template&id=67569da0&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=template&id=67569da0& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTableIndex_vue_vue_type_template_id_67569da0___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTableIndex_vue_vue_type_template_id_67569da0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTableIndex_vue_vue_type_template_id_67569da0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GraftTableIndex.vue?vue&type=template&id=67569da0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=template&id=67569da0&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=template&id=688a55f8&scoped=true&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=template&id=688a55f8&scoped=true& ***!
+  \*******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_template_id_688a55f8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_template_id_688a55f8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GraftTechnique_vue_vue_type_template_id_688a55f8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GraftTechnique.vue?vue&type=template&id=688a55f8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=template&id=688a55f8&scoped=true&");
 
 
 /***/ }),
@@ -51703,6 +52798,974 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=template&id=67569da0&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTableIndex.vue?vue&type=template&id=67569da0& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("h2", [
+      _vm._v("\n    " + _vm._s(_vm.$route.name) + "\n    "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-sm float-right",
+          on: { click: _vm.initAddunit }
+        },
+        [_vm._v("\n      + Graft Technique Details\n    ")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("div", { staticClass: "table-responsive", attrs: { id: "table" } }, [
+      _vm.graftings.length > 0
+        ? _c(
+            "table",
+            {
+              staticClass: "table table-bordered table-hover table-sm",
+              staticStyle: {
+                "table-layout": "fixed",
+                width: "100%",
+                size: "21cm 29.7cm"
+              },
+              attrs: { id: "unit-table" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                [
+                  _vm._l(_vm.graftings, function(gd, index) {
+                    return [
+                      _c("tr", { key: index }, [
+                        _c("td", [_vm._v(_vm._s(gd.id))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(gd.title) +
+                              "\n            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(gd.description) +
+                              "\n            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("div", { staticClass: "btn-group" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success btn-sm",
+                                attrs: { title: "update" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editTech(gd.id)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-edit" })]
+                            )
+                          ])
+                        ])
+                      ])
+                    ]
+                  })
+                ],
+                2
+              )
+            ]
+          )
+        : _c("div", { staticClass: "alert alert-info" }, [
+            _c("strong", [_vm._v("Info!")]),
+            _vm._v(" No data Available.\n    ")
+          ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal fade", attrs: { id: "add_unit_model" } }, [
+      _c("div", { staticClass: "modal-dialog modal-lg" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _vm.errors.length > 0
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _c("strong", [
+                    _vm._v(" Whoops, looks like something went wrong...")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    [
+                      _vm._l(_vm.errors, function(error, index) {
+                        return [
+                          _c("li", { key: index }, [_vm._v(_vm._s(error))])
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("Graft:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.graft.title,
+                    expression: "graft.title"
+                  }
+                ],
+                ref: "addunit",
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  name: "name",
+                  id: "name",
+                  placeholder: "Graft Name"
+                },
+                domProps: { value: _vm.graft.title },
+                on: {
+                  keyup: function($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.createGraft.apply(null, arguments)
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.graft, "title", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "comment" } }, [
+                _vm._v("Description:")
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.graft.description,
+                    expression: "graft.description"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { rows: "5", id: "comment" },
+                domProps: { value: _vm.graft.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.graft, "description", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("label", { attrs: { for: "comment" } }, [
+                  _vm._v("Advantage:")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.graft.advantage,
+                      expression: "graft.advantage"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { rows: "5", id: "adva" },
+                  domProps: { value: _vm.graft.advantage },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.graft, "advantage", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col" }, [
+                _c("label", { attrs: { for: "comment" } }, [
+                  _vm._v("Disadvantage:")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.graft.disadvantage,
+                      expression: "graft.disadvantage"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { rows: "5", id: "disadva" },
+                  domProps: { value: _vm.graft.disadvantage },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.graft, "disadvantage", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "season" } }, [_vm._v("Season:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.graft.season,
+                    expression: "graft.season"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  name: "season",
+                  id: "season",
+                  placeholder: "season"
+                },
+                domProps: { value: _vm.graft.season },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.graft, "season", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("label", { attrs: { for: "comment" } }, [
+                  _vm._v("Pre Treatment:")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.graft.advantage,
+                      expression: "graft.advantage"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { rows: "5", id: "pre" },
+                  domProps: { value: _vm.graft.advantage },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.graft, "advantage", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col" }, [
+                _c("label", { attrs: { for: "comment" } }, [
+                  _vm._v("Post Treatment:")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.graft.disadvantage,
+                      expression: "graft.disadvantage"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { rows: "5", id: "post" },
+                  domProps: { value: _vm.graft.disadvantage },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.graft, "disadvantage", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: { click: _vm.createGraft }
+              },
+              [_vm._v("\n            Submit\n          ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("\n            Close\n          ")]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Ref #")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "20%" } }, [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [_vm._v("Graft Details")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("\n            ×\n          ")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=template&id=688a55f8&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/graft/GraftTechnique.vue?vue&type=template&id=688a55f8&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12" }, [
+    _c("h2", [_vm._v("Graft Techique")]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.saveGraftDet.apply(null, arguments)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "row form-group" }, [
+          _c("label", { staticClass: "col-md-4", attrs: { for: "title" } }, [
+            _vm._v("Title:")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-10" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.graft_det.title,
+                  expression: "graft_det.title"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "title", required: "" },
+              domProps: { value: _vm.graft_det.title },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.graft_det, "title", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row form-group" }, [
+          _c(
+            "label",
+            { staticClass: "col-md-4", attrs: { for: "description" } },
+            [_vm._v("Description:")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-10" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.graft_det.description,
+                  expression: "graft_det.description"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { rows: "5", id: "comment" },
+              domProps: { value: _vm.graft_det.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.graft_det, "description", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col" }, [
+            _c("label", { attrs: { for: "comment" } }, [_vm._v("Advantage:")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.graft_det.advantage,
+                  expression: "graft_det.advantage"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { rows: "5", id: "adva" },
+              domProps: { value: _vm.graft_det.advantage },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.graft_det, "advantage", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("label", { attrs: { for: "comment" } }, [
+              _vm._v("Disadvantage:")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.graft_det.disadvantage,
+                  expression: "graft_det.disadvantage"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { rows: "5", id: "disadva" },
+              domProps: { value: _vm.graft_det.disadvantage },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.graft_det, "disadvantage", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row form-group" }, [
+          _c("label", { staticClass: "col-md-4", attrs: { for: "title" } }, [
+            _vm._v("Season:")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-10" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.graft_det.season,
+                  expression: "graft_det.season"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "season", required: "" },
+              domProps: { value: _vm.graft_det.season },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.graft_det, "season", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col" }, [
+            _c("label", { attrs: { for: "comment" } }, [
+              _vm._v("Pre Treatment:")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.graft_det.pre_treatment,
+                  expression: "graft_det.pre_treatment"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { rows: "5", id: "pre" },
+              domProps: { value: _vm.graft_det.pre_treatment },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.graft_det, "pre_treatment", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" }, [
+            _c("label", { attrs: { for: "comment" } }, [
+              _vm._v("Post Treatment:")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.graft_det.post_treatment,
+                  expression: "graft_det.post_treatment"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { rows: "5", id: "post" },
+              domProps: { value: _vm.graft_det.post_treatment },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.graft_det, "post_treatment", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-10" }, [
+          _c("h4", [_vm._v("Graft Pictures")]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "large-12 medium-12 small-12 filezone" }, [
+            _c("input", {
+              ref: "docs",
+              attrs: { type: "file", id: "files", multiple: "" },
+              on: {
+                change: function($event) {
+                  return _vm.handleFiles()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.docs, function(file, key) {
+              return file.id == null
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "col-md-3",
+                      staticStyle: { "margin-top": "15px" },
+                      attrs: { align: "center" }
+                    },
+                    [
+                      _c("img", {
+                        ref: "preview" + parseInt(key),
+                        refInFor: true,
+                        staticClass: "prev-img"
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticStyle: { "overflow-wrap": "break-word" } },
+                        [_c("small", [_vm._v(_vm._s(file.name))])]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            position: "absolute",
+                            right: "35px",
+                            top: "10px"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "remove",
+                              on: {
+                                click: function($event) {
+                                  return _vm.removeFile(key)
+                                }
+                              }
+                            },
+                            [_vm._v("X")]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.bid.docs, function(file, key) {
+              return file.type === 1
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "col-md-3",
+                      staticStyle: { "margin-top": "15px" },
+                      attrs: { align: "center" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            position: "absolute",
+                            right: "35px",
+                            top: "10px"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "remove",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteFile(file.id)
+                                }
+                              }
+                            },
+                            [_vm._v("X")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            target: "_blank",
+                            href: "/storage" + file.src
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "prev-img",
+                            attrs: { src: "/img/generic.png" }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      file.id > 0
+                        ? _c("div", { staticClass: "badge-success" }, [
+                            _vm._v("UPLOADED")
+                          ])
+                        : _vm._e()
+                    ]
+                  )
+                : _vm._e()
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.graft_det.docs, function(file, key) {
+              return _c(
+                "div",
+                {
+                  staticClass: "col-md-3",
+                  staticStyle: { "margin-top": "15px" },
+                  attrs: { align: "center" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        position: "absolute",
+                        right: "35px",
+                        top: "10px"
+                      }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "remove",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteFile(file.id)
+                            }
+                          }
+                        },
+                        [_vm._v("X")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      attrs: { target: "_blank", href: "/storage" + file.src }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "prev-img",
+                        attrs: { src: "/storage" + file.src }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticStyle: { "overflow-wrap": "break-word" } },
+                    [_c("small", [_vm._v(_vm._s(file.name))])]
+                  ),
+                  _vm._v(" "),
+                  file.id > 0
+                    ? _c("div", { staticClass: "badge-success" }, [
+                        _vm._v("UPLOADED")
+                      ])
+                    : _vm._e()
+                ]
+              )
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("h4", [_vm._v("Graft Video")]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.graft_det.vid_src,
+                  expression: "graft_det.vid_src"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "vid_src " },
+              domProps: { value: _vm.graft_det.vid_src },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.graft_det, "vid_src", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "embed-responsive embed-responsive-16by9" },
+              [
+                _c("iframe", {
+                  attrs: {
+                    width: "560",
+                    height: "315",
+                    src: _vm.graft_det.vid_src,
+                    title: "YouTube video player",
+                    frameborder: "0",
+                    allow:
+                      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                    allowfullscreen: ""
+                  }
+                })
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "form-group",
+          staticStyle: { "margin-top": "20px" }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group", staticStyle: { "margin-top": "15px" } },
+          [
+            _c(
+              "div",
+              { staticClass: "col-md-10", attrs: { align: "center" } },
+              [
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("Save")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  { staticClass: "btn btn-secondary", attrs: { to: "/bids" } },
+                  [_vm._v("Back")]
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("Drop your files here "),
+      _c("br"),
+      _vm._v("or click to search")
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/plantdetails/CreateDetails.vue?vue&type=template&id=11c17cbb&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/administrator/plantdetails/CreateDetails.vue?vue&type=template&id=11c17cbb&scoped=true& ***!
@@ -52385,6 +54448,22 @@ var render = function() {
                       attrs: { to: "/admin/home" }
                     },
                     [_vm._v("Dashboard")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link side-link",
+                      attrs: { to: "/admin/graft-details" }
+                    },
+                    [_vm._v("Graft Techniques")]
                   )
                 ],
                 1
@@ -54105,7 +56184,55 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("hr")
+          _c("hr"),
+          _vm._v(" "),
+          _c("h3", [_vm._v("Season")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n      " +
+                _vm._s(
+                  pm.season == null || pm.season == ""
+                    ? "No Record Found!"
+                    : pm.season
+                ) +
+                "\n    "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("h4", [_vm._v("Pre Treatment")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(
+                      pm.pre_treatment == null || pm.pre_treatment == ""
+                        ? "No Record Found!"
+                        : pm.pre_treatment
+                    ) +
+                    "\n        "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("h4", [_vm._v("Post Treatment")]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "\n          " +
+                    _vm._s(
+                      pm.post_treatment == null || pm.post_treatment == ""
+                        ? "No Record Found!"
+                        : pm.post_treatment
+                    ) +
+                    "\n        "
+                )
+              ])
+            ])
+          ])
         ]
       }),
       _vm._v(" "),
@@ -54151,7 +56278,175 @@ var render = function() {
           on: { click: _vm.updatePhrase }
         },
         [_vm._v("\n    Update search phrase\n  ")]
-      )
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _c("br"),
+      _vm._v(" "),
+      _vm.comments.length > 0
+        ? _c("div", { staticClass: "d-flex justify-content-center row" }, [
+            _c("div", { staticClass: "d-flex flex-column col-md-12" }, [
+              _c("div", { staticClass: "coment-bottom bg-white p-2" }, [
+                _vm.errors.length > 0
+                  ? _c("div", { staticClass: "alert alert-danger" }, [
+                      _c("strong", [
+                        _vm._v(" Whoops, looks like something went wrong...")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "ul",
+                        [
+                          _vm._l(_vm.errors, function(error, index) {
+                            return [
+                              _c("li", { key: index }, [_vm._v(_vm._s(error))])
+                            ]
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "d-flex flex-row add-comment-section mt-4 mb-4"
+                  },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.comment,
+                          expression: "comment"
+                        }
+                      ],
+                      staticClass: "form-control mr-3",
+                      attrs: { type: "text", placeholder: "Add comment" },
+                      domProps: { value: _vm.comment },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.comment = $event.target.value
+                        }
+                      }
+                    }),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button" },
+                        on: { click: _vm.postComment }
+                      },
+                      [_vm._v("\n            Comment\n          ")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "collapsable-comment" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "collapse", attrs: { id: "collapse-1" } },
+                    [
+                      _vm._l(_vm.comments, function(c, index) {
+                        return [
+                          _c("div", { staticClass: "commented-section mt-2" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "d-flex flex-row align-items-center commented-user"
+                              },
+                              [
+                                _c("h5", { staticClass: "mr-2" }, [
+                                  _vm._v(_vm._s(c.name))
+                                ]),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "dot mb-1" }),
+                                _c(
+                                  "span",
+                                  { staticClass: "mb-1 ml-2" },
+                                  [
+                                    _c("time-ago", {
+                                      attrs: {
+                                        datetime: c.updated_at,
+                                        refresh: "",
+                                        long: true
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "comment-text-sm" }, [
+                              _c("span", [_vm._v(_vm._s(c.comment))])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "reply-section" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "d-flex flex-row align-items-center voting-icons"
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass:
+                                      "fa fa-sort-up fa-2x mt-3 hit-voting"
+                                  }),
+                                  _c("i", {
+                                    staticClass:
+                                      "fa fa-sort-down fa-2x mb-3 hit-voting"
+                                  }),
+                                  _c("span", { staticClass: "ml-2" }, [
+                                    _vm._v("10")
+                                  ]),
+                                  _c("span", { staticClass: "dot ml-2" }),
+                                  _vm._v(" "),
+                                  _c("h6", { staticClass: "ml-2 mt-1" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-danger btn-sm",
+                                        attrs: {
+                                          type: "button",
+                                          disabled:
+                                            c.user_id != _vm.plant_det.user_id
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.discardComment(c.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                        Discard\n                      "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ])
+            ])
+          ])
+        : _vm._e()
     ],
     2
   )
@@ -54193,6 +56488,28 @@ var staticRenderFns = [
         _vm._v(" No image found!.\n        ")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "\n              d-flex\n              flex-row\n              justify-content-between\n              align-items-center\n              action-collapse\n              p-2\n            ",
+        attrs: {
+          "data-toggle": "collapse",
+          "aria-expanded": "false",
+          "aria-controls": "collapse-1",
+          href: "#collapse-1"
+        }
+      },
+      [
+        _c("span", [_vm._v("Comments")]),
+        _c("i", { staticClass: "fa fa-chevron-down servicedrop" })
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -56480,11 +58797,19 @@ var render = function() {
                             _vm._m(1, true),
                             _vm._v(" "),
                             _c("div", { staticClass: "be-comment-content" }, [
-                              _c("span", { staticClass: "be-comment-name" }, [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _vm._v(_vm._s(com.name))
-                                ])
-                              ]),
+                              _c(
+                                "span",
+                                { staticClass: "be-comment-name" },
+                                [
+                                  _c("a", { attrs: { href: "#" } }, [
+                                    _vm._v(_vm._s(com.name))
+                                  ]),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  com.role == 2 ? [_vm._v("@expert")] : _vm._e()
+                                ],
+                                2
+                              ),
                               _vm._v(" "),
                               _c(
                                 "span",

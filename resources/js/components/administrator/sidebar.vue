@@ -16,6 +16,11 @@
               >
             </li>
             <li class="nav-item">
+              <router-link class="nav-link side-link" to="/admin/graft-details"
+                >Graft Techniques</router-link
+              >
+            </li>
+            <li class="nav-item">
               <router-link class="nav-link side-link" to="/admin/plant-detail"
                 >Plant Details</router-link
               >

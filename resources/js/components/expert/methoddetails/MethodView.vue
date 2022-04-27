@@ -91,6 +91,36 @@
       </div>
 
       <hr />
+      <h3>Season</h3>
+      <p>
+        {{
+          pm.season == null || pm.season == "" ? "No Record Found!" : pm.season
+        }}
+      </p>
+      <!--  -->
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Pre Treatment</h4>
+          <p>
+            {{
+              pm.pre_treatment == null || pm.pre_treatment == ""
+                ? "No Record Found!"
+                : pm.pre_treatment
+            }}
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h4>Post Treatment</h4>
+          <p>
+            {{
+              pm.post_treatment == null || pm.post_treatment == ""
+                ? "No Record Found!"
+                : pm.post_treatment
+            }}
+          </p>
+        </div>
+      </div>
+      <!--  -->
     </template>
     <div class="row">
       <div class="col-md-8">
@@ -109,10 +139,103 @@
     <button class="btn btn-primary" type="submit" @click="updatePhrase">
       Update search phrase
     </button>
+    <!--  -->
+    <br /><br />
+
+    <div class="d-flex justify-content-center row" v-if="comments.length > 0">
+      <div class="d-flex flex-column col-md-12">
+        <div class="coment-bottom bg-white p-2">
+          <div class="alert alert-danger" v-if="errors.length > 0">
+            <strong> Whoops, looks like something went wrong...</strong>
+            <ul>
+              <template v-for="(error, index) in errors">
+                <li :key="index">{{ error }}</li>
+              </template>
+            </ul>
+          </div>
+          <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+            <input
+              type="text"
+              class="form-control mr-3"
+              placeholder="Add comment"
+              v-model="comment"
+            /><button
+              class="btn btn-primary"
+              type="button"
+              @click="postComment"
+            >
+              Comment
+            </button>
+          </div>
+          <div class="collapsable-comment">
+            <div
+              class="
+                d-flex
+                flex-row
+                justify-content-between
+                align-items-center
+                action-collapse
+                p-2
+              "
+              data-toggle="collapse"
+              aria-expanded="false"
+              aria-controls="collapse-1"
+              href="#collapse-1"
+            >
+              <span>Comments</span
+              ><i class="fa fa-chevron-down servicedrop"></i>
+            </div>
+            <div id="collapse-1" class="collapse">
+              <!--  -->
+              <template v-for="(c, index) in comments">
+                <div class="commented-section mt-2">
+                  <div
+                    class="d-flex flex-row align-items-center commented-user"
+                  >
+                    <h5 class="mr-2">{{ c.name }}</h5>
+                    <span class="dot mb-1"></span
+                    ><span class="mb-1 ml-2">
+                      <time-ago :datetime="c.updated_at" refresh :long="true"
+                    /></span>
+                  </div>
+                  <div class="comment-text-sm">
+                    <span>{{ c.comment }}</span>
+                  </div>
+                  <div class="reply-section">
+                    <div
+                      class="d-flex flex-row align-items-center voting-icons"
+                    >
+                      <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i
+                      ><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i
+                      ><span class="ml-2">10</span
+                      ><span class="dot ml-2"></span>
+                      <h6 class="ml-2 mt-1">
+                        <button
+                          type="button"
+                          class="btn btn-danger btn-sm"
+                          :disabled="c.user_id != plant_det.user_id"
+                          @click="discardComment(c.id)"
+                        >
+                          Discard
+                        </button>
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </template>
+              <!--  -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
   </div>
 </template>
 
 <script>
+import { TimeAgo } from "vue2-timeago";
+import "vue2-timeago/dist/vue2-timeago.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 export default {
   data() {
@@ -129,6 +252,9 @@ export default {
       meths: [],
       graft_det: {},
 
+      comment: "",
+      comments: [],
+      errors: [],
       graft: [],
       docs: [],
     };
@@ -136,41 +262,74 @@ export default {
   mounted() {
     this.graftTechnique();
   },
+  components: { TimeAgo },
   methods: {
-    handleFiles() {
-      let uploadedFiles = this.$refs.docs.files;
-
-      for (var i = 0; i < uploadedFiles.length; i++) {
-        this.docs.push(uploadedFiles[i]);
-      }
-      this.getImagePreviews();
-    },
-    getImagePreviews() {
-      for (let i = 0; i < this.docs.length; i++) {
-        if (/\.(jpe?g|png|gif)$/i.test(this.docs[i].name)) {
-          let reader = new FileReader();
-          reader.addEventListener(
-            "load",
-            function () {
-              this.$refs["preview" + parseInt(i)][0].src = reader.result;
-            }.bind(this),
-            false
-          );
-          reader.readAsDataURL(this.docs[i]);
-        } else {
-          this.$nextTick(function () {
-            this.$refs["preview" + parseInt(i)][0].src = "/img/generic.png";
-          });
-        }
-      }
-    },
-
     graftTechnique() {
       window.axios
         .get("/expert/view-plant-methods/" + this.$route.params.id)
         .then(({ data }) => {
           this.plant_det = data.plant_det;
           this.meths = data.meths;
+          this.comments = data.comments;
+        });
+    },
+    postComment() {
+      axios
+        .post("/expert/save-comment", {
+          article_id: this.$route.params.id,
+          comment: this.comment,
+        })
+        .then((response) => {
+          this.$toasted.show(response.data.message, {
+            theme: "bubble",
+            type: "success",
+            position: "bottom-right",
+            duration: 1500,
+            action: {
+              text: "X",
+              onClick: (e, toast) => {
+                toast.goAway(0);
+              },
+            },
+          });
+          this.comment = [];
+          this.graftTechnique();
+        })
+        .catch((error) => {
+          this.errors = [];
+          if (error.response.data.errors.comment) {
+            this.errors.push(error.response.data.errors.comment[0]);
+          }
+        });
+    },
+    discardComment(id) {
+      axios
+        .post("/expert/discard-comment", {
+          comment_id: id,
+        })
+        .then((response) => {
+          this.$toasted.show(response.data.message, {
+            theme: "bubble",
+            type: "success",
+            position: "bottom-right",
+            duration: 1500,
+            action: {
+              text: "X",
+              onClick: (e, toast) => {
+                toast.goAway(0);
+              },
+            },
+          });
+          //  this.comment = [];
+          setTimeout(() => {
+            this.graftTechnique();
+          }, 600);
+        })
+        .catch((error) => {
+          this.errors = [];
+          // if (error.response.data.errors.comment) {
+          //   this.errors.push(error.response.data.errors.comment[0]);
+          // }
         });
     },
     updatePhrase() {
@@ -194,15 +353,6 @@ export default {
         })
         .catch((error) => {
           this.errors = [];
-        });
-    },
-    saveGraftDet() {
-      window.axios
-        .post("/expert/update-graft/" + this.graft_det.id, this.graft_det)
-        .then(({ data }) => {
-          if (data) {
-            this.submitFiles();
-          }
         });
     },
   },

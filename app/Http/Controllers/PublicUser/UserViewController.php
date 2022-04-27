@@ -57,7 +57,7 @@ class UserViewController extends Controller
                 ->join('users', 'users.id', '=', 'article_comment.user_id')
                 ->select([
                     'article_comment.*',
-                    'users..name'
+                    'users.name'
                 ])->orderBy('article_comment.created_at', 'DESC')->get();
         }
 

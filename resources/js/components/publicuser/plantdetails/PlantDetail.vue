@@ -164,10 +164,13 @@
                     </div>
                     <div class="be-comment-content">
                       <span class="be-comment-name">
-                        <a href="#">{{ com.name }}</a>
+                        <a href="#">{{ com.name }}</a
+                        ><br />
+                        <template v-if="com.role == 2">@expert</template>
                       </span>
                       <span class="be-comment-time">
                         <i class="fa fa-clock-o"></i>
+
                         <time-ago
                           :datetime="com.created_at"
                           refresh

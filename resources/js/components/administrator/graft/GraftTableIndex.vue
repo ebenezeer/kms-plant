@@ -166,6 +166,7 @@
 <script>
 import Swal from "sweetalert2/dist/sweetalert2.js";
 //import VueFeather from "vue-feather";
+
 export default {
   data() {
     return {
@@ -188,8 +189,9 @@ export default {
     };
   },
   mounted() {},
+
   created() {
-    window.axios.get("/expert/graft-techniques").then(({ data }) => {
+    window.axios.get("/admin/graft-techniques").then(({ data }) => {
       this.graftings = data;
       //this.dataTab();
     });
@@ -199,20 +201,23 @@ export default {
       this.errors = [];
       // this.reset();
       //$("#add_unit_model").modal("show");
+
       $("#add_unit_model").modal({
         backdrop: "static",
         keyboard: false,
       });
+
       setTimeout(() => {
         this.$refs.addunit.focus();
       }, 600);
     },
     editTech(val) {
-      this.$router.push({ path: `/expert/graft-details/${val}/edit` });
+      this.$router.push({ path: `/admin/graft-details/${val}/edit` });
     },
+
     createGraft() {
       axios
-        .post("/expert/graft-techniques", {
+        .post("/admin/graft-techniques", {
           title: this.graft.title,
           description: this.graft.description,
           advantage: this.graft.advantage,
@@ -223,6 +228,7 @@ export default {
         })
         .then((response) => {
           this.reset();
+
           Swal.fire({
             title: "Success!",
             text: response.data.message,
@@ -230,6 +236,7 @@ export default {
             text: "I will close in 2 seconds.",
             timer: 2000,
           });
+
           $("#add_unit_model").modal("hide");
           this.readunits();
         })
@@ -238,6 +245,7 @@ export default {
           if (error.response.data.errors.title) {
             this.errors.push(error.response.data.errors.title[0]);
           }
+
           if (error.response.data.errors.description) {
             this.errors.push(error.response.data.errors.description[0]);
           }
@@ -250,6 +258,7 @@ export default {
         })
         .then((response) => {
           $("#update_unit_model").modal("hide");
+
           Swal.fire({
             title: "Success!",
             text: response.data.message,
@@ -265,6 +274,7 @@ export default {
           }
         });
     },
+
     reset() {
       this.graft.title = "";
       this.graft.description = "";
@@ -275,7 +285,7 @@ export default {
       this.graft.post_treatment = "";
     },
     readunits() {
-      axios.get("/expert/graft-techniques").then(({ data }) => {
+      axios.get("/admin/graft-techniques").then(({ data }) => {
         this.graftings = data;
       });
     },
@@ -312,7 +322,9 @@ export default {
               className: "btn btn-outline-primary btn-sm",
             },
           ],
+
           processing: true,
+
           columnDefs: [{ responsivePriority: 0, targets: 2 }],
         });
       });
