@@ -54,7 +54,7 @@ class UserViewController extends Controller
             $gd = GraftDetail::whereIn('id', $t)->with(['files'])->get();
 
             $c = DB::table('article_comment')->where('article_comment.meth_detail_id', $md->id)->where('article_comment.active', 1)
-                ->join('users', 'users.id', '=', 'article_comment.user_id')
+                ->leftJoin('users', 'users.id', '=', 'article_comment.user_id')
                 ->select([
                     'article_comment.*',
                     'users.name'

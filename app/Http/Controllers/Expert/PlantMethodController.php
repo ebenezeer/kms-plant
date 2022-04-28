@@ -52,7 +52,7 @@ class PlantMethodController extends Controller
         $mg = DB::table('methods_grafts')->where('meth_detail_id', $id)->get();
 
         $c = DB::table('article_comment')->where('article_comment.meth_detail_id', $det->id)->where('article_comment.active', 1)
-            ->join('users', 'users.id', '=', 'article_comment.user_id')
+            ->leftJoin('users', 'users.id', '=', 'article_comment.user_id')
             ->select([
                 'article_comment.*',
                 'users.name'

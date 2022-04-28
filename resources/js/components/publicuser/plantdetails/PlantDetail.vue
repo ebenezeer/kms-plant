@@ -141,6 +141,21 @@
           <!-- /.blog-post -->
 
           <nav class="blog-pagination">
+            <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+              <input
+                type="text"
+                class="form-control mr-3"
+                placeholder="Add comment"
+                v-model="comment"
+              /><button
+                class="btn btn-primary"
+                type="button"
+                @click="postComment"
+              >
+                Comment
+              </button>
+            </div>
+
             <div class="container" v-if="plant.comments">
               <!--  -->
 
@@ -164,7 +179,9 @@
                     </div>
                     <div class="be-comment-content">
                       <span class="be-comment-name">
-                        <a href="#">{{ com.name }}</a
+                        <a href="#">{{
+                          com.name == null ? "anonymous" : com.name
+                        }}</a
                         ><br />
                         <template v-if="com.role == 2">@expert</template>
                       </span>
@@ -227,6 +244,7 @@ export default {
       plants: [],
       // comments:[],
       plant: {},
+      comment: "",
       errors: [],
     };
   },
@@ -251,6 +269,35 @@ export default {
         .then(({ data }) => {
           this.plant = data;
           //this.dataTab();
+        });
+    },
+    postComment() {
+      axios
+        .post("/public/save-comment", {
+          article_id: this.plant.article_id,
+          comment: this.comment,
+        })
+        .then((response) => {
+          this.$toasted.show(response.data.message, {
+            theme: "bubble",
+            type: "success",
+            position: "bottom-right",
+            duration: 1500,
+            action: {
+              text: "X",
+              onClick: (e, toast) => {
+                toast.goAway(0);
+              },
+            },
+          });
+          this.comment = [];
+          this.showPlant();
+        })
+        .catch((error) => {
+          this.errors = [];
+          if (error.response.data.errors.comment) {
+            this.errors.push(error.response.data.errors.comment[0]);
+          }
         });
     },
     plantDetail(val) {

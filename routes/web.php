@@ -25,7 +25,12 @@ Route::get('/public/plant/arc/{id}', 'App\Http\Controllers\PublicController@plan
 Route::get('/public/plant-methods', 'App\Http\Controllers\PublicController@index_methods');
 Route::get('/public/view-plant-methods/{id}', 'App\Http\Controllers\PublicController@view_plant_methods');
 
+Route::post('public/search-related', 'App\Http\Controllers\PublicController@search_engine');
+Route::get('/public/graft-detail/{id}', 'App\Http\Controllers\PublicController@graft_tech');
+
 Route::get('/public/get-vids', 'App\Http\Controllers\PublicController@get_videos');
+
+Route::post('/public/save-comment', 'App\Http\Controllers\PublicController@save_comment');
 
 Route::get('/hasher', function () {
 

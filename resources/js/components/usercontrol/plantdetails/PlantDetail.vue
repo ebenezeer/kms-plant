@@ -194,7 +194,9 @@
                               commented-user
                             "
                           >
-                            <h5 class="mr-2">{{ c.name }}</h5>
+                            <h5 class="mr-2">
+                              {{ c.name == null ? "anonymous" : c.name }}
+                            </h5>
                             <span class="dot mb-1"></span
                             ><span class="mb-1 ml-2">
                               <time-ago

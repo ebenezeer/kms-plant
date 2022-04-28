@@ -4,6 +4,7 @@ import Home from "./components/usercontrol/Home";
 import PlantDetailIndex from './components/usercontrol/plantdetails/PlantDetailIndex';
 import PlantDetail from './components/usercontrol/plantdetails/PlantDetail';
 
+
 import MethodView from './components/usercontrol/graftmet/MethodView';
 
 export default [

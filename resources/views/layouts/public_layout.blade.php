@@ -37,7 +37,7 @@
                         <a class="blog-header-logo text-dark" href="#">Knowledge Management</a>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
-                        <a class="text-muted" href="/login">
+                        <a class="text-muted" href="/search/index">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="mx-3">

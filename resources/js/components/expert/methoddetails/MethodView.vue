@@ -192,7 +192,9 @@
                   <div
                     class="d-flex flex-row align-items-center commented-user"
                   >
-                    <h5 class="mr-2">{{ c.name }}</h5>
+                    <h5 class="mr-2">
+                      {{ c.name == null ? "anonymous" : c.name }}
+                    </h5>
                     <span class="dot mb-1"></span
                     ><span class="mb-1 ml-2">
                       <time-ago :datetime="c.updated_at" refresh :long="true"
@@ -213,7 +215,6 @@
                         <button
                           type="button"
                           class="btn btn-danger btn-sm"
-                          :disabled="c.user_id != plant_det.user_id"
                           @click="discardComment(c.id)"
                         >
                           Discard
