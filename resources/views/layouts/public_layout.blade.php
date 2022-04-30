@@ -69,7 +69,9 @@
                         </div>
                     </li>
                 </ul>
-                <a class="p-2 text-muted" href="#">Video</a>
+                <router-link class="p-2 text-muted" to="/public/videos">Video
+                </router-link>
+
             </nav>
 
 
