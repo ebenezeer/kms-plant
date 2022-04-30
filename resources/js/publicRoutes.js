@@ -8,6 +8,8 @@ import PlantDetail from './components/publicuser/plantdetails/PlantDetail';
 // import PlantDetailsTable from "./components/expert/plantdetails/PlantDetailsTable";
 import MethodSearch from "./components/publicuser/graftmet/MethodSearch";
 
+import Videos from "./components/publicuser/Videos";
+
 export default [
     {
         path: '/publicuser/home',
@@ -28,6 +30,12 @@ export default [
         path: '/public/search-plant-details/:id',
         component: PlantDetail,
         name: "Plant Details"
+    },
+
+    {
+        path: '/public/videos',
+        component: Videos,
+        name: "Videos"
     },
 ]
 

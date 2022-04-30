@@ -1,10 +1,33 @@
 <template>
   <div class="album py-5 bg-light">
+    <!-- vids -->
     <div class="container">
-      <div
-        class="jumbotron text-white jumbotron-image shadow"
-        style="background-image: url(/avatar/Jumbotron.jpg)"
-      ></div>
+      <div class="row">
+        <template v-for="v in videos">
+          <div class="col-md-6">
+            <div class="card mb-4 box-shadow">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe
+                  class="card-img-top"
+                  width="100"
+                  height="225"
+                  :src="v.vid_src"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="card-body">
+                <h4 class="card-text">{{ v.title }}</h4>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <!-- vids -->
+    <div class="container">
       <br />
       <div class="row">
         <template v-for="p in plants">
@@ -59,33 +82,6 @@
         </template>
       </div>
     </div>
-
-    <!-- vids -->
-    <div class="container">
-      <div class="row">
-        <template v-for="v in videos">
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe
-                  width="560"
-                  height="315"
-                  :src="v.vid_src"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div class="card-body">
-                <h4 class="card-text">{{ v.title }}</h4>
-              </div>
-            </div>
-          </div>
-        </template>
-      </div>
-    </div>
-    <!-- vids -->
   </div>
 </template>
 
