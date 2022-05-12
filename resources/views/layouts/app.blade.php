@@ -78,7 +78,7 @@
                     @endif
                     @if(Auth::user()->role == 2)
                     <a class="nav-link" href="/expert/logout">
-                        {{ Auth::user()->name }}
+                        Log Out
                     </a>
                     @endif
                     @if(Auth::user()->role == 3)

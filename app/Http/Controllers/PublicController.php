@@ -65,11 +65,21 @@ class PublicController extends Controller
         $a = [];
         foreach ($det as $d) {
             $p = PhotoPlant::where('plant_det_id', $d->id)->first();
+
+
+            if ($d->description != null) {
+                if (strlen($d->description) > 30) {
+                    $str_des = substr($d->description, 0, 200) . '...';
+                } else {
+                    $str_des = $d->description;
+                }
+            }
+
             $a[] = [
                 'id' => $d->id,
                 'name_id' => $d->name_id,
                 'variety_id' => $d->variety_id,
-                'description' => $d->description,
+                'description' => $str_des,
                 'name' => $d->name,
                 'variety' => $d->variety,
                 'puto' => $p,

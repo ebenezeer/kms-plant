@@ -64,6 +64,8 @@
 
               <div class="row" v-if="p.files.length > 0">
                 <div class="col-md-4" v-for="(file, key) in p.files">
+                  <!--  -->
+
                   <div class="card mb-4 box-shadow">
                     <img
                       class="card-img-top"
@@ -73,8 +75,21 @@
                       height="225"
                     />
                   </div>
+
+                  <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-secondary"
+                      @click="showImg(file.src)"
+                    >
+                      View
+                    </button>
+                  </div>
+
+                  <!--  -->
                 </div>
               </div>
+
               <div class="row" v-else>
                 <div class="col">
                   <div class="alert alert-secondary">
@@ -137,7 +152,41 @@
             <!-- temp -->
           </div>
           <!-- /.blog-post -->
+          <!-- The Modal img -->
+          <div class="modal fade" id="show_img_model">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Illustration</h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                </div>
 
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <img
+                    class="img-fluid mx-auto d-block"
+                    :src="'/storage' + img_show"
+                    alt="illustration"
+                  />
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- The Modal img -->
           <!-- /.blog-post -->
 
           <nav class="blog-pagination">
@@ -243,6 +292,7 @@ export default {
     return {
       plants: [],
       // comments:[],
+      img_show: "",
       plant: {},
       comment: "",
       errors: [],
@@ -270,6 +320,11 @@ export default {
           this.plant = data;
           //this.dataTab();
         });
+    },
+    showImg(f) {
+      //  alert("gaga");
+      this.img_show = f;
+      $("#show_img_model").modal("show");
     },
     postComment() {
       axios

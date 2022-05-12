@@ -98,6 +98,9 @@ Route::group(['middleware' => ['expert']], function () {
         Route::post('/save-comment', 'App\Http\Controllers\Expert\PlantMethodController@save_comment');
         Route::post('/discard-comment', 'App\Http\Controllers\Expert\PlantMethodController@discard_comment');
 
+        Route::get('/get-user-details', 'App\Http\Controllers\Expert\ExpertController@user_details');
+        Route::get('/get-dash-comments', 'App\Http\Controllers\Expert\ExpertController@get_comments');
+
         Route::get('/{any}', function () {
             return view('/expert/home');
         })->where('any', '.*');

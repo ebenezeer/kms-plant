@@ -1,10 +1,7 @@
 <template>
   <div class="album py-5 bg-light">
     <div class="container">
-      <div
-        class="jumbotron text-white jumbotron-image shadow"
-        style="background-image: url(/avatar/Jumbotron.jpg)"
-      ></div>
+      <div class="jumbotron text-white jumbotron-image shadow"></div>
       <br />
       <div class="row">
         <template v-for="p in plants">
@@ -126,9 +123,11 @@ export default {
 </script>
 <style scoped>
 .jumbotron-image {
+  background-image: url(/avatar/jumbotron1.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  min-height: 600px;
+  width: 100%;
+  min-height: 700px;
 }
 </style>

@@ -61,11 +61,10 @@
                             Plant Details
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Variety</a>
 
                             <router-link class="dropdown-item" to="/public/method-details">Technnique
                             </router-link>
-                            <a class="dropdown-item" href="#">Treatment</a>
+
                         </div>
                     </li>
                 </ul>
