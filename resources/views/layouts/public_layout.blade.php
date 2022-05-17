@@ -27,7 +27,7 @@
 
 <body>
     <div id="app">
-        <div class="container">
+        <div class="container-fluid p-3" style="width: 1250px;margin: auto;">
             <header class="blog-header py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
                     <div class="col-4 pt-1">
@@ -87,7 +87,7 @@
 
                 </div>
             </div> -->
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
 
                     @yield('content')

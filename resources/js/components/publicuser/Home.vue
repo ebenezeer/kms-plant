@@ -1,5 +1,5 @@
 <template>
-  <div class="album py-5 bg-light">
+  <div class="container">
     <div class="container">
       <div class="jumbotron text-white jumbotron-image shadow"></div>
       <br />

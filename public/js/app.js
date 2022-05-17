@@ -8534,7 +8534,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -59324,7 +59323,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "album py-5 bg-light" }, [
+  return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "jumbotron text-white jumbotron-image shadow" }),
       _vm._v(" "),
@@ -59641,7 +59640,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "album py-5 bg-light" }, [
+  return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "container" }, [
       _c(
         "div",
@@ -60333,388 +60332,375 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "album py-5 bg-light" }, [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("img", {
-            staticClass: "rounded",
-            attrs: {
-              width: "304",
-              height: "236",
-              src: "/storage" + _vm.plant.puto.src,
-              alt: "Card image cap"
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 blog-main" }, [
-          _c("h3", { staticClass: "pb-3 mb-4 font-italic border-bottom" }, [
-            _vm._v("\n          " + _vm._s(_vm.plant.name) + "\n        ")
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("img", {
+          staticClass: "rounded",
+          attrs: {
+            width: "304",
+            height: "236",
+            src: "/storage" + _vm.plant.puto.src,
+            alt: "Card image cap"
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-9 blog-main" }, [
+        _c("h3", { staticClass: "pb-3 mb-4 font-italic border-bottom" }, [
+          _vm._v("\n        " + _vm._s(_vm.plant.name) + "ytuyytuytu\n      ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "blog-post" }, [
+          _c("p", { staticClass: "blog-post-meta" }, [
+            _vm._v("\n          " + _vm._s(_vm.plant.variety) + "\n        ")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "blog-post" }, [
+          _c("p", [
+            _vm._v(
+              "\n          " + _vm._s(_vm.plant.description) + "\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c("hr")
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "blog-post" },
+          [
+            _c("h4", { staticClass: "blog-post-title" }, [
+              _vm._v("Technologies")
+            ]),
+            _vm._v(" "),
             _c("p", { staticClass: "blog-post-meta" }, [
               _vm._v(
-                "\n            " + _vm._s(_vm.plant.variety) + "\n          "
+                "\n          " + _vm._s(_vm.plant.updated_at) + "\n        "
               )
             ]),
             _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.plant.description) +
-                  "\n          "
-              )
-            ]),
-            _vm._v(" "),
-            _c("hr")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "blog-post" },
-            [
-              _c("h4", { staticClass: "blog-post-title" }, [
-                _vm._v("Technologies")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "blog-post-meta" }, [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.plant.updated_at) +
-                    "\n          "
-                )
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.plant.tech, function(p, index) {
-                return [
-                  _c("h2", [_vm._v(_vm._s(++index) + ") " + _vm._s(p.title))]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(p.description) +
-                        "\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("h4", [_vm._v("Advantage")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                  " +
-                            _vm._s(
-                              p.advantage == ""
-                                ? "No Record Found!"
-                                : p.advantage
-                            ) +
-                            "\n                "
-                        )
-                      ])
-                    ]),
+            _vm._l(_vm.plant.tech, function(p, index) {
+              return [
+                _c("h2", [_vm._v(_vm._s(++index) + ") " + _vm._s(p.title))]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n            " + _vm._s(p.description) + "\n          "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("h4", [_vm._v("Advantage")]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("h4", [_vm._v("Disadvantage")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                  " +
-                            _vm._s(
-                              p.disadvantage == ""
-                                ? "No Record Found!"
-                                : p.disadvantage
-                            ) +
-                            "\n                "
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("h4", [_vm._v("Illustrations")]),
-                  _vm._v(" "),
-                  p.files.length > 0
-                    ? _c(
-                        "div",
-                        { staticClass: "row" },
-                        _vm._l(p.files, function(file, key) {
-                          return _c("div", { staticClass: "col-md-4" }, [
-                            _c("div", { staticClass: "card mb-4 box-shadow" }, [
-                              _c("img", {
-                                staticClass: "card-img-top",
-                                attrs: {
-                                  src: "/storage" + file.src,
-                                  alt: "Card image cap",
-                                  width: "100",
-                                  height: "225"
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "btn-group" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-sm btn-outline-secondary",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.showImg(file.src)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                    View\n                  "
-                                  )
-                                ]
-                              )
-                            ])
-                          ])
-                        }),
-                        0
+                    _c("p", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(
+                            p.advantage == "" ? "No Record Found!" : p.advantage
+                          ) +
+                          "\n              "
                       )
-                    : _c("div", { staticClass: "row" }, [_vm._m(0, true)]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  p.vid_src != null
-                    ? _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-8" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "embed-responsive embed-responsive-16by9"
-                            },
-                            [
-                              _c("iframe", {
-                                attrs: {
-                                  width: "560",
-                                  height: "315",
-                                  src: p.vid_src,
-                                  title: "YouTube video player",
-                                  frameborder: "0",
-                                  allow:
-                                    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-                                  allowfullscreen: ""
-                                }
-                              })
-                            ]
-                          )
-                        ])
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("h3", [_vm._v("Season")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(
-                          p.season == null || p.season == ""
-                            ? "No Record Found!"
-                            : p.season
-                        ) +
-                        "\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("h4", [_vm._v("Pre Treatment")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                  " +
-                            _vm._s(
-                              p.pre_treatment == null || p.pre_treatment == ""
-                                ? "No Record Found!"
-                                : p.pre_treatment
-                            ) +
-                            "\n                "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("h4", [_vm._v("Post Treatment")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                  " +
-                            _vm._s(
-                              p.post_treatment == null || p.post_treatment == ""
-                                ? "No Record Found!"
-                                : p.post_treatment
-                            ) +
-                            "\n                "
-                        )
-                      ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("hr")
-                ]
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "modal fade", attrs: { id: "show_img_model" } },
-            [
-              _c("div", { staticClass: "modal-dialog modal-lg" }, [
-                _c("div", { staticClass: "modal-content" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("img", {
-                      staticClass: "img-fluid mx-auto d-block",
-                      attrs: {
-                        src: "/storage" + _vm.img_show,
-                        alt: "illustration"
-                      }
-                    })
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("h4", [_vm._v("Disadvantage")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(
+                            p.disadvantage == ""
+                              ? "No Record Found!"
+                              : p.disadvantage
+                          ) +
+                          "\n              "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("h4", [_vm._v("Illustrations")]),
+                _vm._v(" "),
+                p.files.length > 0
+                  ? _c(
+                      "div",
+                      { staticClass: "row" },
+                      _vm._l(p.files, function(file, key) {
+                        return _c("div", { staticClass: "col-md-4" }, [
+                          _c("div", { staticClass: "card mb-4 box-shadow" }, [
+                            _c("img", {
+                              staticClass: "card-img-top",
+                              attrs: {
+                                src: "/storage" + file.src,
+                                alt: "Card image cap",
+                                width: "100",
+                                height: "225"
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "btn-group" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-secondary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showImg(file.src)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  View\n                "
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  : _c("div", { staticClass: "row" }, [_vm._m(0, true)]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                p.vid_src != null
+                  ? _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "embed-responsive embed-responsive-16by9"
+                          },
+                          [
+                            _c("iframe", {
+                              attrs: {
+                                width: "560",
+                                height: "315",
+                                src: p.vid_src,
+                                title: "YouTube video player",
+                                frameborder: "0",
+                                allow:
+                                  "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                                allowfullscreen: ""
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("h3", [_vm._v("Season")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(
+                        p.season == null || p.season == ""
+                          ? "No Record Found!"
+                          : p.season
+                      ) +
+                      "\n          "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("h4", [_vm._v("Pre Treatment")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(
+                            p.pre_treatment == null || p.pre_treatment == ""
+                              ? "No Record Found!"
+                              : p.pre_treatment
+                          ) +
+                          "\n              "
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
-                ])
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("h4", [_vm._v("Post Treatment")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(
+                            p.post_treatment == null || p.post_treatment == ""
+                              ? "No Record Found!"
+                              : p.post_treatment
+                          ) +
+                          "\n              "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("hr")
+              ]
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "modal fade", attrs: { id: "show_img_model" } },
+          [
+            _c("div", { staticClass: "modal-dialog modal-lg" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("img", {
+                    staticClass: "img-fluid mx-auto d-block",
+                    attrs: {
+                      src: "/storage" + _vm.img_show,
+                      alt: "illustration"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
               ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("nav", { staticClass: "blog-pagination" }, [
+          _c(
+            "div",
+            { staticClass: "d-flex flex-row add-comment-section mt-4 mb-4" },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.comment,
+                    expression: "comment"
+                  }
+                ],
+                staticClass: "form-control mr-3",
+                attrs: { type: "text", placeholder: "Add comment" },
+                domProps: { value: _vm.comment },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.comment = $event.target.value
+                  }
+                }
+              }),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.postComment }
+                },
+                [_vm._v("\n            Comment\n          ")]
+              )
             ]
           ),
           _vm._v(" "),
-          _c("nav", { staticClass: "blog-pagination" }, [
-            _c(
-              "div",
-              { staticClass: "d-flex flex-row add-comment-section mt-4 mb-4" },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.comment,
-                      expression: "comment"
-                    }
-                  ],
-                  staticClass: "form-control mr-3",
-                  attrs: { type: "text", placeholder: "Add comment" },
-                  domProps: { value: _vm.comment },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.comment = $event.target.value
-                    }
-                  }
-                }),
+          _vm.plant.comments
+            ? _c("div", { staticClass: "container" }, [
                 _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: { click: _vm.postComment }
-                  },
-                  [_vm._v("\n              Comment\n            ")]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _vm.plant.comments
-              ? _c("div", { staticClass: "container" }, [
-                  _c(
-                    "div",
-                    { staticClass: "be-comment-block" },
-                    [
-                      _c("h1", { staticClass: "comments-title" }, [
-                        _vm._v(
-                          "\n                Comments (" +
-                            _vm._s(
-                              _vm.plant.comments == null
-                                ? "0"
-                                : _vm.plant.comments.length
-                            ) +
-                            ")\n              "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.plant.comments, function(com) {
-                        return [
-                          _c("div", { staticClass: "be-comment" }, [
-                            _vm._m(3, true),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "be-comment-content" }, [
-                              _c(
-                                "span",
-                                { staticClass: "be-comment-name" },
-                                [
-                                  _c("a", { attrs: { href: "#" } }, [
-                                    _vm._v(
-                                      _vm._s(
-                                        com.name == null
-                                          ? "anonymous"
-                                          : com.name
-                                      )
+                  "div",
+                  { staticClass: "be-comment-block" },
+                  [
+                    _c("h1", { staticClass: "comments-title" }, [
+                      _vm._v(
+                        "\n              Comments (" +
+                          _vm._s(
+                            _vm.plant.comments == null
+                              ? "0"
+                              : _vm.plant.comments.length
+                          ) +
+                          ")\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.plant.comments, function(com) {
+                      return [
+                        _c("div", { staticClass: "be-comment" }, [
+                          _vm._m(3, true),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "be-comment-content" }, [
+                            _c(
+                              "span",
+                              { staticClass: "be-comment-name" },
+                              [
+                                _c("a", { attrs: { href: "#" } }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      com.name == null ? "anonymous" : com.name
                                     )
-                                  ]),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  com.role == 2 ? [_vm._v("@expert")] : _vm._e()
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "span",
-                                { staticClass: "be-comment-time" },
-                                [
-                                  _c("i", { staticClass: "fa fa-clock-o" }),
-                                  _vm._v(" "),
-                                  _c("time-ago", {
-                                    attrs: {
-                                      datetime: com.created_at,
-                                      refresh: "",
-                                      long: true
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "be-comment-text" }, [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(com.comment) +
-                                    "\n                    "
-                                )
-                              ])
+                                  )
+                                ]),
+                                _c("br"),
+                                _vm._v(" "),
+                                com.role == 2 ? [_vm._v("@expert")] : _vm._e()
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "be-comment-time" },
+                              [
+                                _c("i", { staticClass: "fa fa-clock-o" }),
+                                _vm._v(" "),
+                                _c("time-ago", {
+                                  attrs: {
+                                    datetime: com.created_at,
+                                    refresh: "",
+                                    long: true
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "be-comment-text" }, [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(com.comment) +
+                                  "\n                  "
+                              )
                             ])
                           ])
-                        ]
-                      })
-                    ],
-                    2
-                  )
-                ])
-              : _vm._e()
-          ])
-        ]),
-        _vm._v(" "),
-        _c("aside", { staticClass: "col-md-4 blog-sidebar" }, [
+                        ])
+                      ]
+                    })
+                  ],
+                  2
+                )
+              ])
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3 blog-main" }, [
+        _c("aside", { staticClass: "col-md-12 blog-sidebar" }, [
           _c("div", { staticClass: "p-3 mb-3 bg-light rounded" }, [
             _c("h4", { staticClass: "font-italic" }, [_vm._v("Archives")]),
             _vm._v(" "),
@@ -60766,7 +60752,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col" }, [
       _c("div", { staticClass: "alert alert-secondary" }, [
         _c("strong", [_vm._v("Oops!")]),
-        _vm._v(" No image found!.\n                ")
+        _vm._v(" No image found!.\n              ")
       ])
     ])
   },
@@ -60783,7 +60769,7 @@ var staticRenderFns = [
           staticClass: "close",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
-        [_vm._v("\n                  ×\n                ")]
+        [_vm._v("\n                ×\n              ")]
       )
     ])
   },
@@ -60798,7 +60784,7 @@ var staticRenderFns = [
           staticClass: "btn btn-secondary",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
-        [_vm._v("\n                  Close\n                ")]
+        [_vm._v("\n                Close\n              ")]
       )
     ])
   },

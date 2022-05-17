@@ -1,265 +1,264 @@
 <template>
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <img
-            width="304"
-            height="236"
-            class="rounded"
-            :src="'/storage' + plant.puto.src"
-            alt="Card image cap"
-          />
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <img
+          width="304"
+          height="236"
+          class="rounded"
+          :src="'/storage' + plant.puto.src"
+          alt="Card image cap"
+        />
       </div>
-      <div class="row">
-        <div class="col-md-8 blog-main">
-          <h3 class="pb-3 mb-4 font-italic border-bottom">
-            {{ plant.name }}
-          </h3>
+    </div>
+    <div class="row">
+      <div class="col-md-9 blog-main">
+        <h3 class="pb-3 mb-4 font-italic border-bottom">
+          {{ plant.name }}ytuyytuytu
+        </h3>
 
-          <div class="blog-post">
-            <p class="blog-post-meta">
-              {{ plant.variety }}
-            </p>
+        <div class="blog-post">
+          <p class="blog-post-meta">
+            {{ plant.variety }}
+          </p>
 
+          <p>
+            {{ plant.description }}
+          </p>
+          <hr />
+        </div>
+        <!-- /.blog-post -->
+        <div class="blog-post">
+          <h4 class="blog-post-title">Technologies</h4>
+          <p class="blog-post-meta">
+            {{ plant.updated_at }}
+          </p>
+          <!-- temp -->
+          <template v-for="(p, index) in plant.tech">
+            <h2>{{ ++index }}) {{ p.title }}</h2>
             <p>
-              {{ plant.description }}
+              {{ p.description }}
             </p>
+            <!--  -->
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Advantage</h4>
+                <p>
+                  {{ p.advantage == "" ? "No Record Found!" : p.advantage }}
+                </p>
+              </div>
+              <div class="col-md-6">
+                <h4>Disadvantage</h4>
+                <p>
+                  {{
+                    p.disadvantage == "" ? "No Record Found!" : p.disadvantage
+                  }}
+                </p>
+              </div>
+            </div>
+            <!--  -->
             <hr />
-          </div>
-          <!-- /.blog-post -->
-          <div class="blog-post">
-            <h4 class="blog-post-title">Technologies</h4>
-            <p class="blog-post-meta">
-              {{ plant.updated_at }}
-            </p>
-            <!-- temp -->
-            <template v-for="(p, index) in plant.tech">
-              <h2>{{ ++index }}) {{ p.title }}</h2>
-              <p>
-                {{ p.description }}
-              </p>
-              <!--  -->
-              <div class="row">
-                <div class="col-md-6">
-                  <h4>Advantage</h4>
-                  <p>
-                    {{ p.advantage == "" ? "No Record Found!" : p.advantage }}
-                  </p>
-                </div>
-                <div class="col-md-6">
-                  <h4>Disadvantage</h4>
-                  <p>
-                    {{
-                      p.disadvantage == "" ? "No Record Found!" : p.disadvantage
-                    }}
-                  </p>
-                </div>
-              </div>
-              <!--  -->
-              <hr />
 
-              <h4>Illustrations</h4>
+            <h4>Illustrations</h4>
 
-              <div class="row" v-if="p.files.length > 0">
-                <div class="col-md-4" v-for="(file, key) in p.files">
-                  <!--  -->
+            <div class="row" v-if="p.files.length > 0">
+              <div class="col-md-4" v-for="(file, key) in p.files">
+                <!--  -->
 
-                  <div class="card mb-4 box-shadow">
-                    <img
-                      class="card-img-top"
-                      :src="'/storage' + file.src"
-                      alt="Card image cap"
-                      width="100"
-                      height="225"
-                    />
-                  </div>
-
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-outline-secondary"
-                      @click="showImg(file.src)"
-                    >
-                      View
-                    </button>
-                  </div>
-
-                  <!--  -->
-                </div>
-              </div>
-
-              <div class="row" v-else>
-                <div class="col">
-                  <div class="alert alert-secondary">
-                    <strong>Oops!</strong> No image found!.
-                  </div>
-                </div>
-              </div>
-              <br />
-              <br />
-              <div class="row" v-if="p.vid_src != null">
-                <div class="col-md-8">
-                  <div class="embed-responsive embed-responsive-16by9">
-                    <iframe
-                      width="560"
-                      height="315"
-                      :src="p.vid_src"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
-              <hr />
-              <h3>Season</h3>
-              <p>
-                {{
-                  p.season == null || p.season == ""
-                    ? "No Record Found!"
-                    : p.season
-                }}
-              </p>
-              <!--  -->
-              <div class="row">
-                <div class="col-md-6">
-                  <h4>Pre Treatment</h4>
-                  <p>
-                    {{
-                      p.pre_treatment == null || p.pre_treatment == ""
-                        ? "No Record Found!"
-                        : p.pre_treatment
-                    }}
-                  </p>
-                </div>
-                <div class="col-md-6">
-                  <h4>Post Treatment</h4>
-                  <p>
-                    {{
-                      p.post_treatment == null || p.post_treatment == ""
-                        ? "No Record Found!"
-                        : p.post_treatment
-                    }}
-                  </p>
-                </div>
-              </div>
-              <!--  -->
-              <hr />
-            </template>
-            <!-- temp -->
-          </div>
-          <!-- /.blog-post -->
-          <!-- The Modal img -->
-          <div class="modal fade" id="show_img_model">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Illustration</h4>
-                  <button type="button" class="close" data-dismiss="modal">
-                    &times;
-                  </button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
+                <div class="card mb-4 box-shadow">
                   <img
-                    class="img-fluid mx-auto d-block"
-                    :src="'/storage' + img_show"
-                    alt="illustration"
+                    class="card-img-top"
+                    :src="'/storage' + file.src"
+                    alt="Card image cap"
+                    width="100"
+                    height="225"
                   />
                 </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
+                <div class="btn-group">
                   <button
                     type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
+                    class="btn btn-sm btn-outline-secondary"
+                    @click="showImg(file.src)"
                   >
-                    Close
+                    View
                   </button>
+                </div>
+
+                <!--  -->
+              </div>
+            </div>
+
+            <div class="row" v-else>
+              <div class="col">
+                <div class="alert alert-secondary">
+                  <strong>Oops!</strong> No image found!.
                 </div>
               </div>
             </div>
-          </div>
-          <!-- The Modal img -->
-          <!-- /.blog-post -->
-
-          <nav class="blog-pagination">
-            <div class="d-flex flex-row add-comment-section mt-4 mb-4">
-              <input
-                type="text"
-                class="form-control mr-3"
-                placeholder="Add comment"
-                v-model="comment"
-              /><button
-                class="btn btn-primary"
-                type="button"
-                @click="postComment"
-              >
-                Comment
-              </button>
+            <br />
+            <br />
+            <div class="row" v-if="p.vid_src != null">
+              <div class="col-md-8">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe
+                    width="560"
+                    height="315"
+                    :src="p.vid_src"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
             </div>
-
-            <div class="container" v-if="plant.comments">
-              <!--  -->
-
-              <div class="be-comment-block">
-                <h1 class="comments-title">
-                  Comments ({{
-                    plant.comments == null ? "0" : plant.comments.length
-                  }})
-                </h1>
-                <!--  -->
-                <template v-for="com in plant.comments">
-                  <div class="be-comment">
-                    <div class="be-img-comment">
-                      <a href="#">
-                        <img
-                          src="/avatar/avatar.png"
-                          alt=""
-                          class="be-ava-comment"
-                        />
-                      </a>
-                    </div>
-                    <div class="be-comment-content">
-                      <span class="be-comment-name">
-                        <a href="#">{{
-                          com.name == null ? "anonymous" : com.name
-                        }}</a
-                        ><br />
-                        <template v-if="com.role == 2">@expert</template>
-                      </span>
-                      <span class="be-comment-time">
-                        <i class="fa fa-clock-o"></i>
-
-                        <time-ago
-                          :datetime="com.created_at"
-                          refresh
-                          :long="true"
-                        />
-                      </span>
-
-                      <p class="be-comment-text">
-                        {{ com.comment }}
-                      </p>
-                    </div>
-                  </div>
-                </template>
-                <!--  -->
+            <hr />
+            <h3>Season</h3>
+            <p>
+              {{
+                p.season == null || p.season == ""
+                  ? "No Record Found!"
+                  : p.season
+              }}
+            </p>
+            <!--  -->
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Pre Treatment</h4>
+                <p>
+                  {{
+                    p.pre_treatment == null || p.pre_treatment == ""
+                      ? "No Record Found!"
+                      : p.pre_treatment
+                  }}
+                </p>
+              </div>
+              <div class="col-md-6">
+                <h4>Post Treatment</h4>
+                <p>
+                  {{
+                    p.post_treatment == null || p.post_treatment == ""
+                      ? "No Record Found!"
+                      : p.post_treatment
+                  }}
+                </p>
+              </div>
+            </div>
+            <!--  -->
+            <hr />
+          </template>
+          <!-- temp -->
+        </div>
+        <!-- /.blog-post -->
+        <!-- The Modal img -->
+        <div class="modal fade" id="show_img_model">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Illustration</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
               </div>
 
+              <!-- Modal body -->
+              <div class="modal-body">
+                <img
+                  class="img-fluid mx-auto d-block"
+                  :src="'/storage' + img_show"
+                  alt="illustration"
+                />
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- The Modal img -->
+        <!-- /.blog-post -->
+
+        <nav class="blog-pagination">
+          <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+            <input
+              type="text"
+              class="form-control mr-3"
+              placeholder="Add comment"
+              v-model="comment"
+            /><button
+              class="btn btn-primary"
+              type="button"
+              @click="postComment"
+            >
+              Comment
+            </button>
+          </div>
+
+          <div class="container" v-if="plant.comments">
+            <!--  -->
+
+            <div class="be-comment-block">
+              <h1 class="comments-title">
+                Comments ({{
+                  plant.comments == null ? "0" : plant.comments.length
+                }})
+              </h1>
+              <!--  -->
+              <template v-for="com in plant.comments">
+                <div class="be-comment">
+                  <div class="be-img-comment">
+                    <a href="#">
+                      <img
+                        src="/avatar/avatar.png"
+                        alt=""
+                        class="be-ava-comment"
+                      />
+                    </a>
+                  </div>
+                  <div class="be-comment-content">
+                    <span class="be-comment-name">
+                      <a href="#">{{
+                        com.name == null ? "anonymous" : com.name
+                      }}</a
+                      ><br />
+                      <template v-if="com.role == 2">@expert</template>
+                    </span>
+                    <span class="be-comment-time">
+                      <i class="fa fa-clock-o"></i>
+
+                      <time-ago
+                        :datetime="com.created_at"
+                        refresh
+                        :long="true"
+                      />
+                    </span>
+
+                    <p class="be-comment-text">
+                      {{ com.comment }}
+                    </p>
+                  </div>
+                </div>
+              </template>
               <!--  -->
             </div>
-          </nav>
-        </div>
-        <!-- /.blog-main -->
 
-        <aside class="col-md-4 blog-sidebar">
+            <!--  -->
+          </div>
+        </nav>
+      </div>
+      <!-- /.blog-main -->
+      <div class="col-md-3 blog-main">
+        <aside class="col-md-12 blog-sidebar">
           <div class="p-3 mb-3 bg-light rounded">
             <h4 class="font-italic">Archives</h4>
             <ol class="list-unstyled mb-0">
@@ -277,10 +276,10 @@
             </ol>
           </div>
         </aside>
-        <!-- /.blog-sidebar -->
       </div>
-      <!-- /.row -->
+      <!-- /.blog-sidebar -->
     </div>
+    <!-- /.row -->
   </div>
 </template>
 
