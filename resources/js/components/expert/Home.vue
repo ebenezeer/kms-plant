@@ -23,36 +23,65 @@
               <div class="col-md-4">
                 <h1>
                   <router-link to="/expert/method-details">
-                    <span class="badge badge-success">PG</span></router-link
-                  >
+                    <img
+                      src="/avatar/btnimg/plant_grafting.jpg"
+                      class="rounded-circle"
+                      alt="PG"
+                      width="100"
+                      height="100"
+                    />
+                  </router-link>
                 </h1>
               </div>
               <div class="col-md-4">
                 <h1>
                   <router-link to="/expert/plant-detail">
-                    <span class="badge badge-success">PD</span></router-link
-                  >
+                    <img
+                      src="/avatar/btnimg/plant_details.jpg"
+                      class="rounded-circle"
+                      alt="PG"
+                      width="100"
+                      height="100"
+                    />
+                  </router-link>
                 </h1>
               </div>
               <div class="col-md-4">
                 <h1>
                   <router-link to="/expert/graft-details">
-                    <span class="badge badge-success">GT</span></router-link
-                  >
+                    <img
+                      src="/avatar/btnimg/graft_techniques.jpg"
+                      class="rounded-circle"
+                      alt="PG"
+                      width="100"
+                      height="100"
+                  /></router-link>
                 </h1>
               </div>
               <div class="col-md-4">
                 <h1>
                   <router-link to="/expert/plant-name">
-                    <span class="badge badge-success">PN</span></router-link
-                  >
+                    <img
+                      src="/avatar/btnimg/plant_name.jpg"
+                      class="rounded-circle"
+                      alt="PG"
+                      width="100"
+                      height="100"
+                    />
+                  </router-link>
                 </h1>
               </div>
               <div class="col-md-4">
                 <h1>
                   <router-link to="/expert/variety">
-                    <span class="badge badge-success">VAR</span></router-link
-                  >
+                    <img
+                      src="/avatar/btnimg/variety.jpg"
+                      class="rounded-circle"
+                      alt="PG"
+                      width="100"
+                      height="100"
+                    />
+                  </router-link>
                 </h1>
               </div>
             </div>

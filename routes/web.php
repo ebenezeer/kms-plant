@@ -63,6 +63,10 @@ Route::group(['middleware' => ['admin']], function () {
         Route::post('/delete-plantphoto/{id}', 'App\Http\Controllers\Administrator\PlantDetailController@deletePhoto');
 
         Route::get('/logout', 'App\Http\Controllers\Administrator\AdministratorController@logout');
+        Route::get('/get-user-details', 'App\Http\Controllers\Administrator\AdministratorController@user_details');
+
+        Route::get('/get-users', 'App\Http\Controllers\Administrator\CustomRegisterController@users_tbl');
+        Route::post('/user-update', 'App\Http\Controllers\Administrator\CustomRegisterController@user_update');
 
         Route::get('/{any}', function () {
             return view('/administrator/home');

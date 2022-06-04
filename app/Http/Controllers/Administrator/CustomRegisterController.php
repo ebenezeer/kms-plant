@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class CustomRegisterController extends Controller
 {
+    public function users_tbl()
+    {
+        $user = User::all();
+
+        return $user;
+    }
     public function store(Request $request)
     {
         $this->validate(
@@ -47,5 +53,32 @@ class CustomRegisterController extends Controller
         //     'password' => Hash::make($data['password']),
         // ]);
 
+    }
+    public function user_update(Request $request)
+    {
+
+        $id = $request->id;
+        $this->validate(
+            $request,
+            [
+                'name' => ['required', 'string', 'max:255'],
+                // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                // 'role' => ['required'],
+                // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]
+        );
+
+        //return "gagi";
+        $unit = User::find($id);
+
+        $unit->name = $request->name;
+        // $unit->email = $request->email;
+
+        $unit->save();
+
+        return response()->json([
+            'staus'    => 1,
+            'message'   => 'Successfully Recorded'
+        ], 200);
     }
 }
